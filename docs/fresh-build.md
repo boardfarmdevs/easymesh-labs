@@ -45,6 +45,22 @@ Each host gets the workspace at `~/git/easymesh-labs` (`./sync --pinned`).
    pending").
 6. **Pin** the commits that passed (`./pin`) and record the results here.
 
+## Results
+
+| Step | Result (2026-09-25) |
+| --- | --- |
+| 1. Workspace | rev140, rev150, rev120 |
+| 2. OpenSync lab | mv3 image on rev140: installed packages identical to the reference (210), every SRCREV matches the pins. Pod image `mvx-pod-20260924183456` with both patches. VM `emosa-osl-0925` on rev150 (8 CPU, 16 GB, 32 hwsim radios): `setup-vm.sh all`, `deploy-mvx.sh all` and `mesh`, 89 checks passed, none failed. |
+| 3. EMOSA | fleet with pod-1 to pod-3, the controller's SSID applied on each pod, two clients per pod with internet; workload `fresh-0925-m7` passed (emosa-lab evidence); option 1 on pod-3 applied in 22 s and re-applied after an OpenSync restart. Fixed on the way: `lab.sh gtp` (emosa-lab `43c010e`). |
+| 4. prplMesh lab | not started |
+| 5. RDK lab | not started |
+
+Moving the images to rev150: the mv3 image under a build directory of the same
+name (the deploy reads the build name from the path), the pod image, and the
+pinned meta-lxd as a self-contained bare repository at the pin-store path
+(`~/yocto/repo_reference/mvx-pins/<pins>/layers/meta-lxd.git`). The pin store
+on rev140 borrows objects from the local mirror, so it cannot be copied as is.
+
 ## Then: the combined system
 
 One VM on rev120 with the EasyMesh controller and native agents on wmediumd, plus
