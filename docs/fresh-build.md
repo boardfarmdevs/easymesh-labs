@@ -52,8 +52,8 @@ Each host gets the workspace at `~/git/easymesh-labs` (`./sync --pinned`).
 | 1. Workspace | rev140, rev150, rev120 |
 | 2. OpenSync lab | mv3 image on rev140: installed packages identical to the reference (210), every SRCREV matches the pins. Pod image `mvx-pod-20260924183456` with both patches. VM `emosa-osl-0925` on rev150 (8 CPU, 16 GB, 32 hwsim radios): `setup-vm.sh all`, `deploy-mvx.sh all` and `mesh`, 89 checks passed, none failed. |
 | 3. EMOSA | fleet with pod-1 to pod-3, the controller's SSID applied on each pod, two clients per pod with internet; workload `fresh-0925-m7` passed (emosa-lab evidence); option 1 on pod-3 applied in 22 s and re-applied after an OpenSync restart. Fixed on the way: `lab.sh gtp` (emosa-lab `43c010e`). |
-| 4. prplMesh lab | not started |
-| 5. RDK lab | not started |
+| 4. prplMesh lab | VM `prpl-0925` on rev120 (`build-artifacts.sh`, `deploy/lxd-vm/build.sh build`, 25 min). The build's first acceptance failed on one client (`prpl-client-48`) stuck in its 6 GHz SAE handshake; the re-run (`build.sh check`) passed: 100/100 clients over the mesh data plane, 5 and 6 GHz steering, the closed-loop optimizer's recommend step. Catalog run in progress: every VM tier (`static rf rf-actions rooms live soak`); `webui` and `browser` need Node 22, which rev120 lacks. |
+| 5. RDK lab | Both Banana Pi images built on rev140 in `~/yocto/easymesh-labs-bpi` (controller `rdk-generic-broadband-image`, extender `rdk-generic-ap-extender-image`). VM `rdk-0925` (`gen/vm/lxd/build.sh build`, 58 min): health audit passed, ready with 105 radios, room and survey. Catalog run (`all --yes-act --soak-duration 300`, as the last `demo-a` run: 81 passed, 6 failed, 1 skipped) in progress. |
 
 Moving the images to rev150: the mv3 image under a build directory of the same
 name (the deploy reads the build name from the path), the pod image, and the
@@ -67,8 +67,9 @@ One VM on rev120 with the EasyMesh controller and native agents on wmediumd, plu
 OpenSync pods whose radios are on the same medium, managed through EMOSA. Its
 design starts here once the four labs pass on their own.
 
-## Open before step 3
+## Found on the way
 
-- prplMesh sent AP-Autoconfiguration Renew every few seconds while one EMOSA
-  agent was also given the backhaul BSS; understand it before repeating the
-  M2-credential test.
+- The AP-Autoconfiguration Renew storm seen while an EMOSA agent had the
+  backhaul BSS was a layer-2 loop: the pod's own backhaul station joined the
+  pod's own backhaul BSS. emosa-lab `5140b19` pins the station to the upstream
+  BSSID; the M2-credential switch then passed on `emosa-osl-0925`.
