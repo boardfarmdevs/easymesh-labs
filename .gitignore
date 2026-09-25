@@ -6,3 +6,5 @@
 # the built site
 /dist/
 __pycache__/
+# logs of builds run from the workspace
+/.build-logs/
