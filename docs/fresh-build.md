@@ -1,8 +1,9 @@
 # Fresh build of the four labs
 
 Every lab is built again from this workspace, at the pinned commits, following
-each project's own guide. The existing work directories and VMs stay as they are
-until the new ones pass; nothing here deletes them. A step that needed a
+each project's own guide. The existing work directories stay as they are. The
+obsolete VMs were deleted on 2026-09-24: `emosa-osl-0923` and
+`opensync-lab-0923` on rev140, `emosa-lab` and `emosa-reliability` on rev150. A step that needed a
 workaround or a change to a project's guide is fixed in that project and noted
 here.
 
@@ -10,8 +11,8 @@ here.
 
 | Host | CPUs / memory / free disk (2026-09-25) | Role |
 | --- | --- | --- |
-| rev140 | 16 / 62 GB / 2.2 TB | Yocto builds: mv3 image, OpenSync pod image, Banana Pi images. Keeps the RDK lab VM `demo-a` until its replacement passes. The old `emosa-osl-0923` and `opensync-lab-0923` VMs retire after the new OpenSync + EMOSA lab passes. |
-| rev150 | 16 / 25 GB / 747 GB | The new OpenSync + EMOSA lab VM, 16 GB or more (the old one at 12 GB ran out of memory with six pods). |
+| rev140 | 16 / 62 GB / 2.2 TB | Yocto builds: mv3 image, OpenSync pod image, Banana Pi images (the only host with the RDK/Banana Pi tree and the shared `~/oe/downloads` and `~/oe/sstate-cache`). Keeps the RDK lab VM `demo-a` until its replacement passes. |
+| rev150 | 16 / 25 GB / 747 GB | The new OpenSync + EMOSA lab VM `emosa-osl-0925`, 16 GB (the old one at 12 GB ran out of memory with six pods). |
 | rev120 | 12 / 62 GB / 551 GB | The prplMesh lab, and later the combined end-goal VM (24 to 32 GB). |
 
 Each host gets the workspace at `~/git/easymesh-labs` (`./sync --pinned`).
@@ -36,7 +37,10 @@ Each host gets the workspace at `~/git/easymesh-labs` (`./sync --pinned`).
 4. **prplMesh lab** on rev120 (prplmesh-lab `deploy/bare-metal/README.md`), in a
    new VM next to `demo-prpl-*`. Acceptance: its full catalog run.
 5. **RDK lab** (meta-cmf-bananapi-vcpe `doc/easymesh/build/README.md`): both
-   Banana Pi roles built again on rev140, then a new VM. Acceptance: its full
+   Banana Pi roles built again on rev140 in a new tree next to the existing
+   `~/yocto/easymesh-bpi` (which stays as it is), with the workspace's
+   meta-cmf-bananapi-vcpe as its layer and the shared downloads and sstate;
+   then a new VM. Acceptance: its full
    catalog run from clean source (the current state is "fresh-VM acceptance
    pending").
 6. **Pin** the commits that passed (`./pin`) and record the results here.
