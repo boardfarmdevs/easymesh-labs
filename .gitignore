@@ -1,0 +1,8 @@
+# the four projects, cloned by ./sync
+/meta-cmf-bananapi-vcpe/
+/prplmesh-lab/
+/emosa-lab/
+/opensync-lab/
+# the built site
+/dist/
+__pycache__/

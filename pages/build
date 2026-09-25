@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Build this repository's Pages site into dist/site. This is the only per-repository
+# step: pages/finish-site.py, pages/labs-bar.js and .github/workflows/pages.yml are
+# the same in the lab repositories.
+#
+# easymesh-labs: the landing page for the four labs (site/), static.
+set -euo pipefail
+cd "$(dirname "$(readlink -f "$0")")/.."
+rm -rf dist/site
+mkdir -p dist
+cp -a site dist/site
+test -f dist/site/index.html
+echo "Built dist/site from site/"
