@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EasyMesh labs</title>
+<meta name="description" content="Four labs, two goals: EasyMesh optimizer development, and existing OpenSync pods in an EasyMesh system through the EMOSA adapter.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <section class="hero">
+    <p class="eyebrow">boardfarmdevs · EasyMesh labs</p>
+    <h1>One EasyMesh system, for native agents and the OpenSync pods already in homes</h1>
+    <p class="lead">Four labs work toward it along two goals: developing the EasyMesh optimizer,
+    and bringing existing OpenSync pods into EasyMesh through an adapter. The end goal is one
+    EasyMesh system on a shared virtual radio medium (wmediumd), with native EasyMesh agents and
+    OpenSync pods working together.</p>
+  </section>
+
+  <section id="what">
+    <h2>What it is</h2>
+    <div class="goals">
+      <article class="goal">
+        <p class="tag">Goal 1</p>
+        <h3>EasyMesh optimizer</h3>
+        <p>The same containerized EasyMesh lab on two stacks, with virtual RF and medium,
+        an optimizer and an interactive room.</p>
+        <ul class="projects">
+          <li><a href="https://boardfarmdevs.github.io/meta-cmf-bananapi-vcpe/"><b>RDK EasyMesh</b></a>
+            <span>RDK-B on Banana Pi images: controller, extenders, 100 clients, wmediumd</span></li>
+          <li><a href="https://boardfarmdevs.github.io/prplmesh-lab/"><b>prplMesh</b></a>
+            <span>The same lab on native prplMesh</span></li>
+        </ul>
+      </article>
+      <article class="goal">
+        <p class="tag">Goal 2</p>
+        <h3>OpenSync adapter</h3>
+        <p>Existing OpenSync pods, unchanged, as standard EasyMesh agents, so an EasyMesh
+        controller can run them.</p>
+        <ul class="projects">
+          <li><a href="https://boardfarmdevs.github.io/emosa-lab/"><b>EMOSA</b></a>
+            <span>The EasyMesh-to-OpenSync adapter</span></li>
+          <li><a href="https://boardfarmdevs.github.io/opensync-lab/"><b>OpenSync</b></a>
+            <span>A representative router (mv3) and OpenSync pods with virtual radios and clients</span></li>
+        </ul>
+      </article>
+    </div>
+    <figure class="target">
+      <svg viewBox="0 0 900 250" role="img" aria-label="The end goal: an EasyMesh controller managing native EasyMesh agents and OpenSync pods through EMOSA, all on one wmediumd medium">
+        <rect class="box ctl" x="330" y="10" width="240" height="54" rx="10"/>
+        <text x="450" y="34" class="t">EasyMesh controller</text>
+        <text x="450" y="52" class="s">RDK or prplMesh · optimizer</text>
+        <rect class="box" x="40" y="104" width="220" height="54" rx="10"/>
+        <text x="150" y="128" class="t">Native EasyMesh agents</text>
+        <text x="150" y="146" class="s">RDK or prplMesh extenders</text>
+        <rect class="box emosa" x="400" y="104" width="120" height="54" rx="10"/>
+        <text x="460" y="128" class="t">EMOSA</text>
+        <text x="460" y="146" class="s">adapter</text>
+        <rect class="box" x="640" y="104" width="220" height="54" rx="10"/>
+        <text x="750" y="128" class="t">OpenSync pods</text>
+        <text x="750" y="146" class="s">unchanged</text>
+        <path class="link" d="M390 64 L180 104"/>
+        <path class="link" d="M450 64 L458 104"/>
+        <path class="link" d="M520 131 L640 131"/>
+        <text x="580" y="122" class="s">OVSDB</text>
+        <text x="205" y="82" class="s" style="text-anchor: start">1905.1</text>
+        <rect class="medium" x="40" y="196" width="820" height="36" rx="8"/>
+        <text x="450" y="219" class="t">wmediumd · one virtual radio medium for every radio</text>
+        <path class="air" d="M150 158 L150 196 M750 158 L750 196"/>
+      </svg>
+      <figcaption>The end goal: one controller, native agents and OpenSync pods side by side, all on the same simulated medium.</figcaption>
+    </figure>
+  </section>
+
+  <section id="state">
+    <h2>Current state</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Project</th><th>Where it stands</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://boardfarmdevs.github.io/meta-cmf-bananapi-vcpe/#state">RDK EasyMesh</a></td>
+          <td>Development checkpoint: 24 of 24 ordinary rooms passed the bounded diagnostics; fresh-VM acceptance pending.</td></tr>
+        <tr><td><a href="https://boardfarmdevs.github.io/prplmesh-lab/#state">prplMesh</a></td>
+          <td>Development checkpoint: passing evidence for all 24 rooms across two runs; fresh-VM acceptance pending.</td></tr>
+        <tr><td><a href="https://boardfarmdevs.github.io/emosa-lab/#state">EMOSA</a></td>
+          <td>Six unchanged OpenSync 6.6 pods run as EasyMesh agents under a prplMesh controller; a 900-second fault run recovers every fault; both data-path options work in the lab.</td></tr>
+        <tr><td><a href="https://boardfarmdevs.github.io/opensync-lab/#state">OpenSync</a></td>
+          <td>The router and three pods with clients, reproduced from a fresh VM; the pod image reports the Multi-AP backhaul link state.</td></tr>
+        <tr><td>Combined system</td>
+          <td>Next: after a fresh build of all four labs from this workspace.</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section id="run">
+    <h2>Run it</h2>
+    <p>This repository is the workspace. It pins the four projects in <code>manifest.json</code>
+    and clones them next to it:</p>
+<pre><code>git clone git@github.com:boardfarmdevs/easymesh-labs.git ~/git/easymesh-labs
+cd ~/git/easymesh-labs
+./sync            # clone or fast-forward the four projects (./sync --pinned: the pinned commits)
+./pin             # record the commits in use as the new pins</code></pre>
+    <p>Each project is then built and run with its own guide. Which host runs which lab is in
+    <a href="https://github.com/boardfarmdevs/easymesh-labs/blob/main/docs/fresh-build.md">the fresh-build plan</a>.</p>
+  </section>
+
+  <section id="reference">
+    <h2>Reference</h2>
+    <ul class="refs">
+      <li><a href="https://github.com/boardfarmdevs/easymesh-labs">easymesh-labs</a>: this workspace, the manifest and the plan</li>
+      <li><a href="https://github.com/boardfarmdevs/meta-cmf-bananapi-vcpe">meta-cmf-bananapi-vcpe</a> · <a href="https://github.com/boardfarmdevs/prplmesh-lab">prplmesh-lab</a> · <a href="https://github.com/boardfarmdevs/emosa-lab">emosa-lab</a> · <a href="https://github.com/boardfarmdevs/opensync-lab">opensync-lab</a></li>
+    </ul>
+  </section>
+</main>
+</body>
+</html>
