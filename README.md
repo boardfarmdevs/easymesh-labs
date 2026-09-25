@@ -38,7 +38,10 @@ branch is left as it is. Large build trees and caches (Yocto, downloads, sstate)
 stay outside the workspace; each project's own guide says where.
 
 The plan for building all four labs again from this workspace, and which host
-runs what, is [docs/fresh-build.md](docs/fresh-build.md).
+runs what, is [docs/fresh-build.md](docs/fresh-build.md). The five VM lab
+configurations the projects build (the RDK and prplMesh labs, the OpenSync lab,
+and EMOSA on the OpenSync and on the RDK lab), their purpose and their current
+VMs are in [docs/lab-configurations.md](docs/lab-configurations.md).
 
 ## The site
 
