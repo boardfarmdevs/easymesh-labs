@@ -42,6 +42,8 @@ runs what, is [docs/fresh-build.md](docs/fresh-build.md). The five VM lab
 configurations the projects build (the RDK and prplMesh labs, the OpenSync lab,
 and EMOSA on the OpenSync and on the RDK lab), their purpose and their current
 VMs are in [docs/lab-configurations.md](docs/lab-configurations.md).
+A proposal for offering the labs as a service to remote optimizer
+developers (not implemented) is [docs/proposals/labs-as-a-service.md](docs/proposals/labs-as-a-service.md).
 
 ## The site
 
