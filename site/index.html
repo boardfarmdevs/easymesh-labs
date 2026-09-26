@@ -87,7 +87,7 @@
         <tr><td><a href="https://boardfarmdevs.github.io/opensync-lab/#state">OpenSync</a></td>
           <td>The router and three pods with clients, reproduced from a fresh VM; the pod image reports the Multi-AP backhaul link state.</td></tr>
         <tr><td>Combined system</td>
-          <td>Next: after a fresh build of all four labs from this workspace.</td></tr>
+          <td>Under way in <code>rdk-emosa</code>: an unchanged OpenSync pod runs as an EasyMesh agent in the full RDK lab, next to its native agents, and the controller steers clients through it. Next: the pods in the room model.</td></tr>
       </tbody>
     </table></div>
   </section>
@@ -100,7 +100,26 @@
 cd ~/git/easymesh-labs
 ./sync            # clone or fast-forward the four projects (./sync --pinned: the pinned commits)
 ./pin             # record the commits in use as the new pins</code></pre>
-    <p>Each project is then built and run with its own guide. Which host runs which lab is in
+    <p>Each project is then built and run with its own guide. Together they build five VM lab
+    configurations:</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Configuration</th><th>Built from</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>RDK EasyMesh lab</td><td>meta-cmf-bananapi-vcpe</td>
+          <td>Optimizer development on RDK: controller, native extenders, 100 room clients, wmediumd, the interactive room</td></tr>
+        <tr><td>prplMesh lab</td><td>prplmesh-lab</td>
+          <td>The same optimizer lab on native prplMesh</td></tr>
+        <tr><td>OpenSync lab</td><td>opensync-lab</td>
+          <td>A representative router (mv3) and OpenSync pods with virtual radios and clients</td></tr>
+        <tr><td>OpenSync + EMOSA</td><td>opensync-lab, then emosa-lab</td>
+          <td>Adapter development against a prplMesh controller: several pods, fault workload, wireless backhaul</td></tr>
+        <tr><td>RDK lab + EMOSA</td><td>meta-cmf-bananapi-vcpe, then emosa-lab</td>
+          <td>OpenSync pods as agents next to the RDK lab's native agents on one medium</td></tr>
+      </tbody>
+    </table></div>
+    <p>Their current VMs, hosts and what a rebuild from the pins still lacks are in
+    <a href="https://github.com/boardfarmdevs/easymesh-labs/blob/main/docs/lab-configurations.md">the lab configurations</a>;
+    the order of a full rebuild is in
     <a href="https://github.com/boardfarmdevs/easymesh-labs/blob/main/docs/fresh-build.md">the fresh-build plan</a>.</p>
   </section>
 
