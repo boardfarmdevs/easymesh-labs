@@ -3,7 +3,7 @@
 # step: pages/finish-site.py, pages/labs-bar.js and .github/workflows/pages.yml are
 # the same in the lab repositories.
 #
-# easymesh-labs: the landing page for the four labs (site/), static.
+# easymesh-labs: the landing page for the five labs (site/), static.
 set -euo pipefail
 cd "$(dirname "$(readlink -f "$0")")/.."
 rm -rf dist/site

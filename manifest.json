@@ -1,9 +1,10 @@
 {
-  "description": "The four projects of the EasyMesh labs, grouped by goal, and the commit each was last pinned at (./pin). ./sync clones them into this workspace.",
+  "description": "The five projects of the EasyMesh labs, grouped by goal, and the commit each was last pinned at (./pin); the images the labs run that are built outside a lab VM, and the commit each was built from. ./sync clones the projects into this workspace.",
   "end_goal": "One EasyMesh system on wmediumd: native EasyMesh agents and existing OpenSync pods, through the EMOSA adapter, together.",
   "goals": {
     "optimizer": "EasyMesh optimizer development",
-    "adapter": "The OpenSync adapter: existing OpenSync pods in an EasyMesh system"
+    "adapter": "The OpenSync adapter: existing OpenSync pods in an EasyMesh system",
+    "physical": "EasyMesh on physical hardware: certified extenders and real clients, the protocol learned on the wire"
   },
   "projects": [
     {
@@ -13,7 +14,7 @@
       "about": "RDK-B on Banana Pi images in containers: EasyMesh, virtual RF and medium (wmediumd), optimizer, interactive room",
       "url": "git@github.com:boardfarmdevs/meta-cmf-bananapi-vcpe.git",
       "branch": "main",
-      "commit": "4b66063c746f3c0a37be8e80ec551f407ce5a775",
+      "commit": "a796f3a29ba24437c26604f854c18dfd14f38c89",
       "site": "https://boardfarmdevs.github.io/meta-cmf-bananapi-vcpe/"
     },
     {
@@ -23,7 +24,7 @@
       "about": "The same EasyMesh lab on native prplMesh",
       "url": "git@github.com:boardfarmdevs/prplmesh-lab.git",
       "branch": "main",
-      "commit": "5e55021a77952dd91371cfa8c54b2097cd05646b",
+      "commit": "4847a6a783a588b7914f5dcc29057c3ebedef45f",
       "site": "https://boardfarmdevs.github.io/prplmesh-lab/"
     },
     {
@@ -33,7 +34,7 @@
       "about": "The EasyMesh-to-OpenSync adapter: existing OpenSync pods as EasyMesh agents",
       "url": "git@github.com:boardfarmdevs/emosa-lab.git",
       "branch": "main",
-      "commit": "71e6cef93bf7751c60cf7d711a990e138fe00ac8",
+      "commit": "c3c3968b7545e91848c6c1ab16df3fbf9f607d1c",
       "site": "https://boardfarmdevs.github.io/emosa-lab/"
     },
     {
@@ -43,8 +44,55 @@
       "about": "A representative router (mv3) and OpenSync pods with virtual radios and clients",
       "url": "git@github.com:boardfarmdevs/opensync-lab.git",
       "branch": "main",
-      "commit": "8e61a2cd30b0bd12823fa50d9d1a104594936d54",
+      "commit": "1e8df4b124c5d782f2402ea6db646b8a53be30a5",
       "site": "https://boardfarmdevs.github.io/opensync-lab/"
+    },
+    {
+      "name": "easymesh-lab",
+      "title": "Protocol lab",
+      "goal": "physical",
+      "about": "A from-scratch Python IEEE 1905.1/EasyMesh controller and teaching panel, driving certified extenders (TP-Link RE653BE) with real tri-band clients",
+      "url": "git@github.com:boardfarmdevs/easymesh-lab.git",
+      "branch": "main",
+      "commit": "c3579d832890d00c7b9773266d8085d8c4ea3fb8",
+      "site": "https://boardfarmdevs.github.io/easymesh-lab/"
+    }
+  ],
+  "images": [
+    {
+      "name": "mvx-pod-20260925075828",
+      "project": "opensync-lab",
+      "commit": "daca9a9ee904a241bd9b00d2444a6e38ad8645ab",
+      "built_by": "build-pod.sh all (rev140, ~/yocto/mvx-pod-work/out)",
+      "used_by": "the OpenSync pods of the RDK lab + EMOSA (rdk-emosa)"
+    },
+    {
+      "name": "X86EMLTRBPIBB_rdk-next_20260928203255",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "239f9f6266e86ac481c0353f92017616e90f4a37",
+      "built_by": "doc/easymesh/build/scripts/build-images.sh both (rev140)",
+      "used_by": "the gateway (bpibroadband) of rdk-emosa"
+    },
+    {
+      "name": "X86EMLTRBPIAP_rdk-next_20260928204402",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "239f9f6266e86ac481c0353f92017616e90f4a37",
+      "built_by": "doc/easymesh/build/scripts/build-images.sh both (rev140)",
+      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-emosa"
+    },
+    {
+      "name": "X86EMLTRBPIBB_rdk-next_20260929012442",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "675782cf4d13f0e1b91adda51f3bba7689e2d712",
+      "built_by": "doc/easymesh/build/scripts/build-images.sh both (rev140)",
+      "used_by": "the gateway (bpibroadband) of rdk-0929"
+    },
+    {
+      "name": "X86EMLTRBPIAP_rdk-next_20260929014035",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "675782cf4d13f0e1b91adda51f3bba7689e2d712",
+      "built_by": "doc/easymesh/build/scripts/build-images.sh both (rev140)",
+      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004, rdk-wifi-hal 0045) of rdk-0929"
     }
   ]
 }

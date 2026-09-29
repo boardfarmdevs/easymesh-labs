@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Clone or update the four projects into this workspace (manifest.json).
+"""Clone or update the five projects into this workspace (manifest.json).
 
     ./sync              each project on its branch, fast-forwarded from origin
     ./sync --pinned     each project at the commit manifest.json pins (detached HEAD)
