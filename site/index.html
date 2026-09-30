@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EasyMesh labs</title>
-<meta name="description" content="Five labs, three goals: EasyMesh optimizer development, existing OpenSync pods in an EasyMesh system through the EMOSA adapter, and the EasyMesh protocol on certified hardware.">
+<meta name="description" content="EasyMesh optimizer development in a rich virtual lab on RDK and prplMesh, unchanged OpenSync pods in an EasyMesh system through EMOSA, and the protocol on certified hardware; built on two core components, the RF medium and EMOSA.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,15 +12,44 @@
   <section class="hero">
     <p class="eyebrow">boardfarmdevs · EasyMesh labs</p>
     <h1>One EasyMesh system, for native agents and the OpenSync pods already in homes</h1>
-    <p class="lead">Five labs work toward it along three goals: developing the EasyMesh optimizer,
-    bringing existing OpenSync pods into EasyMesh through an adapter, and learning the protocol
-    on certified EasyMesh hardware. The end goal is one EasyMesh system on a shared virtual radio
-    medium (wmediumd), with native EasyMesh agents and OpenSync pods working together; the
-    physical lab checks what the simulated ones learn against real devices and radios.</p>
+    <p class="lead">Three goals: developing EasyMesh optimizer algorithms in a rich virtual lab, on
+    both RDK and prplMesh; running existing OpenSync pods, unchanged, in an EasyMesh system under
+    a local controller with no OpenSync cloud; and learning the protocol on certified hardware.
+    Two core components carry them: the <b>RF medium</b>, which must emulate radio correctly for
+    every lab, and <b>EMOSA</b>, which must convert completely between OpenSync's OVSDB and
+    EasyMesh. Everything else is infrastructure around them, or exploratory learning.</p>
+  </section>
+
+  <section id="core">
+    <h2>The two core components</h2>
+    <div class="goals">
+      <article class="goal">
+        <p class="tag">Core</p>
+        <h3>The RF medium</h3>
+        <p>wmediumd and its patch series, the hwsim radios, the room language and the rooms, and the
+        medium's console: one repository that both optimizer labs build their medium from, at a
+        pinned commit, so RDK and prplMesh run on the same medium in the same rooms.</p>
+        <ul class="projects">
+          <li><a href="https://github.com/boardfarmdevs/easymesh-medium"><b>easymesh-medium</b></a>
+            <span>builds and checks without a lab; a change is requalified in both labs</span></li>
+        </ul>
+      </article>
+      <article class="goal">
+        <p class="tag">Core</p>
+        <h3>EMOSA</h3>
+        <p>The EasyMesh-to-OpenSync adapter: each unchanged OpenSync pod appears to the controller as
+        a complete EasyMesh agent. A specification with conformance vectors, a Python reference and a
+        C implementation that behave identically.</p>
+        <ul class="projects">
+          <li><a href="https://boardfarmdevs.github.io/emosa-lab/"><b>emosa-lab</b></a>
+            <span>specification, design, vectors, both implementations</span></li>
+        </ul>
+      </article>
+    </div>
   </section>
 
   <section id="what">
-    <h2>What it is</h2>
+    <h2>The labs and learning around them</h2>
     <div class="goals">
       <article class="goal">
         <p class="tag">Goal 1</p>
@@ -32,6 +61,9 @@
             <span>RDK-B on Banana Pi images: controller, extenders, 100 clients, wmediumd</span></li>
           <li><a href="https://boardfarmdevs.github.io/prplmesh-lab/"><b>prplMesh</b></a>
             <span>The same lab on native prplMesh</span></li>
+          <li><a href="https://boardfarmdevs.github.io/easymesh-room-builder/"><b>Room builder</b></a>
+            <span>A tool for both: design the labs' rooms in the browser (floor plans, walls,
+            agents, clients, movement), compiled to the same world plans as the lab's configurator</span></li>
         </ul>
       </article>
       <article class="goal">
@@ -90,33 +122,35 @@
     <div class="table-wrap"><table>
       <thead><tr><th>Project</th><th>Where it stands</th></tr></thead>
       <tbody>
-        <tr><td><a href="https://boardfarmdevs.github.io/meta-cmf-bananapi-vcpe/#state">RDK EasyMesh</a></td>
-          <td>Development checkpoint: 24 of 24 ordinary rooms passed the bounded diagnostics; fresh-VM acceptance pending.</td></tr>
-        <tr><td><a href="https://boardfarmdevs.github.io/prplmesh-lab/#state">prplMesh</a></td>
-          <td>Development checkpoint: passing evidence for all 24 rooms across two runs; fresh-VM acceptance pending.</td></tr>
+        <tr><td><a href="https://github.com/boardfarmdevs/easymesh-medium">RF medium</a></td>
+          <td>One repository since 30 September, merged from the two labs' copies: one wmediumd patch series, one configurator with both labs' differences in one place, the same rooms for both. CI builds and tests it without a lab; both labs are being requalified on it.</td></tr>
         <tr><td><a href="https://boardfarmdevs.github.io/emosa-lab/#state">EMOSA</a></td>
-          <td>Six unchanged OpenSync 6.6 pods run as EasyMesh agents under a prplMesh controller; a 900-second fault run recovers every fault; both data-path options work in the lab.</td></tr>
+          <td>Unchanged OpenSync 6.6 pods run as EasyMesh agents under both RDK's and prplMesh's controllers. The Python reference and the C implementation are interchangeable: the 900-second fault workload and the RDK room suite with the pods pass alike on either, and mixed. Next: the C to production quality.</td></tr>
+        <tr><td><a href="https://boardfarmdevs.github.io/meta-cmf-bananapi-vcpe/#state">RDK EasyMesh</a></td>
+          <td>Built from scratch with four Wi-Fi extenders and a wired one; its full room suite passed (29 September). With the EMOSA option, two pods on Wi-Fi backhaul join the native agents in the standard rooms, and the suite passes with them.</td></tr>
+        <tr><td><a href="https://boardfarmdevs.github.io/prplmesh-lab/#state">prplMesh</a></td>
+          <td>Built from scratch with a wired Agent; acceptance, the optimizer check and the rooms passed (29 September).</td></tr>
         <tr><td><a href="https://boardfarmdevs.github.io/opensync-lab/#state">OpenSync</a></td>
-          <td>The router and three pods with clients, reproduced from a fresh VM; the pod image reports the Multi-AP backhaul link state.</td></tr>
+          <td>The router and three pods with clients, reproduced from a fresh VM; the pod image reports the Multi-AP backhaul link state. With EMOSA it is the adapter's reference lab.</td></tr>
         <tr><td><a href="https://boardfarmdevs.github.io/easymesh-lab/#state">Protocol lab</a></td>
-          <td>A fresh LXD VM on rev120 runs the controller against a TP-Link RE653BE: WSC onboarding on 2.4 and 5 GHz, WPA3-SAE clients on its 6 GHz BSS, 34 tests plus browser, reboot, capture and 6 GHz checks. Controller-provisioned 6 GHz is not yet verified.</td></tr>
-        <tr><td>Combined system</td>
-          <td>Under way in <code>rdk-emosa</code>: two unchanged OpenSync pods and a wired extender run next to the RDK lab's native agents, with the pods in the room model and the 24-room suite run with them.</td></tr>
+          <td>A fresh LXD VM on rev120 runs the controller against a TP-Link RE653BE: WSC onboarding on 2.4 and 5 GHz, WPA3-SAE clients on its 6 GHz BSS, 34 tests plus browser, reboot, capture and 6 GHz checks. Controller-provisioned 6 GHz is not yet verified. Since 29 September a second extender (TP-Link RE715X) is onboarded through it, first over Ethernet, then on a Wi-Fi backhaul (experimental).</td></tr>
       </tbody>
     </table></div>
-    <p>Next is aligning the labs: a wired extender in both optimizer labs, EMOSA as an option of
-    the RDK lab, the Python and C EMOSA interchangeable, and then EMOSA in C in the RDK gateway
-    image. The phases and their status are in
+    <p>The alignment plan's first phases are done: a wired extender in both optimizer labs, EMOSA as
+    an option of the RDK lab, and the Python and C EMOSA interchangeable. Next: the RF medium as one
+    component, documentation that matches the project, EMOSA's C to production quality, and then
+    EMOSA as a full OpenSync-supporting EasyMesh system without the cloud. The phases and their
+    status are in
     <a href="https://github.com/boardfarmdevs/easymesh-labs/blob/main/docs/alignment-plan.md">the alignment plan</a>.</p>
   </section>
 
   <section id="run">
     <h2>Run it</h2>
-    <p>This repository is the workspace. It pins the five projects in <code>manifest.json</code>
+    <p>This repository is the workspace. It pins the projects in <code>manifest.json</code>
     and clones them next to it:</p>
 <pre><code>git clone git@github.com:boardfarmdevs/easymesh-labs.git ~/git/easymesh-labs
 cd ~/git/easymesh-labs
-./sync            # clone or fast-forward the five projects (./sync --pinned: the pinned commits)
+./sync            # clone or fast-forward the projects (./sync --pinned: the pinned commits)
 ./pin             # record the commits in use as the new pins</code></pre>
     <p>Each project is then built and run with its own guide. Together they build six VM lab
     configurations:</p>
@@ -147,7 +181,9 @@ cd ~/git/easymesh-labs
     <h2>Reference</h2>
     <ul class="refs">
       <li><a href="https://github.com/boardfarmdevs/easymesh-labs">easymesh-labs</a>: this workspace, the manifest and the plan</li>
+      <li>The core components: <a href="https://github.com/boardfarmdevs/easymesh-medium">easymesh-medium</a> (the RF medium) · <a href="https://github.com/boardfarmdevs/emosa-lab">emosa-lab</a> (EMOSA)</li>
       <li><a href="https://github.com/boardfarmdevs/meta-cmf-bananapi-vcpe">meta-cmf-bananapi-vcpe</a> · <a href="https://github.com/boardfarmdevs/prplmesh-lab">prplmesh-lab</a> · <a href="https://github.com/boardfarmdevs/emosa-lab">emosa-lab</a> · <a href="https://github.com/boardfarmdevs/opensync-lab">opensync-lab</a> · <a href="https://github.com/boardfarmdevs/easymesh-lab">easymesh-lab</a> (the physical lab; not this repository, easymesh-labs)</li>
+      <li><a href="https://github.com/boardfarmdevs/easymesh-room-builder">easymesh-room-builder</a>: the room designer for the optimizer labs (<a href="https://boardfarmdevs.github.io/easymesh-room-builder/">open it</a>)</li>
     </ul>
   </section>
 </main>

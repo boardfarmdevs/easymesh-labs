@@ -1,5 +1,5 @@
 {
-  "description": "The five projects of the EasyMesh labs, grouped by goal, and the commit each was last pinned at (./pin); the images the labs run that are built outside a lab VM, and the commit each was built from. ./sync clones the projects into this workspace.",
+  "description": "The projects of the EasyMesh labs, grouped by goal, and the commit each was last pinned at (./pin); the images the labs run that are built outside a lab VM, and the commit each was built from. ./sync clones the projects into this workspace.",
   "end_goal": "One EasyMesh system on wmediumd: native EasyMesh agents and existing OpenSync pods, through the EMOSA adapter, together.",
   "goals": {
     "optimizer": "EasyMesh optimizer development",
@@ -14,7 +14,7 @@
       "about": "RDK-B on Banana Pi images in containers: EasyMesh, virtual RF and medium (wmediumd), optimizer, interactive room",
       "url": "git@github.com:boardfarmdevs/meta-cmf-bananapi-vcpe.git",
       "branch": "main",
-      "commit": "a796f3a29ba24437c26604f854c18dfd14f38c89",
+      "commit": "2ce6e9b0bb67e579cc958cbe88299c4f502afef5",
       "site": "https://boardfarmdevs.github.io/meta-cmf-bananapi-vcpe/"
     },
     {
@@ -24,8 +24,18 @@
       "about": "The same EasyMesh lab on native prplMesh",
       "url": "git@github.com:boardfarmdevs/prplmesh-lab.git",
       "branch": "main",
-      "commit": "4847a6a783a588b7914f5dcc29057c3ebedef45f",
+      "commit": "2187d4abcf06a3841dc626b36df1eda24ceb4bf6",
       "site": "https://boardfarmdevs.github.io/prplmesh-lab/"
+    },
+    {
+      "name": "easymesh-medium",
+      "title": "RF medium",
+      "goal": "optimizer",
+      "about": "The RF medium every lab runs on: wmediumd and its patch series, the hwsim patches, the room configurator and its rooms, the medium's console; one of the labs' two core components, used by the RDK and prplMesh labs at a pinned commit",
+      "url": "git@github.com:boardfarmdevs/easymesh-medium.git",
+      "branch": "main",
+      "commit": "165eac4bb7392d94d91fdeed7485770f1b47025b",
+      "site": null
     },
     {
       "name": "emosa-lab",
@@ -34,7 +44,7 @@
       "about": "The EasyMesh-to-OpenSync adapter: existing OpenSync pods as EasyMesh agents",
       "url": "git@github.com:boardfarmdevs/emosa-lab.git",
       "branch": "main",
-      "commit": "c3c3968b7545e91848c6c1ab16df3fbf9f607d1c",
+      "commit": "e89631b587a7d082f18dbce0a0669618cc3b782f",
       "site": "https://boardfarmdevs.github.io/emosa-lab/"
     },
     {
@@ -64,7 +74,7 @@
       "project": "opensync-lab",
       "commit": "daca9a9ee904a241bd9b00d2444a6e38ad8645ab",
       "built_by": "build-pod.sh all (rev140, ~/yocto/mvx-pod-work/out)",
-      "used_by": "the OpenSync pods of the RDK lab + EMOSA (rdk-emosa)"
+      "used_by": "the OpenSync pods of the RDK lab's EMOSA option (rdk-emosa-0929)"
     },
     {
       "name": "X86EMLTRBPIBB_rdk-next_20260928203255",
@@ -85,14 +95,21 @@
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "675782cf4d13f0e1b91adda51f3bba7689e2d712",
       "built_by": "doc/easymesh/build/scripts/build-images.sh both (rev140)",
-      "used_by": "the gateway (bpibroadband) of rdk-0929"
+      "used_by": "the gateway (bpibroadband) of rdk-0929; rdk-emosa-0929's first build"
     },
     {
       "name": "X86EMLTRBPIAP_rdk-next_20260929014035",
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "675782cf4d13f0e1b91adda51f3bba7689e2d712",
       "built_by": "doc/easymesh/build/scripts/build-images.sh both (rev140)",
-      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004, rdk-wifi-hal 0045) of rdk-0929"
+      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004, rdk-wifi-hal 0045) of rdk-0929 and rdk-emosa-0929"
+    },
+    {
+      "name": "X86EMLTRBPIBB_rdk-next_20260929102959",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "96188ea192acc018bcf226d093cc1146503637bb",
+      "built_by": "doc/easymesh/build/scripts/build-images.sh controller (rev140)",
+      "used_by": "the gateway (bpibroadband) of rdk-emosa-0929 (unified-wifi-mesh 0232: SteerWiFiBackhaul() sends the request)"
     }
   ]
 }

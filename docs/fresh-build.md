@@ -1,4 +1,10 @@
-# Fresh build of the four labs
+# Fresh build of the four labs (record, 25 September 2026)
+
+A record of the first rebuild of the labs from this workspace; it is not kept
+current. The labs were built from scratch again on 29 September (alignment plan
+phases 1 to 3) and on 30 September on easymesh-medium (phase 6); what runs now
+is in [lab-configurations.md](lab-configurations.md), and each project's own
+guide says how to build it.
 
 Every lab is built again from this workspace, at the pinned commits, following
 each project's own guide. The existing work directories stay as they are. The

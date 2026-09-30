@@ -1,37 +1,77 @@
 # EasyMesh labs
 
-<!-- labs block: the same in the lab repositories -->
-**Site:** <https://boardfarmdevs.github.io/easymesh-labs/>. The umbrella of the
-boardfarmdevs labs, which serve three goals: the EasyMesh optimizer
+<!-- labs block: the same in every repository of the EasyMesh labs, but for the Site line -->
+**Site:** <https://boardfarmdevs.github.io/easymesh-labs/> (this umbrella).
+The [EasyMesh labs](https://boardfarmdevs.github.io/easymesh-labs/) serve three
+goals: EasyMesh optimizer development in a rich virtual lab, on both stacks
 ([RDK EasyMesh](https://boardfarmdevs.github.io/meta-cmf-bananapi-vcpe/),
-[prplMesh](https://boardfarmdevs.github.io/prplmesh-lab/)), the OpenSync adapter
-([EMOSA](https://boardfarmdevs.github.io/emosa-lab/), [OpenSync](https://boardfarmdevs.github.io/opensync-lab/))
-and EasyMesh on physical hardware ([Protocol lab](https://boardfarmdevs.github.io/easymesh-lab/)),
-on the way to one EasyMesh system on wmediumd with native agents and OpenSync pods together.
+[prplMesh](https://boardfarmdevs.github.io/prplmesh-lab/)); unchanged OpenSync
+pods as EasyMesh agents under a local controller, without the OpenSync cloud
+([EMOSA](https://boardfarmdevs.github.io/emosa-lab/), with the
+[OpenSync lab](https://boardfarmdevs.github.io/opensync-lab/)'s pods); and
+EasyMesh on physical hardware
+([Protocol lab](https://boardfarmdevs.github.io/easymesh-lab/)). Two core
+components carry them: the RF medium
+([easymesh-medium](https://github.com/boardfarmdevs/easymesh-medium)) and EMOSA's
+OVSDB ⇄ EasyMesh conversion. The rest is infrastructure and learning around them.
+<!-- /labs block -->
 
-This repository is the workspace for the five projects and the home of the work
-that joins them.
+## What the project is for
 
-| Goal | Project | What it is |
+- **Optimizer development in a rich virtual lab.** EasyMesh optimizer
+  algorithms are developed against complete EasyMesh networks in containers:
+  a gateway and controller, native extenders, a hundred Wi-Fi clients and
+  interactive rooms that move them, all on one emulated radio medium. The same
+  lab exists on both EasyMesh stacks, **RDK** and **prplMesh**.
+- **EMOSA: OpenSync pods as they are, in an EasyMesh system.** Existing
+  OpenSync pods, unchanged, run as EasyMesh agents under a local EasyMesh
+  controller, with no OpenSync cloud.
+- **A physical EasyMesh lab.** The protocol on certified hardware and real
+  radios, which keeps the virtual labs honest.
+
+## Two core components
+
+Everything rests on two components. They get the most care, each has one
+repository with its own specification and tests, and the labs consume them at
+pinned commits.
+
+| Component | Repository | What it must do |
 | --- | --- | --- |
-| EasyMesh optimizer | [meta-cmf-bananapi-vcpe](https://github.com/boardfarmdevs/meta-cmf-bananapi-vcpe) | RDK-B on Banana Pi images in containers: EasyMesh, virtual RF and medium (wmediumd), optimizer, interactive room |
-| EasyMesh optimizer | [prplmesh-lab](https://github.com/boardfarmdevs/prplmesh-lab) | The same lab on native prplMesh |
-| OpenSync adapter | [emosa-lab](https://github.com/boardfarmdevs/emosa-lab) | EMOSA, the EasyMesh-to-OpenSync adapter: existing OpenSync pods as EasyMesh agents |
-| OpenSync adapter | [opensync-lab](https://github.com/boardfarmdevs/opensync-lab) | A representative router (mv3) and OpenSync pods with virtual radios and clients |
-| Physical EasyMesh | [easymesh-lab](https://github.com/boardfarmdevs/easymesh-lab) | A from-scratch Python IEEE 1905.1/EasyMesh controller and teaching panel, driving certified extenders (TP-Link RE653BE) with real tri-band clients: phones, tablets, laptops and managed USB Wi-Fi 7 clients |
+| **The RF medium** | [easymesh-medium](https://github.com/boardfarmdevs/easymesh-medium) | emulate the radio medium correctly for every lab: wmediumd and its patch series, the hwsim radios, the room language and the rooms, the medium's console |
+| **EMOSA** | [emosa-lab](https://github.com/boardfarmdevs/emosa-lab) | the full conversion between OpenSync's OVSDB and EasyMesh, so that an unchanged pod is a complete EasyMesh agent; a Python reference and a C implementation that behave identically |
 
-**End goal:** one EasyMesh system on wmediumd, with native EasyMesh agents and
-existing OpenSync pods (through EMOSA) side by side under one controller. The
-physical lab keeps the simulated labs honest: the same protocol, on certified
-devices and real radios. Its name is one letter from this repository's:
-`easymesh-lab` is the physical lab, `easymesh-labs` the umbrella.
+## Everything around them
+
+The rest is **infrastructure** that builds and exercises the two components,
+and **exploratory learning** that informs them.
+
+| Role | Project | What it is |
+| --- | --- | --- |
+| infrastructure: the RDK lab | [meta-cmf-bananapi-vcpe](https://github.com/boardfarmdevs/meta-cmf-bananapi-vcpe) | RDK-B on Banana Pi images in containers: controller, extenders, clients, the optimizer, the room service and viewer, the lab's suites; EMOSA as an option |
+| infrastructure: the prplMesh lab | [prplmesh-lab](https://github.com/boardfarmdevs/prplmesh-lab) | the same lab on native prplMesh |
+| infrastructure: OpenSync | [opensync-lab](https://github.com/boardfarmdevs/opensync-lab) | a representative OpenSync router (mv3) and the OpenSync pod image; with EMOSA, the adapter's reference lab |
+| learning: the physical lab | [easymesh-lab](https://github.com/boardfarmdevs/easymesh-lab) | a from-scratch Python IEEE 1905.1/EasyMesh controller and teaching panel, driving certified extenders (a TP-Link RE653BE on Ethernet, a second extender onboarded through it onto a Wi-Fi backhaul) with real tri-band clients |
+| tool | [easymesh-room-builder](https://github.com/boardfarmdevs/easymesh-room-builder) ([open it](https://boardfarmdevs.github.io/easymesh-room-builder/)) | a visual designer for the labs' rooms, compiled to the same world plans as the medium's configurator; not cloned by the workspace |
+
+`easymesh-lab` (the physical lab) is one letter from this repository's name:
+`easymesh-labs` is the umbrella and workspace.
+
+## Where to start
+
+| You want to | Start at |
+| --- | --- |
+| develop or evaluate an optimizer | the RDK lab or the prplMesh lab (their sites); the rooms are the medium's |
+| change how radio is emulated | easymesh-medium: it builds and checks without a lab; a change is then requalified in both labs |
+| work on EMOSA (or take it over) | emosa-lab: the specification, the design, the conformance vectors, then the implementations |
+| know what runs where | [docs/lab-configurations.md](docs/lab-configurations.md) |
+| follow the plan and its status | [docs/alignment-plan.md](docs/alignment-plan.md) |
 
 ## The workspace
 
 ```sh
 git clone git@github.com:boardfarmdevs/easymesh-labs.git ~/git/easymesh-labs
 cd ~/git/easymesh-labs
-./sync             # clone or fast-forward the five projects into this directory
+./sync             # clone or fast-forward the projects into this directory
 ./sync --pinned    # or: check out the commits manifest.json pins
 ./pin              # record the commits in use as the new pins (clean and pushed only)
 ```
@@ -44,8 +84,8 @@ discards work: a project with local changes, its own commits or on another
 branch is left as it is. Large build trees and caches (Yocto, downloads, sstate)
 stay outside the workspace; each project's own guide says where.
 
-The plan for building the four simulated labs again from this workspace, and which host
-runs what, is [docs/fresh-build.md](docs/fresh-build.md). The six VM lab
+How the simulated labs were last built again from this workspace is
+[docs/fresh-build.md](docs/fresh-build.md). The six VM lab
 configurations the projects build (the RDK and prplMesh labs, the OpenSync lab,
 EMOSA on the OpenSync and on the RDK lab, and the physical protocol lab), their
 purpose and their current VMs are in [docs/lab-configurations.md](docs/lab-configurations.md).
@@ -56,8 +96,10 @@ developers (not implemented) is [docs/proposals/labs-as-a-service.md](docs/propo
 
 ## The site
 
-`site/` is the landing page. It is published like the five project sites: the
+`site/` is the landing page. It is published like the lab projects' sites: the
 shared `.github/workflows/pages.yml` runs `pages/build`, and
 `pages/finish-site.py` adds the labs bar (`pages/labs-bar.js`) whose home link is
-this site. `pages/labs-bar.js`, `pages/finish-site.py` and the workflow are the
-same in all six repositories; change them in all six.
+this site; first `pages/check-docs.py` checks the labs block and the links in
+the Markdown. `pages/labs-bar.js`, `pages/finish-site.py`, `pages/check-docs.py`
+and the workflow are the same in all six repositories (easymesh-medium, without
+a site, runs `pages/check-docs.py` in its checks); change them in all.

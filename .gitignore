@@ -1,9 +1,10 @@
-# the five projects, cloned by ./sync
+# the projects, cloned by ./sync
 /meta-cmf-bananapi-vcpe/
 /prplmesh-lab/
 /emosa-lab/
 /opensync-lab/
 /easymesh-lab/
+/easymesh-medium/
 # the built site
 /dist/
 __pycache__/
