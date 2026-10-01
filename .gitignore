@@ -5,6 +5,7 @@
 /opensync-lab/
 /easymesh-lab/
 /easymesh-medium/
+/easymesh-optimizer/
 # the built site
 /dist/
 __pycache__/

@@ -3,7 +3,9 @@
 <!-- labs block: the same in every repository of the EasyMesh labs, but for the Site line -->
 **Site:** <https://boardfarmdevs.github.io/easymesh-labs/> (this umbrella).
 The [EasyMesh labs](https://boardfarmdevs.github.io/easymesh-labs/) serve three
-goals: EasyMesh optimizer development in a rich virtual lab, on both stacks
+goals: EasyMesh optimizer development
+([easymesh-optimizer](https://github.com/boardfarmdevs/easymesh-optimizer)) in a rich
+virtual lab, on both stacks
 ([RDK EasyMesh](https://boardfarmdevs.github.io/meta-cmf-bananapi-vcpe/),
 [prplMesh](https://boardfarmdevs.github.io/prplmesh-lab/)); unchanged OpenSync
 pods as EasyMesh agents under a local controller, without the OpenSync cloud
@@ -47,7 +49,8 @@ and **exploratory learning** that informs them.
 
 | Role | Project | What it is |
 | --- | --- | --- |
-| infrastructure: the RDK lab | [meta-cmf-bananapi-vcpe](https://github.com/boardfarmdevs/meta-cmf-bananapi-vcpe) | RDK-B on Banana Pi images in containers: controller, extenders, clients, the optimizer, the room service and viewer, the lab's suites; EMOSA as an option |
+| the first goal's work: the optimizer | [easymesh-optimizer](https://github.com/boardfarmdevs/easymesh-optimizer) | the steering optimizer both virtual labs run, and the room service that runs it live: one policy core, an adapter per stack (RDK, prplMesh), its scenarios and manuals; both labs pin it (`gen/optimizer`, `optimizer`) |
+| infrastructure: the RDK lab | [meta-cmf-bananapi-vcpe](https://github.com/boardfarmdevs/meta-cmf-bananapi-vcpe) | RDK-B on Banana Pi images in containers: controller, extenders, clients, the lab's rooms (manifests and bindings), the lab's suites; EMOSA as an option |
 | infrastructure: the prplMesh lab | [prplmesh-lab](https://github.com/boardfarmdevs/prplmesh-lab) | the same lab on native prplMesh |
 | infrastructure: OpenSync | [opensync-lab](https://github.com/boardfarmdevs/opensync-lab) | a representative OpenSync router (mv3) and the OpenSync pod image; with EMOSA, the adapter's reference lab |
 | learning: the physical lab | [easymesh-lab](https://github.com/boardfarmdevs/easymesh-lab) | a from-scratch Python IEEE 1905.1/EasyMesh controller and teaching panel, driving certified extenders (a TP-Link RE653BE on Ethernet, a second extender onboarded through it onto a Wi-Fi backhaul) with real tri-band clients |
@@ -60,7 +63,8 @@ and **exploratory learning** that informs them.
 
 | You want to | Start at |
 | --- | --- |
-| develop or evaluate an optimizer | the RDK lab or the prplMesh lab (their sites); the rooms are the medium's |
+| see every piece and where it lives, at a glance | the posters: [where everything lives](site/posters/map.html) and [the labs as built](site/posters/labs.html) ([on the site](https://boardfarmdevs.github.io/easymesh-labs/posters/map.html)) |
+| develop or evaluate an optimizer | [easymesh-optimizer](https://github.com/boardfarmdevs/easymesh-optimizer) and its manuals; run it live in the RDK or the prplMesh lab (their sites); the rooms are the medium's; a change is requalified in both labs |
 | change how radio is emulated | easymesh-medium: it builds and checks without a lab; a change is then requalified in both labs |
 | work on EMOSA (or take it over) | emosa-lab: the specification, the design, the conformance vectors, then the implementations |
 | know what runs where | [docs/lab-configurations.md](docs/lab-configurations.md) |
@@ -101,5 +105,6 @@ shared `.github/workflows/pages.yml` runs `pages/build`, and
 `pages/finish-site.py` adds the labs bar (`pages/labs-bar.js`) whose home link is
 this site; first `pages/check-docs.py` checks the labs block and the links in
 the Markdown. `pages/labs-bar.js`, `pages/finish-site.py`, `pages/check-docs.py`
-and the workflow are the same in all six repositories (easymesh-medium, without
-a site, runs `pages/check-docs.py` in its checks); change them in all.
+and the workflow are the same in all six repositories (easymesh-medium and
+easymesh-optimizer, without a site, run `pages/check-docs.py` in their checks);
+change them in all.
