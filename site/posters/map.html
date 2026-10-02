@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EasyMesh labs map</title>
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <meta name="description" content="Where every component of the EasyMesh labs lives: nine repositories, two core components, and the directory each piece is in.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
@@ -12,7 +15,7 @@
 <body>
 <main class="poster">
   <header class="masthead">
-    <p class="eyebrow">boardfarmdevs · EasyMesh labs · the map · 30 September 2026</p>
+    <p class="eyebrow">boardfarmdevs · EasyMesh labs · the map · 1 October 2026</p>
     <h1>Where everything lives</h1>
     <p>Nine repositories, two core components, one EasyMesh system. Every piece, the directory it
     lives in, and how it fits together.</p>
@@ -21,17 +24,17 @@
 
   <section class="board fourth" aria-label="The repositories around one of the labs">
 
-    <article class="card rdk a">
+    <article class="card rdk a" id="rdk">
       <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 13V8M12 13V5M17 13V8M7 16.5h.01M11 16.5h.01"/></svg>RDK EasyMesh lab</h2>
       <p class="repo"><a href="https://github.com/boardfarmdevs/meta-cmf-bananapi-vcpe">meta-cmf-bananapi-vcpe</a></p>
       <ul class="rows">
         <li><b>RDK-B images: the gateway and the extenders</b><code>recipes-ccsp/ · recipes-*/ · conf/</code></li>
         <li><b>Controller and agent patches</b><code>recipes-ccsp/unified-wifi-mesh/ · hal/ · ieee1905/</code></li>
         <li><b>The optimizer</b><code>gen/optimizer/ → easymesh-optimizer</code></li>
-        <li><b>The live room: its launcher, manifests, bindings</b><code>gen/demo/ (the room service: gen/optimizer/)</code></li>
+        <li><b>The live room: its launcher, manifests, bindings</b><code>gen/rooms/ (the room service: gen/optimizer/)</code></li>
         <li><b>The lab VM, with or without EMOSA</b><code>gen/vm/lxd/build.sh</code></li>
         <li><b>The RF medium</b><code>gen/medium/ → easymesh-medium</code></li>
-        <li><b>The room suite · docs</b><code>gen/tests/ · doc/easymesh/</code></li>
+        <li><b>The room suite · docs</b><code>gen/tests/ · docs/</code></li>
       </ul>
       <span class="pill">Optimizer lab · RDK</span>
     </article>
@@ -51,17 +54,17 @@
       <span class="pill">Both labs, one medium</span>
     </article>
 
-    <article class="card prpl c">
+    <article class="card prpl c" id="prpl">
       <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M8 13l-3-6M16 13l3-6M12 13V6M16 16.5h2"/></svg>prplMesh lab</h2>
       <p class="repo"><a href="https://github.com/boardfarmdevs/prplmesh-lab">prplmesh-lab</a></p>
       <ul class="rows">
         <li><b>prplMesh 6.0 build and patches</b><code>patches/prplmesh/ · manifests/</code></li>
         <li><b>The optimizer</b><code>optimizer/ → easymesh-optimizer</code></li>
-        <li><b>The live room: its launcher, manifests, bindings</b><code>demo/ (the room service: optimizer/)</code></li>
+        <li><b>The live room: its launcher, manifests, bindings</b><code>rooms/ (the room service: optimizer/)</code></li>
         <li><b>The controller dashboard</b><code>controller-ui/ · topology-adapter/</code></li>
         <li><b>The lab VM and its radios</b><code>deploy/lxd-vm/build.sh · scripts/radio-lab.sh</code></li>
         <li><b>The RF medium</b><code>medium/ → easymesh-medium</code></li>
-        <li><b>Tests · docs</b><code>tests/ · docs/ · reference/</code></li>
+        <li><b>Tests · docs</b><code>tests/ · docs/</code></li>
       </ul>
       <span class="pill">Optimizer lab · prplMesh</span>
     </article>
@@ -131,8 +134,8 @@
       <p class="repo"><a href="https://github.com/boardfarmdevs/easymesh-labs">easymesh-labs</a></p>
       <ul class="rows">
         <li><b>Pins every project and image</b><code>manifest.json · pin · sync</code></li>
-        <li><b>The plan and its status</b><code>docs/alignment-plan.md</code></li>
-        <li><b>The six lab configurations and hosts</b><code>docs/lab-configurations.md</code></li>
+        <li><b>The plan and its status</b><code>docs/project/alignment-plan.md</code></li>
+        <li><b>The six lab configurations and hosts</b><code>docs/reference/lab-configurations.md</code></li>
         <li><b>The site and these posters</b><code>site/ · site/posters/</code></li>
         <li><b>Shared Pages tooling, the docs check</b><code>pages/</code></li>
       </ul>
@@ -161,7 +164,7 @@
         <thead><tr><th>Piece</th><th>Code</th><th>Runs in</th></tr></thead>
         <tbody>
           <tr><td><span class="dot rdk"></span><b>The optimizer</b></td><td><code>easymesh-optimizer</code>, pinned as <code>meta-cmf gen/optimizer/</code> and <code>prplmesh-lab optimizer/</code> · <code>easymesh-lab optimizer.py</code></td><td>each lab VM, inside the room service</td></tr>
-          <tr><td><span class="dot prpl"></span><b>The live room</b></td><td><code>easymesh-optimizer room_service/</code>; each lab's rooms in <code>meta-cmf gen/demo/</code> · <code>prplmesh-lab demo/</code></td><td>each lab VM, port 8891</td></tr>
+          <tr><td><span class="dot prpl"></span><b>The live room</b></td><td><code>easymesh-optimizer room_service/</code>; each lab's rooms in <code>meta-cmf gen/rooms/</code> · <code>prplmesh-lab rooms/</code></td><td>each lab VM, port 8891</td></tr>
           <tr><td><span class="dot medium"></span><b>Rooms and viewer</b></td><td><code>easymesh-medium configurator/</code></td><td>compiled into wmediumd; viewer in the browser</td></tr>
           <tr><td><span class="dot medium"></span><b>wmediumd, radios</b></td><td><code>easymesh-medium wmediumd/ · hwsim/</code></td><td>each lab VM's kernel and medium</td></tr>
           <tr><td><span class="dot rdk"></span><b>The controller</b></td><td>RDK <code>unified-wifi-mesh</code> (meta-cmf recipes) · <code>prplMesh 6.0</code> (prplmesh-lab patches)</td><td>the gateway / controller container</td></tr>
@@ -199,9 +202,9 @@
 
   <aside class="banner">
     <h3>Start with one room</h3>
-    <p>Open the <a href="https://boardfarmdevs.github.io/meta-cmf-bananapi-vcpe/viewer/?world=home-a-private-client-room-walk">room sandbox</a>,
-    read the <a href="https://github.com/boardfarmdevs/easymesh-labs/blob/main/docs/alignment-plan.md">plan</a>,
-    then build a lab from <a href="https://github.com/boardfarmdevs/easymesh-labs/blob/main/docs/lab-configurations.md">the six configurations</a>.</p>
+    <p>Open the <a href="https://vcpe.dev/meta-cmf-bananapi-vcpe/viewer/?world=home-a-private-client-room-walk">room sandbox</a>,
+    read the <a href="https://github.com/boardfarmdevs/easymesh-labs/blob/main/docs/project/alignment-plan.md">plan</a>,
+    then build a lab from <a href="https://github.com/boardfarmdevs/easymesh-labs/blob/main/docs/reference/lab-configurations.md">the six configurations</a>.</p>
   </aside>
   <p class="foot">Kept in easymesh-labs <code>site/posters/</code>: update it when a component moves.</p>
 </main>

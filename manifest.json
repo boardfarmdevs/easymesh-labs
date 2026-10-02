@@ -14,8 +14,8 @@
       "about": "RDK-B on Banana Pi images in containers: EasyMesh, virtual RF and medium (wmediumd), optimizer, interactive room",
       "url": "git@github.com:boardfarmdevs/meta-cmf-bananapi-vcpe.git",
       "branch": "main",
-      "commit": "4daaf82a1c795a5bb41513dc9ebda60942f6473f",
-      "site": "https://boardfarmdevs.github.io/meta-cmf-bananapi-vcpe/"
+      "commit": "92ae02727c92c46e16730be05e205f2411d2bb75",
+      "site": "https://vcpe.dev/meta-cmf-bananapi-vcpe/"
     },
     {
       "name": "prplmesh-lab",
@@ -24,8 +24,8 @@
       "about": "The same EasyMesh lab on native prplMesh",
       "url": "git@github.com:boardfarmdevs/prplmesh-lab.git",
       "branch": "main",
-      "commit": "d76303da8829a64bfa04298acced1552dd116e00",
-      "site": "https://boardfarmdevs.github.io/prplmesh-lab/"
+      "commit": "7e10915b45a70bc68b18186967ecb9c7e24fcc3f",
+      "site": "https://vcpe.dev/prplmesh-lab/"
     },
     {
       "name": "easymesh-medium",
@@ -34,8 +34,8 @@
       "about": "The RF medium every lab runs on: wmediumd and its patch series, the hwsim patches, the room configurator and its rooms, the medium's console; one of the labs' two core components, used by the RDK and prplMesh labs at a pinned commit",
       "url": "git@github.com:boardfarmdevs/easymesh-medium.git",
       "branch": "main",
-      "commit": "e39e98eaa382df1be89ab21549ca0d33f77770fd",
-      "site": null
+      "commit": "f8a15d4f8a69b85dc2fc0bae2216843d0533ac25",
+      "site": "https://vcpe.dev/easymesh-medium/"
     },
     {
       "name": "easymesh-optimizer",
@@ -44,8 +44,8 @@
       "about": "The steering optimizer both virtual labs run and the room service that runs it live: one policy core with an adapter per controller stack (RDK through em_cli, prplMesh through NBAPI), its scenarios, configurations, tests and manuals; pinned by the RDK and prplMesh labs",
       "url": "git@github.com:boardfarmdevs/easymesh-optimizer.git",
       "branch": "main",
-      "commit": "5e57337a70ea078182645134da146a05d8b5b823",
-      "site": null
+      "commit": "bf513898f3979d46be9dac894577b09c567ebe8b",
+      "site": "https://vcpe.dev/easymesh-optimizer/"
     },
     {
       "name": "emosa-lab",
@@ -54,8 +54,8 @@
       "about": "The EasyMesh-to-OpenSync adapter: existing OpenSync pods as EasyMesh agents",
       "url": "git@github.com:boardfarmdevs/emosa-lab.git",
       "branch": "main",
-      "commit": "f947bf3a28e3efba25fd49ebc0ed40a30fb06eba",
-      "site": "https://boardfarmdevs.github.io/emosa-lab/"
+      "commit": "1219f2e17dbc4281b3e4e75e28c998d5db94a306",
+      "site": "https://vcpe.dev/emosa-lab/"
     },
     {
       "name": "opensync-lab",
@@ -64,8 +64,8 @@
       "about": "A representative router (mv3) and OpenSync pods with virtual radios and clients",
       "url": "git@github.com:boardfarmdevs/opensync-lab.git",
       "branch": "main",
-      "commit": "bfce86bb1f315dd38dcfc1cbd19a13769e64ca87",
-      "site": "https://boardfarmdevs.github.io/opensync-lab/"
+      "commit": "f6134c6da680fa7d74c31066c5e18a755cad53f0",
+      "site": "https://vcpe.dev/opensync-lab/"
     },
     {
       "name": "easymesh-lab",
@@ -74,52 +74,31 @@
       "about": "A from-scratch Python IEEE 1905.1/EasyMesh controller and teaching panel, driving certified extenders (TP-Link RE653BE) with real tri-band clients",
       "url": "git@github.com:boardfarmdevs/easymesh-lab.git",
       "branch": "main",
-      "commit": "40284da1b72135f50943b207c9098006b1135a35",
-      "site": "https://boardfarmdevs.github.io/easymesh-lab/"
+      "commit": "9cfe09b29bec67dd9335515101581daa1e989588",
+      "site": "https://vcpe.dev/easymesh-lab/"
     }
   ],
   "images": [
     {
       "name": "mvx-pod-20260925075828",
       "project": "opensync-lab",
-      "commit": "daca9a9ee904a241bd9b00d2444a6e38ad8645ab",
+      "commit": "666b0ad71ec6982451b6a3ab411bd1d00b075349",
       "built_by": "build-pod.sh all (rev140, ~/yocto/mvx-pod-work/out)",
-      "used_by": "the OpenSync pods of the RDK lab's EMOSA option (rdk-emosa-0929, rdk-emosa-0930, rdk-emosa-1001)"
-    },
-    {
-      "name": "X86EMLTRBPIBB_rdk-next_20260928203255",
-      "project": "meta-cmf-bananapi-vcpe",
-      "commit": "239f9f6266e86ac481c0353f92017616e90f4a37",
-      "built_by": "doc/easymesh/build/scripts/build-images.sh both (rev140)",
-      "used_by": "the gateway (bpibroadband) of rdk-emosa"
-    },
-    {
-      "name": "X86EMLTRBPIAP_rdk-next_20260928204402",
-      "project": "meta-cmf-bananapi-vcpe",
-      "commit": "239f9f6266e86ac481c0353f92017616e90f4a37",
-      "built_by": "doc/easymesh/build/scripts/build-images.sh both (rev140)",
-      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-emosa"
-    },
-    {
-      "name": "X86EMLTRBPIBB_rdk-next_20260929012442",
-      "project": "meta-cmf-bananapi-vcpe",
-      "commit": "675782cf4d13f0e1b91adda51f3bba7689e2d712",
-      "built_by": "doc/easymesh/build/scripts/build-images.sh both (rev140)",
-      "used_by": "the gateway (bpibroadband) of rdk-0929 and rdk-0930; rdk-emosa-0929's first build"
+      "used_by": "the OpenSync pods of the RDK lab's EMOSA option (rdk-emosa-1001)"
     },
     {
       "name": "X86EMLTRBPIAP_rdk-next_20260929014035",
       "project": "meta-cmf-bananapi-vcpe",
-      "commit": "675782cf4d13f0e1b91adda51f3bba7689e2d712",
-      "built_by": "doc/easymesh/build/scripts/build-images.sh both (rev140)",
-      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004, rdk-wifi-hal 0045) of rdk-0929, rdk-0930, rdk-emosa-0929, rdk-emosa-0930, rdk-1001 and rdk-emosa-1001"
+      "commit": "f5c1bdb34e10fb9909e4e61cc822b2cd1ec730d1",
+      "built_by": "gen/build/build-images.sh both (rev140)",
+      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-1001 and rdk-emosa-1001"
     },
     {
-      "name": "X86EMLTRBPIBB_rdk-next_20260929102959",
+      "name": "X86EMLTRBPIBB_rdk-next_20261001220626",
       "project": "meta-cmf-bananapi-vcpe",
-      "commit": "96188ea192acc018bcf226d093cc1146503637bb",
-      "built_by": "doc/easymesh/build/scripts/build-images.sh controller (rev140)",
-      "used_by": "the gateway (bpibroadband) of rdk-emosa-0929, rdk-emosa-0930, rdk-1001 and rdk-emosa-1001 (unified-wifi-mesh 0232: SteerWiFiBackhaul() sends the request)"
+      "commit": "670ce1dc8be49854548776cb53c51a611ee97d34",
+      "built_by": "gen/build/build-images.sh controller (rev140)",
+      "used_by": "the gateway (bpibroadband) of rdk-1001 and rdk-emosa-1001 (unified-wifi-mesh 0233)"
     }
   ]
 }
