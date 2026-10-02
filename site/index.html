@@ -140,6 +140,45 @@
     </figure>
   </section>
 
+  <section id="shared">
+    <h2>Shared by the labs</h2>
+    <div class="goals">
+      <article class="goal">
+        <p class="tag">Shared</p>
+        <h3>The Wi-Fi clients</h3>
+        <p>Every lab runs them: small containers with one simulated radio that join the mesh
+        as a phone or a laptop would. What each lab's clients are and do, written down in one
+        place, and what is proposed to make them more capable.</p>
+        <ul class="projects">
+          <li><a href="https://vcpe.dev/easymesh-clients/"><b>easymesh-clients</b></a>
+            <span>documents only for now; each lab still creates its own clients</span></li>
+        </ul>
+      </article>
+      <article class="goal">
+        <p class="tag">Shared</p>
+        <h3>Remote access</h3>
+        <p>A lab is a VM on a large host. The gateway puts a login and one reservation in front
+        of its web interfaces, privately or publicly over Tailscale, so a lab can be used from
+        anywhere by one operator at a time.</p>
+        <ul class="projects">
+          <li><a href="https://vcpe.dev/easymesh-remote/"><b>easymesh-remote</b></a>
+            <span>the gateway and its tests, the setup guide, what each lab publishes; the RDK
+            lab's layout today</span></li>
+        </ul>
+      </article>
+      <article class="goal">
+        <p class="tag">Shared</p>
+        <h3>Resources</h3>
+        <p>Material the labs share that is not code for a lab: the memory footprint of EasyMesh
+        on the MV3 router, and the plan that takes it to production.</p>
+        <ul class="projects">
+          <li><a href="https://vcpe.dev/easymesh-resources/"><b>easymesh-resources</b></a>
+            <span>the footprint model with its measurements, and the production plan</span></li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
   <section id="state">
     <h2>Current state</h2>
     <div class="table-wrap"><table>
@@ -149,6 +188,10 @@
           <td>One repository for both optimizer labs: one wmediumd patch series, one configurator, the same rooms, the console and the controller's topology page. CI builds and tests it without a lab; both labs build it at a pinned commit.</td></tr>
         <tr><td><a href="https://vcpe.dev/easymesh-optimizer/">Optimizer</a></td>
           <td>One optimizer and room service for both labs, an adapter per stack, and the acceptance tools both labs' suites run; requalified in both labs.</td></tr>
+        <tr><td><a href="https://vcpe.dev/easymesh-clients/">Clients</a></td>
+          <td>Described in one place since 2 October: what each lab's clients are, how they are built, configured and managed, and what reaches into them. Each lab still creates its own. Proposed: a written contract, named actions such as traffic between two clients, and client models.</td></tr>
+        <tr><td><a href="https://vcpe.dev/easymesh-remote/">Remote access</a></td>
+          <td>The gateway (a login, one exclusive reservation, private or public over Tailscale, a firewall for the direct ports) in its own repository since 2 October, with its tests in CI. It serves the RDK lab's layout; the RDK lab's own copy is still to be removed. Proposed: every lab, a directory of labs, observers, a lab's interfaces in one window.</td></tr>
         <tr><td><a href="https://vcpe.dev/meta-cmf-bananapi-vcpe/#state">RDK EasyMesh</a></td>
           <td>Rebuilt and requalified on the current medium, optimizer and controller image, with four Wi-Fi extenders and a wired one. With the EMOSA option (emosa-lab at a pinned commit), two OpenSync pods on Wi-Fi backhaul join the native agents in the standard rooms.</td></tr>
         <tr><td><a href="https://vcpe.dev/prplmesh-lab/#state">prplMesh</a></td>
@@ -196,7 +239,9 @@ cd ~/git/easymesh-labs
       </tbody>
     </table></div>
     <p>Their current VMs and hosts are in
-    <a href="https://github.com/boardfarmdevs/easymesh-labs/blob/main/docs/reference/lab-configurations.md">the lab configurations</a>.</p>
+    <a href="https://github.com/boardfarmdevs/easymesh-labs/blob/main/docs/reference/lab-configurations.md">the lab configurations</a>.
+    How a lab is reached from outside the lab network is in
+    <a href="https://vcpe.dev/easymesh-remote/">remote access</a>.</p>
   </section>
 
   <section id="reference">

@@ -7,6 +7,11 @@ model is today's client.
 **Prepared:** 29 September 2026, from the user's question of the same day
 (can the lab's clients behave like different kinds of real devices).
 
+**Since 2 October 2026:** the clients have their own repository,
+[easymesh-clients](https://vcpe.dev/easymesh-clients/): what each lab's clients
+are today, and a proposal for more capable clients in which the models here are
+the third of four steps and the catalog (open question 1) would live there.
+
 ## 1. Goal
 
 Every Wi-Fi client in the RDK and prplMesh labs is the same Linux client:

@@ -6,6 +6,7 @@
   --line: #e2d8c8; --shadow: 0 1px 2px rgba(60, 40, 10, .06), 0 8px 24px rgba(60, 40, 10, .08);
   --medium: #0f6e6a; --emosa: #b4540b; --rdk: #2b5ea8; --prpl: #6a47bf; --osl: #2b7a4b;
   --phys: #c03c34; --builder: #b0327d; --umbrella: #3c4658; --optimizer: #4650b4; --resources: #7a6524;
+  --clients: #5d7a14; --remote: #17789b;
   --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
   --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -17,6 +18,7 @@
     --line: #3a342a; --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
     --medium: #4fbfb6; --emosa: #f0a35e; --rdk: #7fa7e8; --prpl: #ad93f0; --osl: #6fcb93;
     --phys: #ef8a81; --builder: #ea86c3; --umbrella: #a9b3c6; --optimizer: #9ba3f3; --resources: #dcc27a;
+    --clients: #b4d06a; --remote: #6cc4e4;
     color-scheme: dark;
   }
 }
@@ -25,6 +27,7 @@
   --line: #3a342a; --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
   --medium: #4fbfb6; --emosa: #f0a35e; --rdk: #7fa7e8; --prpl: #ad93f0; --osl: #6fcb93;
   --phys: #ef8a81; --builder: #ea86c3; --umbrella: #a9b3c6; --optimizer: #9ba3f3; --resources: #dcc27a;
+  --clients: #b4d06a; --remote: #6cc4e4;
   color-scheme: dark;
 }
 
@@ -59,6 +62,9 @@ a { color: inherit; }
   /* a fourth row for the cards without a connector line: a wide one and a narrow one */
   .board.fourth { grid-template-areas: "a b c" "d x e" "f g h" "i i j"; align-items: stretch; }
   .i { grid-area: i; } .j { grid-area: j; }
+  /* and a fifth, the same shape */
+  .board.fifth { grid-template-areas: "a b c" "d x e" "f g h" "i i j" "k k l"; align-items: stretch; }
+  .k { grid-area: k; } .l { grid-area: l; }
   .card.wide .rows { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 26px; }
 }
 .wires { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
@@ -150,7 +156,7 @@ td code { font: 11.5px/1.4 var(--mono); color: var(--muted); }
 .medium { --c: var(--medium); } .emosa { --c: var(--emosa); } .rdk { --c: var(--rdk); }
 .prpl { --c: var(--prpl); } .osl { --c: var(--osl); } .phys { --c: var(--phys); }
 .builder { --c: var(--builder); } .umbrella { --c: var(--umbrella); } .optimizer { --c: var(--optimizer); }
-.resources { --c: var(--resources); }
+.resources { --c: var(--resources); } .clients { --c: var(--clients); } .remote { --c: var(--remote); }
 
 /* the labs poster */
 .hosts { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); margin-bottom: 34px; }

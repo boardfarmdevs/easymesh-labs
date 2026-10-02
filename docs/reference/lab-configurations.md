@@ -28,6 +28,14 @@ pins gives what the running VMs have.
 | rev150 | `emosa-osl-0925` (#4); the room browser for the labs on rev140 and rev120, container builds and fuzzing |
 | rev120 | `rdk-emosa-1001` (#5) and `easymesh-lab` (#6), whose physical devices are attached to rev120: physical tests run there. No prplMesh VMs or builders |
 
+## Reaching a lab
+
+Each lab VM publishes its web interfaces as ports on its host, on the lab network. Which
+interfaces each configuration has, and how a lab is reached from outside the lab network
+(the gateway, with a login and one reservation), is in
+[easymesh-remote](https://vcpe.dev/easymesh-remote/). The gateway serves the RDK lab's
+layout (#1 and #5) today.
+
 ## Not (yet) a configuration
 
 - **The combined end-goal system**: one controller, native agents and OpenSync pods on

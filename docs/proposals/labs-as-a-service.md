@@ -6,6 +6,12 @@ room UI) exactly as it is.
 
 **Prepared:** 26 September 2026, from the user's request of 25 September.
 
+**Since 2 October 2026:** remote access itself has its own repository,
+[easymesh-remote](https://vcpe.dev/easymesh-remote/): the gateway that exists (a
+login and one reservation in front of a lab's web interfaces, over Tailscale), its
+setup guide and the proposal to make every lab reachable. The service described
+here, a remote optimizer with an API and a library, stands on that.
+
 ## 1. Goal
 
 An optimizer developer who has no lab of their own develops and qualifies an

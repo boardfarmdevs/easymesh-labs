@@ -61,7 +61,9 @@ Banana Pi images) with the commit each was built from. The projects are cloned n
 to it and ignored by this repository. `./sync` never discards work: a project with
 local changes, its own commits or on another branch is left as it is. Build trees and
 caches (Yocto, downloads, sstate) stay outside the workspace; each project's guide
-says where. The room builder is not cloned.
+says where. The room builder, the resources, the clients' documents and the remote access
+gateway are not in the manifest and are not cloned: no lab is built from them. Clone
+[easymesh-remote](https://vcpe.dev/easymesh-remote/) on a lab host to install its gateway.
 
 ## Documentation
 

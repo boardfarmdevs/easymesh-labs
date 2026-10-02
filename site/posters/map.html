@@ -7,7 +7,7 @@
 <link rel="icon" href="../favicon.ico" sizes="48x48">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-<meta name="description" content="Where every component of the EasyMesh labs lives: ten repositories, two core components, and the directory each piece is in.">
+<meta name="description" content="Where every component of the EasyMesh labs lives: twelve repositories, two core components, and the directory each piece is in.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="posters.css">
@@ -15,14 +15,14 @@
 <body>
 <main class="poster">
   <header class="masthead">
-    <p class="eyebrow">boardfarmdevs · EasyMesh labs · the map · 1 October 2026</p>
+    <p class="eyebrow">boardfarmdevs · EasyMesh labs · the map · 2 October 2026</p>
     <h1>Where everything lives</h1>
-    <p>Ten repositories, two core components, one EasyMesh system. Every piece, the directory it
+    <p>Twelve repositories, two core components, one EasyMesh system. Every piece, the directory it
     lives in, and how it fits together.</p>
     <nav><a href="labs.html">The labs as built →</a> <a href="../index.html">Home</a></nav>
   </header>
 
-  <section class="board fourth" aria-label="The repositories around one of the labs">
+  <section class="board fifth" aria-label="The repositories around one of the labs">
 
     <article class="card rdk a" id="rdk">
       <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 13V8M12 13V5M17 13V8M7 16.5h.01M11 16.5h.01"/></svg>RDK EasyMesh lab</h2>
@@ -156,7 +156,32 @@
       <span class="pill">Both labs, one optimizer</span>
     </article>
 
-    <article class="card resources below j">
+    <article class="card clients below j">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="8" y="10" width="8" height="11" rx="1.6"/><path d="M9 6.6a4.4 4.4 0 0 1 6 0M6.4 4a8 8 0 0 1 11.2 0M12 17.5h.01"/></svg>The Wi-Fi clients</h2>
+      <p class="repo"><a href="https://github.com/boardfarmdevs/easymesh-clients">easymesh-clients</a></p>
+      <ul class="rows">
+        <li><b>What each lab's clients are, exactly</b><code>docs/reference/lab-clients.md</code></li>
+        <li><b>More capable clients: a contract, actions, models</b><code>docs/proposals/more-capable-clients.md</code></li>
+        <li><b>The clients themselves: still each lab's own</b><code>meta-cmf gen/wlan-client.sh · prplmesh-lab scripts/radio-lab.sh</code></li>
+      </ul>
+      <span class="pill">Described in one place</span>
+    </article>
+
+    <article class="card remote wide k">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="12" height="11" rx="2"/><path d="M11 13l9-9M15 4h5v5"/></svg>Remote access</h2>
+      <p class="repo"><a href="https://github.com/boardfarmdevs/easymesh-remote">easymesh-remote</a></p>
+      <ul class="rows">
+        <li><b>The gateway: a login and one reservation in front of a lab</b><code>gateway/gateway.py · remote_state.py · web/</code></li>
+        <li><b>Configure, users, publish, maintenance, firewall</b><code>gateway/manage.py · install-host.sh · *.service</code></li>
+        <li><b>Its tests, also in a browser with two accounts</b><code>tests/</code></li>
+        <li><b>Setting a lab host up</b><code>docs/guides/setup.md</code></li>
+        <li><b>What each lab publishes, and on which ports</b><code>docs/reference/lab-endpoints.md</code></li>
+        <li><b>Every lab reachable: a directory, observers, one window</b><code>docs/proposals/remote-labs.md</code></li>
+      </ul>
+      <span class="pill">Reach a lab from anywhere</span>
+    </article>
+
+    <article class="card resources below l">
       <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5M8 7h6M8 11h6"/></svg>Resources</h2>
       <p class="repo"><a href="https://vcpe.dev/easymesh-resources/">easymesh-resources</a></p>
       <ul class="rows">
@@ -181,6 +206,8 @@
           <tr><td><span class="dot emosa"></span><b>EMOSA</b></td><td><code>emosa-lab src/emosa/ · c/</code></td><td>the <code>emosa</code> container, next to the controller</td></tr>
           <tr><td><span class="dot osl"></span><b>OpenSync pods</b></td><td><code>opensync-lab pod/</code></td><td>pod containers; image pinned in <code>manifest.json</code></td></tr>
           <tr><td><span class="dot builder"></span><b>Room builder</b></td><td><code>easymesh-room-builder</code></td><td>your browser, no lab needed</td></tr>
+          <tr><td><span class="dot clients"></span><b>The clients</b></td><td><code>meta-cmf gen/wlan-client.sh</code> · <code>prplmesh-lab scripts/radio-lab.sh</code>; described in <code>easymesh-clients</code></td><td>each lab VM, one container per client</td></tr>
+          <tr><td><span class="dot remote"></span><b>Remote access</b></td><td><code>easymesh-remote gateway/</code></td><td>the lab host, in front of the VM's ports</td></tr>
         </tbody>
       </table></div>
     </article>
@@ -206,6 +233,8 @@
         <li><span><b>EMOSA</b><span class="status one">one</span></span><small>one repository; C and Python share one specification and its vectors</small></li>
         <li><span><b>The optimizer</b><span class="status one">one</span></span><small>one repository since 30 September, both labs pin it; the physical lab keeps its small teaching one</small></li>
         <li><span><b>The room service</b><span class="status one">one</span></span><small>in easymesh-optimizer with the optimizer since 30 September; each lab keeps its rooms</small></li>
+        <li><span><b>The clients</b><span class="status two">two</span></span><small>each lab builds its own; described in easymesh-clients since 2 October</small></li>
+        <li><span><b>The remote gateway</b><span class="status two">two</span></span><small>in easymesh-remote since 2 October; the RDK lab's copy is still to be removed</small></li>
       </ul>
     </article>
   </section>
