@@ -84,21 +84,21 @@
       "project": "opensync-lab",
       "commit": "666b0ad71ec6982451b6a3ab411bd1d00b075349",
       "built_by": "build-pod.sh all (rev140, ~/yocto/mvx-pod-work/out)",
-      "used_by": "the OpenSync pods of the RDK lab's EMOSA option (rdk-emosa-1001)"
+      "used_by": "the OpenSync pods of the RDK lab's EMOSA option (rdk-emosa-1002)"
     },
     {
       "name": "X86EMLTRBPIAP_rdk-next_20260929014035",
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "f5c1bdb34e10fb9909e4e61cc822b2cd1ec730d1",
       "built_by": "gen/build/build-images.sh both (rev140)",
-      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-1001 and rdk-emosa-1001"
+      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-1002b and rdk-emosa-1002"
     },
     {
-      "name": "X86EMLTRBPIBB_rdk-next_20261001220626",
+      "name": "X86EMLTRBPIBB_rdk-next_20261002202524",
       "project": "meta-cmf-bananapi-vcpe",
-      "commit": "670ce1dc8be49854548776cb53c51a611ee97d34",
+      "commit": "43b8471fe13b5d6db0ec714d892b57710abcba67",
       "built_by": "gen/build/build-images.sh controller (rev140)",
-      "used_by": "the gateway (bpibroadband) of rdk-1001 and rdk-emosa-1001 (unified-wifi-mesh 0233)"
+      "used_by": "the gateway (bpibroadband) of rdk-1002b and rdk-emosa-1002 (unified-wifi-mesh 0233 and 0234)"
     }
   ]
 }

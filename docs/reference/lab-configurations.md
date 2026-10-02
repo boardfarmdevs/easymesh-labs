@@ -24,9 +24,9 @@ pins gives what the running VMs have.
 
 | Host | Runs |
 | --- | --- |
-| rev140 | the Yocto builds (mv3, OpenSync pod, Banana Pi images); `rdk-1001` (#1) and `prpl-1001` (#2), one lab building or testing at a time (their builds and checks refuse while the other runs); room browser tests run from rev150 |
-| rev150 | `emosa-osl-0925` (#4); the room browser for the labs on rev140 and rev120, container builds and fuzzing |
-| rev120 | `rdk-emosa-1001` (#5) and `easymesh-lab` (#6), whose physical devices are attached to rev120: physical tests run there. No prplMesh VMs or builders |
+| rev140 | the Yocto builds (mv3, OpenSync pod, Banana Pi images); `rdk-1002b` (#1) and `prpl-1002` (#2), one lab running, building or testing at a time (their builds and checks refuse while the other runs); room browser tests run from rev150, and any other long build on this host runs at low priority (`nice -n 19 ionice -c3`) while a lab VM is up |
+| rev150 | `emosa-osl-1002` (#4); the room browser for the labs on rev140 and rev120, container builds and fuzzing |
+| rev120 | `rdk-emosa-1002` (#5) and `easymesh-lab` (#6), whose physical devices are attached to rev120: physical tests run there. No prplMesh VMs or builders |
 
 ## Reaching a lab
 
