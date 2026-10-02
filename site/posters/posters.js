@@ -1,5 +1,5 @@
 // Connector lines from each card of a poster board to its central device, in the card's
-// colour (not from a full-width card below the ring). Drawn only in the wide three-column layout; redrawn on resize.
+// colour (not from the cards of the row below the ring: .wide and .below). Drawn only in the wide three-column layout; redrawn on resize.
 (function () {
   const NS = 'http://www.w3.org/2000/svg';
   function draw(board) {
@@ -16,7 +16,7 @@
     const b = board.getBoundingClientRect();
     const d = device.getBoundingClientRect();
     const D = { l: d.left - b.left, r: d.right - b.left, t: d.top - b.top, bot: d.bottom - b.top };
-    for (const card of board.querySelectorAll(':scope > .card:not(.wide)')) {
+    for (const card of board.querySelectorAll(':scope > .card:not(.wide):not(.below)')) {
       const c = card.getBoundingClientRect();
       const C = { l: c.left - b.left, r: c.right - b.left, t: c.top - b.top, bot: c.bottom - b.top };
       const cx = (C.l + C.r) / 2, cy = (C.t + C.bot) / 2;

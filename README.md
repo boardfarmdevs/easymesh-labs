@@ -37,6 +37,7 @@ bar, the Pages workflow, the documentation check).
 | [opensync-lab](https://vcpe.dev/opensync-lab/) | lab | a representative OpenSync router and the OpenSync pod image; EMOSA's reference lab |
 | [easymesh-lab](https://vcpe.dev/easymesh-lab/) | learning | the protocol on certified hardware: a from-scratch controller and a teaching panel |
 | [easymesh-room-builder](https://vcpe.dev/easymesh-room-builder/) | tool | design the labs' rooms in the browser, compiled to the medium's world plans |
+| [easymesh-resources](https://vcpe.dev/easymesh-resources/) | shared | shared material: the MV3 EasyMesh footprint and the production plan |
 
 In this repository: `site/` (the landing page and the posters), `manifest.json`, `sync`
 and `pin`, `docs/`, and `pages/` with `.github/workflows/pages.yml` (shared by every
