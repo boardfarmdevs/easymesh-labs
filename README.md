@@ -32,6 +32,7 @@ bar, the Pages workflow, the documentation check).
 | [easymesh-medium](https://vcpe.dev/easymesh-medium/) | core | the RF medium: virtual radios, wmediumd and its patches, the rooms, the console, the controller's topology page |
 | [emosa-lab](https://vcpe.dev/emosa-lab/) | core | EMOSA: unchanged OpenSync pods as EasyMesh agents; a Python reference and a C implementation |
 | [easymesh-optimizer](https://vcpe.dev/easymesh-optimizer/) | optimizer | the steering optimizer both virtual labs run, and its room service |
+| [easymesh-clients](https://vcpe.dev/easymesh-clients/) | shared | the labs' Wi-Fi clients: what each lab runs and how it builds and manages them, and how they can do more; documents only, each lab still creates its own |
 | [meta-cmf-bananapi-vcpe](https://vcpe.dev/meta-cmf-bananapi-vcpe/) | lab | RDK-B on Banana Pi images in containers: the RDK EasyMesh lab; EMOSA as an option |
 | [prplmesh-lab](https://vcpe.dev/prplmesh-lab/) | lab | the same lab on native prplMesh |
 | [opensync-lab](https://vcpe.dev/opensync-lab/) | lab | a representative OpenSync router and the OpenSync pod image; EMOSA's reference lab |
