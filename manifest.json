@@ -54,7 +54,7 @@
       "about": "The EasyMesh-to-OpenSync adapter: existing OpenSync pods as EasyMesh agents",
       "url": "git@github.com:boardfarmdevs/emosa-lab.git",
       "branch": "main",
-      "commit": "2d22ce97ea5f50543820b110e599ce99e85ec4f3",
+      "commit": "3ff6c0b996943927c7c89740fe142c294ce8ff4c",
       "site": "https://vcpe.dev/emosa-lab/"
     },
     {
