@@ -1,8 +1,10 @@
 # EasyMesh labs as a service
 
-**Status:** Proposal. Nothing here is implemented. Every step must leave the
-current way of working (a developer on the lab host, the suites, the local
-room UI) exactly as it is.
+**Status:** Proposal, **parked** on 2 October 2026 ([proposals register](../project/proposals.md)):
+the route chosen for optimizer work from outside is pluggable algorithms, in which the
+code comes into the lab; this one, in which it stays outside behind an API, is kept as the
+alternative. Nothing here is implemented. Every step must leave the current way of working
+(a developer on the lab host, the suites, the local room UI) exactly as it is.
 
 **Prepared:** 26 September 2026, from the user's request of 25 September.
 

@@ -3,16 +3,17 @@
 The projects build six VM lab configurations. Four come from one project each; two add
 EMOSA to one of those. The sixth, the physical protocol lab, is the only one tied to
 hardware: certified extenders and real clients on one host. Each build script names its
-VM by default after the configuration and the date (`MMDD`).
+VM by default after the configuration and the date (`MMDD`); the VMs that run now are
+named in one place only, the hosts table below.
 
-| # | Configuration (VM name) | Built from | Purpose | Current VM |
+| # | Configuration (VM name) | Built from | Purpose | Host |
 | --- | --- | --- | --- | --- |
-| 1 | **RDK EasyMesh lab** (`rdk-MMDD`) | meta-cmf-bananapi-vcpe: the Banana Pi images, then `gen/vm/lxd/build.sh build` | optimizer development on RDK: the gateway and controller (`bpibroadband`), 4 Wi-Fi extenders and 1 wired extender, 100 room clients, wmediumd, the interactive room | `rdk-1001` on rev140 |
-| 2 | **prplMesh lab** (`prpl-MMDD`) | prplmesh-lab: `deploy/lxd-vm/build-artifacts.sh`, then `deploy/lxd-vm/build.sh build` | the same optimizer lab on native prplMesh, with a wired Agent | `prpl-1001` on rev140 |
+| 1 | **RDK EasyMesh lab** (`rdk-MMDD`) | meta-cmf-bananapi-vcpe: the Banana Pi images, then `gen/vm/lxd/build.sh build` | optimizer development on RDK: the gateway and controller (`bpibroadband`), 4 Wi-Fi extenders and 1 wired extender, 100 room clients, wmediumd, the interactive room | rev140 |
+| 2 | **prplMesh lab** (`prpl-MMDD`) | prplmesh-lab: `deploy/lxd-vm/build-artifacts.sh`, then `deploy/lxd-vm/build.sh build` | the same optimizer lab on native prplMesh, with a wired Agent | rev140 |
 | 3 | **OpenSync lab** (`opensync-lab-MMDD`) | opensync-lab: the mv3 and pod images, then `setup-vm.sh all`, `deploy-mvx.sh all` and `deploy-mvx.sh mesh` | a representative router (mv3), OpenSync pods with virtual radios and clients, local-noc as their cloud | none on its own: the base of #4 |
-| 4 | **OpenSync + EMOSA, prplMesh controller** (`emosa-osl-MMDD`) | #3, then emosa-lab `deploy/opensync-lab/lab.sh` (`stage`, `controller`, `emosa`, `fleet`, `admit`, `policy`, `gtp`, `option1`) | adapter development against a prplMesh controller: several pods, the 900-second fault workload, the EasyMesh wireless backhaul | `emosa-osl-0925` on rev150 |
-| 5 | **RDK lab + EMOSA** (`rdk-emosa-MMDD`) | #1 with the EMOSA option: `EASYMESH_EMOSA=1 gen/vm/lxd/build.sh build` (or `build.sh emosa` on an accepted VM), which runs emosa-lab at the commit the RDK lab pins | OpenSync pods as agents next to the RDK lab's native agents, in the standard rooms with the pods | `rdk-emosa-1001` on rev120 |
-| 6 | **Physical protocol lab** (`easymesh-lab`) | easymesh-lab: `deploy/lxd-vm/build_vm.py`, then the USB handover (the Ethernet adapter to the extender, the USB Wi-Fi clients) | the EasyMesh protocol on certified hardware: a from-scratch controller and teaching panel, a TP-Link RE653BE and a second extender, real clients | `easymesh-lab` on rev120 |
+| 4 | **OpenSync + EMOSA, prplMesh controller** (`emosa-osl-MMDD`) | #3, then emosa-lab `deploy/opensync-lab/lab.sh` (`stage`, `controller`, `emosa`, `fleet`, `admit`, `policy`, `gtp`, `option1`) | adapter development against a prplMesh controller: several pods, the 900-second fault workload, the EasyMesh wireless backhaul | rev150 |
+| 5 | **RDK lab + EMOSA** (`rdk-emosa-MMDD`) | #1 with the EMOSA option: `EASYMESH_EMOSA=1 gen/vm/lxd/build.sh build` (or `build.sh emosa` on an accepted VM), which runs emosa-lab at the commit the RDK lab pins | OpenSync pods as agents next to the RDK lab's native agents, in the standard rooms with the pods | rev120 |
+| 6 | **Physical protocol lab** (`easymesh-lab`) | easymesh-lab: `deploy/lxd-vm/build_vm.py`, then the USB handover (the Ethernet adapter to the extender, the USB Wi-Fi clients) | the EasyMesh protocol on certified hardware: a from-scratch controller and teaching panel, a TP-Link RE653BE and a second extender, real clients | rev120 |
 
 Each project's site links its build guide: the RDK lab's for #1 and #5, prplmesh-lab's
 for #2, opensync-lab's for #3, emosa-lab's for #4 and #5, easymesh-lab's for #6.

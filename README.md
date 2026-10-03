@@ -22,8 +22,9 @@ around them.
 
 This repository ties the projects together: the landing site, the manifest that pins
 every project and the images the labs run, the workspace scripts that clone and pin
-them, the plan that aligns them, and the files every project's site shares (the labs
-bar, the Pages workflow, the documentation check).
+them, the plan that aligns them, the register of every proposal, and the tooling every
+project's site uses from here: the shared Pages workflow, the documentation check and the
+labs bar.
 
 ## Components
 

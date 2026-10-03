@@ -188,5 +188,7 @@ vectored, built in the reference and in C, and gated in the labs.
 | Host | In this plan |
 | --- | --- |
 | rev140 | Yocto builds; the fresh RDK optimizer lab (phase 1.6) |
-| rev120 | `rdk-emosa-0929` (phase 3.5; `rdk-emosa` stopped as its backup) and the physical protocol lab; the room tests' browser runs on rev150 |
+| rev120 | the RDK lab with EMOSA (phase 3.5) and the physical protocol lab; the room tests' browser runs on rev150 |
 | rev150 or rev140 | the fresh prplMesh lab (phase 2.3); never rev120 |
+
+The VMs that run on each host now are in [the lab configurations](../reference/lab-configurations.md).
