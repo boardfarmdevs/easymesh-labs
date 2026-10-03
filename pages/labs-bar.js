@@ -6,10 +6,10 @@
  * together; the RF medium, the clients, remote access and the resources are shared by
  * the labs.
  *
- * Shared: the same file (pages/labs-bar.js) in every repository with a site, the
- * umbrella easymesh-labs (whose site the home link opens) and each project listed
- * below; change it in all of them. pages/finish-site.py adds it to every built page:
- *   <script src="labs-bar.js" data-project="emosa-lab" defer></script>
+ * Kept once, in easymesh-labs (pages/labs-bar.js), and served from its site; every
+ * project's site loads it from there, so a change here reaches every site when the
+ * umbrella's site deploys. pages/finish-site.py adds it to every built page:
+ *   <script src="https://mesh.vcpe.dev/labs-bar.js" data-project="emosa-lab" defer></script>
  * A full-screen tool opts out with <meta name="labs-bar" content="off">.
  */
 (() => {

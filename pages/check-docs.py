@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""The documentation check of the EasyMesh labs: the same file in every repository of the
-labs; change it in all of them. The Pages workflow runs it from the repository's root:
+"""The documentation check of the EasyMesh labs. Kept once, in easymesh-labs (pages/); the
+labs' shared Pages workflow (.github/workflows/labs-pages.yml) runs it in every repository
+with a site, from that repository's root. Locally, from a repository's root:
 
-    python3 pages/check-docs.py
+    python3 <easymesh-labs>/pages/check-docs.py
 
 It checks what must hold in every repository:
 - the README's labs block is the one below, but for its Site line;
