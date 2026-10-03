@@ -17,7 +17,7 @@ proposals what is proposed but not implemented.
 | RDK controller memory | The controller grows while the mesh keeps re-forming: 643 MiB after about two hours of continuous backhaul drops (2 October), killed at the gateway's 1 GiB limit, which stays. Idle and through the rooms it is flat for two hours. Find what it keeps at each re-formation | The lab's gateway memory profile flat across a run of forced backhaul drops |
 | RDK backhaul under host contention | With the lab VM losing about 30% of its CPU time to other work on its host for hours, the extenders left and rejoined the backhaul of the gateway and of the wired extender every 21 seconds; 45 minutes at 25% did not show it. Find which guard leaves, and bound it | The contention replayed for as long, with no drop or with drops that end |
 | RDK controller restart | A controller that restarts on its own comes back with part of the model (41 of 60 BSSes eight minutes after a kill); only the lab's ordered bring-up restores it | The controller killed once in a settled lab, the model complete again without the bring-up |
-| Lab tests in CI | Neither optimizer lab's static tier runs in CI and opensync-lab has no tests: two documentation tests failed unnoticed for a day | The static tiers in the labs' workflows |
+| opensync-lab tests | The lab has no tests: its guest scripts and local-noc are checked only by building the lab | Offline tests of the guest steps and local-noc in its CI |
 
 Larger appliance/inventory refactors are not prerequisites for operating the
 current fixed-pool lab. Start with a demonstrated defect and a bounded test,
