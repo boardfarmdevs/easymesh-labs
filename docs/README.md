@@ -5,6 +5,7 @@
 | Document | Kind | What it covers |
 | --- | --- | --- |
 | [Lab configurations](reference/lab-configurations.md) | reference | the six VM lab configurations, the VMs that run now and the hosts |
+| [The artifact store](reference/artifact-store.md) | reference | the labs' slow-to-build artifacts kept by their inputs, and rev140's Yocto caches, over HTTP: server, entries, components, variables |
 | [Alignment plan](project/alignment-plan.md) | project | the plan that aligns the labs, up to EMOSA in C in the RDK gateway image, and its status |
 | [Open work](project/open-work.md) | project | the priorities both optimizer labs carry forward, with owners and completion evidence |
 | [Project assessment](project/assessment.md) | project | the whole project against its goals (2 October 2026): what was fixed, what is recommended for later, what to stop |

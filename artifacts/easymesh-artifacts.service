@@ -1,0 +1,16 @@
+[Unit]
+Description=EasyMesh labs artifact store (static HTTP, read-only)
+Documentation=https://mesh.vcpe.dev/
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=@USER@
+ExecStart=/usr/bin/python3 -m http.server @PORT@ --bind 0.0.0.0 --directory @ROOT@
+Restart=on-failure
+# The store serves builds on other hosts; it must not slow a lab VM on this one.
+Nice=10
+IOSchedulingClass=idle
+
+[Install]
+WantedBy=multi-user.target

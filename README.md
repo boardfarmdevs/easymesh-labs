@@ -43,8 +43,9 @@ labs bar.
 | [easymesh-resources](https://vcpe.dev/easymesh-resources/) | shared | shared material: the MV3 EasyMesh footprint and the production plan |
 
 In this repository: `site/` (the landing page and the posters), `manifest.json`, `sync`
-and `pin`, `docs/`, and `pages/` with `.github/workflows/pages.yml` (shared by every
-project's site).
+and `pin`, `docs/`, `pages/` with `.github/workflows/pages.yml` (shared by every
+project's site), and `artifacts/`, the server of the labs' artifact store
+([its reference](docs/reference/artifact-store.md)).
 
 ## Getting started
 
