@@ -180,7 +180,7 @@ vectored, built in the reference and in C, and gated in the labs.
 | 9.3 Channel and power | the controller's channel and power decisions applied, not declined | |
 | 9.4 Ethernet pods | a pod with an Ethernet uplink qualified: transparent, no loop with the GTP, reported truthfully | |
 | 9.5 Backhaul | backhaul link metrics and a 1905 neighbor on the backhaul; pods as parents of other pods | |
-| 9.6 The router side | EMOSA next to the gateway's own 1905 stack (5.1), the GTP role (5.2), how pods find EMOSA (5.3) | |
+| 9.6 The router side | EMOSA next to the gateway's own 1905 stack (5.1), the GTP role (5.2), how pods find EMOSA (5.3) | started (4 Oct): the gateway image runs EMOSA with its configuration and state on `/nvram/emosa`, which an image upgrade keeps, and the agents' status in RAM (the status had been rewritten once a second into the state directory, some 1.3 GB a day per pod); in `rdk-emosa-1002` an upgrade kept it whole and the pods were back within 39 s with the same identities. Open: the GTP in the gateway, a broker, configuration through RDK's data model, agents started by the fleet after an upgrade; TLS is 9.1 |
 | 9.7 Memory | one adapter process for every pod's agent, if the router's memory needs it | |
 
 ## Hosts
