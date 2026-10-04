@@ -2,8 +2,9 @@
 
 [Documents](../README.md)
 
-**Kind:** proposal. **Status:** open. **Prepared:** 3 October 2026, from measurements of the
-RDK and prplMesh labs on rev140 (sources in section 1).
+**Kind:** proposal. **Status:** implemented in both optimizer labs and verified on rev140,
+3 and 4 October 2026 ([section 5](#5-status-4-october-2026)); two points open. **Prepared:**
+3 October 2026, from measurements of the RDK and prplMesh labs on rev140 (sources in section 1).
 
 The time it takes to build and requalify a lab is the labs' largest running cost: every
 change to a shared part means rebuilding both optimizer labs and running their suites. This
@@ -61,3 +62,30 @@ Item 1 first, because it measures the rest. Then items 2 and 3, which save the m
 change that happens every day. Then items 5 and 6, which matter as soon as a second host
 builds labs. Then 4 and 7, which make a fresh lab or an experiment cheap. Item 8 follows the
 client plan, and item 9 can come at any time.
+
+## 5. Status, 4 October 2026
+
+All nine are in both optimizer labs (meta-cmf-bananapi-vcpe and prplmesh-lab, each lab's
+`docs/reference/build-speed.md`) and in this repository (the store's server, `artifacts/`,
+and [its reference](../reference/artifact-store.md)). Verified on rev140 with test VMs built
+for it, beside another agent's running lab:
+
+| # | Change | Where it is | Verified |
+| --- | --- | --- | --- |
+| 1 | Times | every build, update and copy writes `build-evidence/KIND-NAME-STAMP/` (`phases.tsv`, `summary.txt`); the suites' `summary.json` carries each section's seconds | every number below comes from those records |
+| 2 | `update` covers the medium and the guest | both labs: the medium's daemon, console and radio module, the guest's services (and in prplMesh the controller UI and the containers' scripts) are rebuilt and installed, then the VM restarts; an update stopped part-way is finished by running it again | RDK: a copy updated to a commit changing the daemon, console, radio module and a guest tool in 33 min (5 of building and installing, 28 of restart and bring-up) where a build takes 73 from the base image; its checkout, module and tool checked in the VM. prplMesh: a copy updated to a commit changing the medium, a guest service and a client script in 18.9 min where a build takes 45.6, then passed `check` in full |
+| 3 | Requalify what a change can affect | both labs: `affected-suites.py BASE`, its map kept by unit tests | prints the step and the sections, following the submodules |
+| 4 | A base VM image | both labs: the stages that do not depend on the commit, as an LXD image named by their inputs, made and published on the way | RDK: base stages 1293 s cold, 119 s from the image fetched from the store (`rdk-fast-b` then passed its acceptance). prplMesh: 5.5 min saved a build (its base is small); `prpl-fast-a` from its base passed its acceptance in 45.6 min |
+| 5 | The artifact store | rev140:8180; the RDK images and base image, the prplMesh native archives, its client supplicant and base image | prplMesh native archives built in 15.5 min and fetched in 4 s; the RDK base image fetched and imported in under 85 s. The RDK images' publish and fetch are not yet exercised live (the cold image build stops, item 6) |
+| 6 | The sstate mirror | `BUILD_SSTATE_MIRROR` in the RDK image helper | a cold workspace restored 5,750 of 5,769 tasks from it in under 7 minutes; **open**: one task it ran itself fails (ccsp-one-wifi's packaging, under pseudo), so a cold image build stops there |
+| 7 | Copy-on-write copies | both labs: `build.sh copy NEW` on a Btrfs or ZFS pool | a copy of an accepted lab in 8 s (RDK, sharing 9 GiB) and 7 s (prplMesh, 13.9 GiB); each started on its own address and ports |
+| 8 | Alpine clients | prplMesh: the clients' supplicant built for musl from the lab's pinned hostap and patches | 100 of 100 Alpine clients associated and reached the controller in `prpl-fast-a`'s acceptance; the client image is 45.7 MB against the 366 MB Ubuntu one |
+| 9 | A development lab | both labs: `EASYMESH_DEV_CLIENTS` / `PRPLMESH_DEV_CLIENTS=20`, no room service, never packaged | |
+
+Found on the way and fixed: a base publish restarts the VM, and the RDK build went on before
+Boardfarm had rebuilt its WAN; the prplMesh guest held its shutdown past the publish's
+timeout; Alpine's first package fetch ran before the builder container had its network.
+Found and fixed in `start`: when the runtime's own gate stops on an extender registered
+without its BSSes, the bring-up that repairs that now runs before a second start. Seen and
+**open**, not from these changes: with three lab VMs on rev140, 25 of a lab's 100 clients
+lost packets in `check`'s traffic gate, as 19 did on 1 October.
