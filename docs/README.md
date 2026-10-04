@@ -14,8 +14,9 @@
 
 Two subjects have their own repositories and documents since 2 October 2026: the labs'
 Wi-Fi clients ([easymesh-clients](https://vcpe.dev/easymesh-clients/): what each lab's
-clients are, the proposal for more capable clients, and the client models proposal, which
-moved there from here) and remote access ([easymesh-remote](https://vcpe.dev/easymesh-remote/):
+clients are, the proposal for more capable clients, and the client models, which moved
+there from here as a proposal and were built and checked on a bench there on 3 October) and
+remote access ([easymesh-remote](https://vcpe.dev/easymesh-remote/):
 the gateway, its setup guide, what each lab publishes, and the proposal for remote labs,
 which the labs as a service proposal above stands on). The proposals of every repository
 are listed, with their decisions, in the [proposals register](project/proposals.md).
