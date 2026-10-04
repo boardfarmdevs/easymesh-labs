@@ -59,7 +59,8 @@ On rev140, 3 and 4 October 2026:
 | The RDK base VM image | published in 612 s (3.1 GiB, compressed); fetched over HTTP and imported in under 85 s by the next build, which skipped 20 minutes of base stages |
 | The prplMesh native archives | built in 15.5 min (prplMesh 818 s) and published; `build-artifacts.sh` run again with the same inputs fetched and verified them in 4 s |
 | The Alpine clients' supplicant | built in a throwaway container in about 2 min and published |
-| The sstate mirror | a cold Yocto workspace (its own empty sstate cache and downloads) restored 5,750 of the controller image's 5,769 tasks from rev140's cache over HTTP (1.7 GB) in under 7 minutes. Of the 19 tasks it ran itself, `ccsp-one-wifi:do_package` failed under pseudo ("unknown base path for fd"), twice: a recipe the warm workspace restores from its cache and has not had to package since the layer's Wi-Fi recipes changed. Open: a cold build of the controller image stops there until that is understood |
+| The sstate mirror | a cold Yocto workspace (its own empty sstate cache and downloads) restored 5,750 of the controller image's 5,769 tasks from rev140's cache over HTTP (1.7 GB) in under 7 minutes. Its first runs stopped in the packaging of the tasks it ran itself ("unknown base path for fd" under pseudo): the workspace had been made without the build guide's tar 1.34 ahead of `/usr/bin`, and Ubuntu's tar extracts through `openat2`, which pseudo cannot follow. With that tar, the cold workspace built the whole controller image (5,792 tasks, 27 run itself) in 13.7 minutes. The image helper now takes the guide's tar and refuses another |
+| The RDK controller image | published by that cold build (`rdk-image-controller`); the helper run again with the store set fetched it in about a second instead of running BitBake, the same image by its checksum |
 
 ## Keeping it
 
