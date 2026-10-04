@@ -14,7 +14,7 @@
       "about": "RDK-B on Banana Pi images in containers: EasyMesh, virtual RF and medium (wmediumd), optimizer, interactive room",
       "url": "git@github.com:boardfarmdevs/meta-cmf-bananapi-vcpe.git",
       "branch": "main",
-      "commit": "5d78bcc609ed47c6d7990c9b9729b3c71766f365",
+      "commit": "1895667b445851bb198d730020baa225c82c6919",
       "site": "https://vcpe.dev/meta-cmf-bananapi-vcpe/"
     },
     {
@@ -54,7 +54,7 @@
       "about": "The EasyMesh-to-OpenSync adapter: existing OpenSync pods as EasyMesh agents",
       "url": "git@github.com:boardfarmdevs/emosa-lab.git",
       "branch": "main",
-      "commit": "96e78a0265c7fcd651bfacdc64edad6655c76db8",
+      "commit": "ffe1780a4333d3ca72365624c4d4df2c22f292f5",
       "site": "https://vcpe.dev/emosa-lab/"
     },
     {
