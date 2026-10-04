@@ -7,7 +7,8 @@
 
 **The question:** shortcomings, things obsolete, and opportunities for alignment,
 accessibility and usability, without expanding further. The time and cost of building and
-requalifying the labs are understood and outside this assessment.
+requalifying the labs are understood and outside this assessment; since 3 October they have
+a proposal of their own ([faster, cheaper labs](../proposals/faster-labs.md)).
 
 ## 1. The verdict
 

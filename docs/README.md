@@ -11,6 +11,7 @@
 | [Proposals register](project/proposals.md) | project | every proposal of the labs, wherever it is kept, with its decision: chosen, open, parked or retired |
 | [Labs as a service](proposals/labs-as-a-service.md) | proposal | the labs for remote optimizer developers, through an API; parked |
 | [EMOSA's product apart from its lab](proposals/emosa-product-split.md) | proposal | carving the EMOSA product out of emosa-lab at the handover |
+| [Faster, cheaper labs](proposals/faster-labs.md) | proposal | where build and requalification time goes, what is already precooked, and what to change: updates in place, requalifying what a change affects, precooked images and an artifact store keyed by inputs |
 
 Two subjects have their own repositories and documents since 2 October 2026: the labs'
 Wi-Fi clients ([easymesh-clients](https://vcpe.dev/easymesh-clients/): what each lab's
