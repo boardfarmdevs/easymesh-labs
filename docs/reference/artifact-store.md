@@ -50,6 +50,17 @@ The client is a few shell functions, `artifact_key`, `artifact_fetch` and
 `deploy/lxd-vm/artifact-store.sh` in the prplMesh lab), so a lab builds without this
 repository.
 
+## Measured
+
+On rev140, 3 and 4 October 2026:
+
+| | |
+| --- | --- |
+| The RDK base VM image | published in 612 s (3.1 GiB, compressed); fetched over HTTP and imported in under 85 s by the next build, which skipped 20 minutes of base stages |
+| The prplMesh native archives | built in 15.5 min (prplMesh 818 s) and published; `build-artifacts.sh` run again with the same inputs fetched and verified them in 4 s |
+| The Alpine clients' supplicant | built in a throwaway container in about 2 min and published |
+| The sstate mirror | a cold Yocto workspace (its own empty sstate cache and downloads) restored 5,750 of the controller image's 5,769 tasks from rev140's cache over HTTP (1.7 GB) in under 7 minutes. Of the 19 tasks it ran itself, `ccsp-one-wifi:do_package` failed under pseudo ("unknown base path for fd"), twice: a recipe the warm workspace restores from its cache and has not had to package since the layer's Wi-Fi recipes changed. Open: a cold build of the controller image stops there until that is understood |
+
 ## Keeping it
 
 The store grows by an entry per new set of inputs. Entries are independent: removing a
