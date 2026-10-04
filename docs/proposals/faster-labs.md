@@ -80,7 +80,7 @@ for it, beside another agent's running lab:
 | 6 | The sstate mirror | `BUILD_SSTATE_MIRROR` in the RDK image helper | a cold workspace restored 5,750 of 5,769 tasks from it in under 7 minutes; **open**: one task it ran itself fails (ccsp-one-wifi's packaging, under pseudo), so a cold image build stops there |
 | 7 | Copy-on-write copies | both labs: `build.sh copy NEW` on a Btrfs or ZFS pool | a copy of an accepted lab in 8 s (RDK, sharing 9 GiB) and 7 s (prplMesh, 13.9 GiB); each started on its own address and ports |
 | 8 | Alpine clients | prplMesh: the clients' supplicant built for musl from the lab's pinned hostap and patches | 100 of 100 Alpine clients associated and reached the controller in `prpl-fast-a`'s acceptance; the client image is 45.7 MB against the 366 MB Ubuntu one |
-| 9 | A development lab | both labs: `EASYMESH_DEV_CLIENTS` / `PRPLMESH_DEV_CLIENTS=20`, no room service, never packaged | |
+| 9 | A development lab | both labs: `EASYMESH_DEV_CLIENTS` / `PRPLMESH_DEV_CLIENTS=20`, no room service, never packaged | built from the base images and accepted with 20 clients: RDK 41.0 min against 73.4, prplMesh 24.2 against 45.6; the RDK one refuses `snapshot` |
 
 Found on the way and fixed: a base publish restarts the VM, and the RDK build went on before
 Boardfarm had rebuilt its WAN; the prplMesh guest held its shutdown past the publish's
