@@ -14,7 +14,7 @@
       "about": "RDK-B on Banana Pi images in containers: EasyMesh, virtual RF and medium (wmediumd), optimizer, interactive room",
       "url": "git@github.com:boardfarmdevs/meta-cmf-bananapi-vcpe.git",
       "branch": "main",
-      "commit": "db3c718053bd2b86e2bdcefdb7170f86cc24aa1c",
+      "commit": "75462bb219b77c83e756e74330055383ae5b7574",
       "site": "https://vcpe.dev/meta-cmf-bananapi-vcpe/"
     },
     {
@@ -54,7 +54,7 @@
       "about": "The EasyMesh-to-OpenSync adapter: existing OpenSync pods as EasyMesh agents",
       "url": "git@github.com:boardfarmdevs/emosa-lab.git",
       "branch": "main",
-      "commit": "f97786f99dd38a6e47a032cfd7719a43f4a00c53",
+      "commit": "04189dcd2e7b7b6880b9916ab5d15cce75442cdc",
       "site": "https://vcpe.dev/emosa-lab/"
     },
     {
@@ -101,11 +101,11 @@
       "used_by": "the gateway (bpibroadband) of rdk-emosa-1002, EMOSA running in it"
     },
     {
-      "name": "X86EMLTRBPIBB_rdk-next_20261005010026",
+      "name": "X86EMLTRBPIBB_rdk-next_20261006083201",
       "project": "meta-cmf-bananapi-vcpe",
-      "commit": "d70f1c32be02a4a0f7f7bedb87a67d265a6c46d8",
-      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140): with EMOSA's package, emosa-lab 68515a2",
-      "used_by": "the gateway (bpibroadband) of rdk-1004, EMOSA running in it"
+      "commit": "c5abb1d1b29319a2d6065a6b591830d5463785f0",
+      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140): with EMOSA's package (emosa-lab 95a39da), its broker and its GTP's onboarding VAP",
+      "used_by": "the gateway (bpibroadband) of rdk-1004, everything of EMOSA's running in it"
     }
   ]
 }

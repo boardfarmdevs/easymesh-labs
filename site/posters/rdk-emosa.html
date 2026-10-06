@@ -7,7 +7,7 @@
 <link rel="icon" href="../favicon.ico" sizes="48x48">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-<meta name="description" content="The target configuration as of 6 October 2026: RDK-B's EasyMesh controller and EMOSA in one gateway image, with EMOSA's ports and the pods' broker in the gateway; two unchanged OpenSync pods as EasyMesh agents, drawn whole with every path they use.">
+<meta name="description" content="The target configuration as of 6 October 2026: RDK-B's EasyMesh controller and EMOSA in one gateway image, with EMOSA's ports, the pods' broker and their GRE termination point in the gateway and no container but the pods; two unchanged OpenSync pods as EasyMesh agents, drawn whole with every path they use.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="posters.css">
@@ -19,15 +19,17 @@
     <h1>OpenSync pods inside RDK EasyMesh</h1>
     <p>RDK-B's EasyMesh controller and EMOSA in one gateway image. Two unchanged OpenSync 6.6.1
     pods join as EasyMesh agents: they onboard over GRE, move to the EasyMesh Wi-Fi backhaul and
-    report their own statistics over MQTT. Drawn as built in <b>rdk-1004</b>: EMOSA's ports and
-    the pods' broker are in the gateway now; their GRE still ends in a container.</p>
+    report their own statistics over MQTT. Drawn as built in <b>rdk-1004</b>: everything of
+    EMOSA's runs in the gateway, its ports, the pods' broker and the end of their GRE included,
+    and no container is left but the pods.</p>
     <nav><a href="labs.html">← The labs as built</a> <a href="map.html">Where everything lives</a> <a href="../index.html">Home</a></nav>
   </header>
 
   <section class="stage-hosts" aria-label="Where it runs">
     <div class="host"><h3>rdk-1004 · rev140</h3><p>The target configuration, built from scratch on 5 October with
     <code>EASYMESH_EMOSA=1 EASYMESH_EMOSA_IN=gateway</code>; since 6 October its gateway image carries
-    EMOSA's forwarder and mosquitto. em_cli <code>192.168.2.140:29610</code> · Console NG
+    EMOSA's forwarder, mosquitto and the pods' onboarding VAP, and its containers are retired.
+    em_cli <code>192.168.2.140:29610</code> · Console NG
     <code>:29611</code> · room <code>:29612</code>.</p></div>
     <div class="host"><h3>rdk-emosa-1002 · rev120</h3><p>The same configuration as of 5 October:
     EMOSA in the gateway, its ports and the broker still through the containers. em_cli
@@ -41,8 +43,8 @@
     <h3>Inside rdk-1004</h3>
     <div class="diagram-scroll">
     <svg viewBox="0 0 1400 1048" role="img" aria-labelledby="dia-title dia-desc">
-      <title id="dia-title">rdk-1004 inside: the gateway with RDK EasyMesh, EMOSA and the pods' broker, the VM's WAN and wired LAN, the idle emosa container, two pods, em-gtp, the medium, extenders and the room service</title>
-      <desc id="dia-desc">Four numbered paths: 1, OVSDB from each pod to its redirector on the WAN side, the operator's redirect, then over the LAN to EMOSA's forwarder in the gateway and on to the fleet and the pod's agent; 2, IEEE 1905 between the agents in their own network namespace and RDK's controller over brlan0; 3, the data plane, GRE through em-gtp into the wired LAN, or the EasyMesh Wi-Fi backhaul to the gateway's mesh_backhaul BSS; 4, MQTT from the pods over the LAN to the broker in the gateway, which the agents read on its loopback.</desc>
+      <title id="dia-title">rdk-1004 inside: the gateway with RDK EasyMesh and EMOSA (fleet, agents, forwarder, the pods' broker and their GRE termination point), the VM's WAN and wired LAN, two pods, the medium, extenders and the room service; the emosa and em-gtp containers retired</title>
+      <desc id="dia-desc">Four numbered paths: 1, OVSDB from each pod to its redirector on the WAN side, the operator's redirect, then over the LAN to EMOSA's forwarder in the gateway and on to the fleet and the pod's agent; 2, IEEE 1905 between the agents in their own network namespace and RDK's controller over brlan0; 3, the data plane, GRE over the gateway's own onboarding SSID to its GTP and into brlan0, or the EasyMesh Wi-Fi backhaul to the gateway's mesh_backhaul BSS; 4, MQTT from the pods over the LAN to the broker in the gateway, which the agents read on its loopback.</desc>
 
       <g class="umbrella">
         <text class="st" x="30" y="20">rev140 · LXD VM rdk-1004 · its own kernel, radios and medium</text>
@@ -92,6 +94,11 @@
         <text class="b" x="336" y="390">em1 · 02:c2:b8:31:3a:f8</text>
         <text class="b" x="336" y="410">em2 · 02:72:f9:7f:07:85</text>
         <text class="t" x="336" y="432">macvlans on emlan, a veth end</text>
+        <rect class="sub" x="372" y="462" width="200" height="88" rx="10"/>
+        <text class="st" x="386" y="484">the pods' GTP</text>
+        <text class="b" x="386" y="504">emosa-gtp</text>
+        <text class="t" x="386" y="520">brpodbh 169.254.2.1/25</text>
+        <text class="t" x="386" y="536">wifi1.4, their SSID</text>
       </g>
       <g class="rdk">
         <rect class="sub" x="52" y="560" width="520" height="120" rx="10"/>
@@ -101,9 +108,9 @@
         <text class="t" x="78" y="633">fronthaul, mesh_backhaul</text>
         <text class="t" x="78" y="650">…:89:2b:59</text>
         <rect class="chip" x="258" y="596" width="140" height="66" rx="8"/>
-        <text class="ct" x="270" y="616">emlan-br</text>
-        <text class="t" x="270" y="633">EMOSA's veth</text>
-        <text class="t" x="270" y="650">port</text>
+        <text class="ct" x="270" y="616">emlan-br · gtp2_*</text>
+        <text class="t" x="270" y="633">EMOSA's veth,</text>
+        <text class="t" x="270" y="650">the pods' GRE</text>
         <rect class="chip" x="410" y="596" width="148" height="66" rx="8"/>
         <text class="ct" x="422" y="616">eth2</text>
         <text class="t" x="422" y="633">the wired LAN</text>
@@ -126,61 +133,42 @@
         <text class="t" x="642" y="290">a process on the VM,</text>
         <text class="t" x="642" y="307">the operator's, not EMOSA's;</text>
         <text class="t" x="642" y="324">no proxies into the gateway</text>
-        <rect class="sub" x="628" y="370" width="214" height="210" rx="10"/>
+        <rect class="sub" x="628" y="370" width="214" height="104" rx="10"/>
         <text class="st" x="642" y="393">br-wired</text>
         <text class="t" x="642" y="412">the wired LAN, its ports:</text>
         <text class="b" x="642" y="438">gateway eth2</text>
         <text class="b" x="642" y="462">bpiap-004 eth1</text>
-        <text class="b" x="642" y="486">em-gtp eth1</text>
-        <text class="b" x="642" y="510">emosa emlan</text>
-        <text class="t" x="642" y="534">the trunk when EMOSA</text>
-        <text class="t" x="642" y="551">runs in its container</text>
       </g>
 
-      <!-- the idle emosa container, the pods, em-gtp -->
-      <g class="emosa">
-        <rect class="zone dashed" x="882" y="56" width="494" height="96" rx="14"/>
-        <text class="zt" x="900" y="84">emosa · container, idle</text>
-        <text class="b" x="900" y="108">adapter kit</text>
-        <text class="t" x="1010" y="108">EMOSA's other home (gateway.sh off)</text>
-        <text class="t" x="900" y="132">its broker and the lab's CA moved out on 6 October</text>
-      </g>
+      <!-- the pods, the retired containers -->
       <g class="osl">
-        <rect class="zone" x="882" y="188" width="240" height="184" rx="14"/>
-        <text class="zt" x="900" y="216">pod-1</text>
-        <text class="zs" x="900" y="235">OpenSync 6.6.1, unchanged</text>
-        <text class="b" x="900" y="259">agent …:07:85</text>
-        <text class="b" x="900" y="283">bhaul-sta-50</text>
-        <text class="t" x="900" y="300">its uplink station, 5 GHz</text>
-        <text class="b" x="900" y="324">home · fh · b-ap · …</text>
-        <text class="t" x="900" y="341">BSSes from the M2</text>
-        <text class="t" x="900" y="360">qm: statistics every 5 s</text>
-        <rect class="zone" x="1136" y="188" width="240" height="184" rx="14"/>
-        <text class="zt" x="1154" y="216">pod-2</text>
-        <text class="zs" x="1154" y="235">OpenSync 6.6.1, unchanged</text>
-        <text class="b" x="1154" y="259">agent …:3a:f8</text>
-        <text class="b" x="1154" y="283">bhaul-sta-50</text>
-        <text class="t" x="1154" y="300">its uplink station, 5 GHz</text>
-        <text class="b" x="1154" y="324">home · fh · b-ap · …</text>
-        <text class="t" x="1154" y="341">BSSes from the M2</text>
-        <text class="t" x="1154" y="360">qm: statistics every 5 s</text>
+        <rect class="zone" x="882" y="56" width="240" height="184" rx="14"/>
+        <text class="zt" x="900" y="84">pod-1</text>
+        <text class="zs" x="900" y="103">OpenSync 6.6.1, unchanged</text>
+        <text class="b" x="900" y="127">agent …:07:85</text>
+        <text class="b" x="900" y="151">bhaul-sta-50</text>
+        <text class="t" x="900" y="168">its uplink station, 5 GHz</text>
+        <text class="b" x="900" y="192">home · fh · b-ap · …</text>
+        <text class="t" x="900" y="209">BSSes from the M2</text>
+        <text class="t" x="900" y="228">qm: statistics every 5 s</text>
+        <rect class="zone" x="1136" y="56" width="240" height="184" rx="14"/>
+        <text class="zt" x="1154" y="84">pod-2</text>
+        <text class="zs" x="1154" y="103">OpenSync 6.6.1, unchanged</text>
+        <text class="b" x="1154" y="127">agent …:3a:f8</text>
+        <text class="b" x="1154" y="151">bhaul-sta-50</text>
+        <text class="t" x="1154" y="168">its uplink station, 5 GHz</text>
+        <text class="b" x="1154" y="192">home · fh · b-ap · …</text>
+        <text class="t" x="1154" y="209">BSSes from the M2</text>
+        <text class="t" x="1154" y="228">qm: statistics every 5 s</text>
       </g>
-      <g class="medium">
-        <rect class="zone" x="882" y="408" width="494" height="200" rx="14"/>
-        <text class="zt" x="900" y="436">em-gtp · GRE termination</text>
-        <rect class="chip" x="896" y="448" width="228" height="56" rx="8"/>
-        <text class="ct" x="908" y="470">wlan0 in podbh</text>
-        <text class="t" x="908" y="488">'opensync-lab-bhaul', ch 44</text>
-        <rect class="chip" x="1136" y="448" width="226" height="56" rx="8"/>
-        <text class="ct" x="1148" y="470">169.254.2.1/25</text>
-        <text class="t" x="1148" y="488">DHCP, MTU 1600, ping</text>
-        <rect class="chip" x="896" y="514" width="228" height="56" rx="8"/>
-        <text class="ct" x="908" y="536">br-gtp</text>
-        <text class="t" x="908" y="554">the gretaps + eth1</text>
-        <rect class="chip" x="1136" y="514" width="226" height="56" rx="8"/>
-        <text class="ct" x="1148" y="536">gtp2_* gretaps</text>
-        <text class="t" x="1148" y="554">one per pod lease</text>
-        <text class="t" x="900" y="594">next (step 3): in the gateway, a OneWifi VAP and emosa-gtp</text>
+      <g class="emosa">
+        <rect class="zone dashed" x="882" y="560" width="494" height="130" rx="14"/>
+        <text class="zt" x="900" y="588">retired · 6 October</text>
+        <text class="b" x="900" y="614">emosa · em-gtp</text>
+        <text class="t" x="1030" y="614">the adapter's and the GTP's containers</text>
+        <text class="t" x="900" y="640">EMOSA, its broker and its GTP run in the gateway,</text>
+        <text class="t" x="900" y="657">from its image: no container but the pods.</text>
+        <text class="t" x="900" y="674">lab.sh retire; a fresh lab never makes them.</text>
       </g>
 
       <!-- the second row -->
@@ -193,8 +181,8 @@
         <text class="b" x="52" y="860">wmediumd</text>
         <text class="t" x="52" y="877">delivers every frame by the room's RF</text>
         <text class="b" x="52" y="902">the pods' uplinks</text>
-        <text class="t" x="52" y="919">fixed links: to em-gtp SNR 45,</text>
-        <text class="t" x="52" y="936">to the gateway's 5 GHz SNR 50</text>
+        <text class="t" x="52" y="919">one fixed link, SNR 50: the gateway's</text>
+        <text class="t" x="52" y="936">5 GHz radio carries both their SSIDs</text>
         <text class="b" x="52" y="961">Console NG</text>
         <text class="t" x="52" y="978">every radio and path, live · :29611</text>
       </g>
@@ -227,7 +215,7 @@
 
       <!-- 1: OVSDB: the redirector on the WAN side, then the gateway's forwarder over the LAN -->
       <g class="flow1">
-        <path class="flow dash" d="M1376,262 H1384 V46 H828 V118"/>
+        <path class="flow dash" d="M1376,130 H1384 V46 H828 V118"/>
         <path class="flow dash" d="M572,610 H582 V247 H572"/>
         <g class="badge"><circle cx="1000" cy="46" r="10"/><text x="1000" y="46">1</text></g>
         <text class="lane" x="1016" y="42">OVSDB: the redirector once, then the gateway's ports</text>
@@ -239,16 +227,17 @@
         <path class="flow" d="M360,450 V596"/>
         <g class="badge"><circle cx="42" cy="520" r="10"/><text x="42" y="520">2</text></g>
       </g>
-      <!-- 3: the data plane: GRE through em-gtp, or the EasyMesh backhaul -->
+      <!-- 3: the data plane: GRE over the gateway's own SSID to its GTP, or the EasyMesh backhaul -->
       <g class="flow3">
-        <path class="flow" d="M1002,372 V408"/>
-        <path class="flow" d="M1256,372 V408"/>
-        <path class="flow" d="M896,542 H842"/>
-        <path class="flow" d="M628,438 H600 V629 H558"/>
-        <g class="badge"><circle cx="1129" cy="390" r="11"/><text x="1129" y="390">3</text></g>
+        <path class="flow" d="M1002,240 V528 H572"/>
+        <path class="flow" d="M1256,240 V262 H1002"/>
+        <path class="flow" d="M385,550 V596"/>
+        <g class="badge"><circle cx="735" cy="528" r="11"/><text x="735" y="528">3</text></g>
+        <text class="lane" x="1016" y="440">GRE: the gateway's own SSID,</text>
+        <text class="lane" x="1016" y="456">its GTP, tunnels into brlan0</text>
       </g>
       <g class="flow3b">
-        <path class="flow dash" d="M1376,330 H1384 V722 H156 V680"/>
+        <path class="flow dash" d="M1376,198 H1384 V722 H156 V680"/>
         <g class="badge"><circle cx="760" cy="722" r="11"/><text x="760" y="722">3</text></g>
         <text class="lane" x="778" y="718">or: the EasyMesh backhaul, 4-address, to …:89:2b:59</text>
       </g>
@@ -263,7 +252,7 @@
     <p class="legend">
       <span class="flow1"><i class="dash"></i>1 · OVSDB: the operator's redirect once, then the gateway's forwarder to each pod's agent</span>
       <span class="flow2"><i></i>2 · IEEE 1905: EasyMesh with RDK's controller</span>
-      <span class="flow3"><i></i>3 · data: GRE through em-gtp</span>
+      <span class="flow3"><i></i>3 · data: GRE to the gateway's GTP</span>
       <span class="flow3b"><i class="dash"></i>3 · data: the EasyMesh Wi-Fi backhaul</span>
       <span class="flow4"><i></i>4 · MQTT: the pods' statistics to the gateway's broker</span>
     </p>
@@ -274,8 +263,8 @@
       <h3><span class="num">1</span>A pod joins</h3>
       <p>From power-on to an EasyMesh agent with the controller's networks, about two minutes.</p>
       <ol class="steps">
-        <li>The pod boots onto its bootstrap uplink: its station joins em-gtp's <code>opensync-lab-bhaul</code> (5 GHz, channel 44).</li>
-        <li>em-gtp leases it a <code>169.254.2.x</code> address; OpenSync builds a gretap to <code>.1</code>, which em-gtp bridges with <code>eth1</code> into the wired LAN, a port of the gateway's <code>brlan0</code>.</li>
+        <li>The pod boots onto its bootstrap uplink: its station joins the gateway's own <code>opensync-lab-bhaul</code>, <code>wifi1.4</code> on the 5 GHz radio, a VAP kept out of EasyMesh.</li>
+        <li>The gateway's GTP, <code>emosa-gtp</code> on bridge <code>brpodbh</code>, leases it a <code>169.254.2.x</code> address; OpenSync builds a gretap to <code>.1</code>, which the GTP makes a port of <code>brlan0</code>.</li>
         <li>OpenSync dials its redirector, <code>10.101.0.40:6640</code>, over the LAN and the gateway's WAN. The operator's redirect answers there, once (a stand-in on the VM, plan 5.3): <code>manager_addr</code> is the gateway's front port, <code>tcp:10.0.0.1:6640</code>.</li>
         <li>EMOSA's forwarder in the gateway carries the pod to the fleet on loopback. The fleet admits it, records it on <code>/nvram</code>, starts its agent, writes <code>manager_addr</code> <code>tcp:10.0.0.1:6651…6690</code> and hangs up; the pod reconnects, through the forwarder, to its agent.</li>
         <li>The agent opens its 1905 socket on its macvlan in namespace <code>emosa</code> and onboards: AP-Autoconfiguration Search and Response, M1, M2.</li>
@@ -298,7 +287,7 @@
       <h3><span class="num">3</span>The pods' data</h3>
       <p>Two ways into the home LAN. Every OpenSync restart lands a pod on the first.</p>
       <ol class="steps">
-        <li><b>GRE through em-gtp</b>, the baseline: a 3-address station on <code>opensync-lab-bhaul</code>, one gretap per pod lease, bridged into the wired LAN and so into <code>brlan0</code>. em-gtp keeps the underlay out of the LAN.</li>
+        <li><b>GRE to the gateway's GTP</b>, the baseline: a 3-address station on <code>opensync-lab-bhaul</code>, one gretap per pod lease, a port of <code>brlan0</code>. The underlay stays on its own bridge, <code>brpodbh</code>, which the gateway's firewall accepts.</li>
         <li><b>The EasyMesh Wi-Fi backhaul</b>, option 1: a 4-address station on a <code>mesh_backhaul</code> BSS, bridged into the pod's <code>br-home</code>, no GRE. The controller can move it between the gateway's and the extenders' backhaul BSSes.</li>
         <li>A switch not applied in 90 s holds the pod on GRE until it is admitted anew.</li>
       </ol>
@@ -327,7 +316,7 @@
             <tr><td><code>10.0.0.1:6651–6690</code></td><td>one port per pod's agent, through it too</td><td>the gateway's loopback</td></tr>
             <tr><td><code>10.0.0.1:8883</code></td><td>MQTT from the pods, mutual TLS</td><td>mosquitto in the gateway</td></tr>
             <tr><td><code>127.0.0.1:1883</code> in the gateway</td><td>the agents' MQTT</td><td>the same mosquitto, plain</td></tr>
-            <tr><td><code>169.254.2.1/25</code></td><td>em-gtp's underlay: DHCP, the GRE remote</td><td><code>podbh</code></td></tr>
+            <tr><td><code>169.254.2.1/25</code></td><td>the gateway's GTP: DHCP, the GRE remote</td><td><code>brpodbh</code>, with <code>wifi1.4</code></td></tr>
             <tr><td><code>192.168.2.140:29610/1/2</code></td><td>em_cli · Console NG · the room</td><td>rdk-1004</td></tr>
             <tr><td><code>192.168.2.120:20110/1/2</code></td><td>the same</td><td>rdk-emosa-1002</td></tr>
           </tbody>
@@ -342,7 +331,7 @@
             <tr><td>pod-1's agent, on <code>em2</code></td><td><code>02:72:f9:7f:07:85</code></td></tr>
             <tr><td>pod-2's agent, on <code>em1</code></td><td><code>02:c2:b8:31:3a:f8</code></td></tr>
             <tr><td>the gateway's <code>mesh_backhaul</code> BSS</td><td><code>02:00:00:89:2b:59</code></td></tr>
-            <tr><td>em-gtp's onboarding AP</td><td><code>02:00:00:00:6a:00</code></td></tr>
+            <tr><td>the pods' onboarding AP, the gateway's <code>wifi1.4</code></td><td><code>02:00:00:33:2b:87</code></td></tr>
           </tbody>
         </table>
       </div>
@@ -351,13 +340,16 @@
     <div class="panel">
       <h3>In the gateway's 1 GiB</h3>
       <div class="meters">
-        <div class="meter rdk"><div class="row"><b>the gateway container</b><span>471 MiB median · 489 peak</span></div><div class="bar"><i style="width:46%"></i></div></div>
-        <div class="meter rdk"><div class="row"><b>onewifi_em_ctrl</b><span>33 MiB PSS · 33 % of a core</span></div><div class="bar"><i style="width:3.2%"></i></div></div>
-        <div class="meter rdk"><div class="row"><b>onewifi_em_agent</b><span>30 MiB PSS · 1 % of a core</span></div><div class="bar"><i style="width:2.9%"></i></div></div>
-        <div class="meter emosa"><div class="row"><b>emosa-agent-c, each</b><span>4.4 MiB PSS · 0.8 % of a core</span></div><div class="bar"><i style="width:0.43%"></i></div></div>
+        <div class="meter rdk"><div class="row"><b>the gateway container</b><span>505 MiB median · 515 peak</span></div><div class="bar"><i style="width:49%"></i></div></div>
+        <div class="meter rdk"><div class="row"><b>onewifi_em_ctrl</b><span>38 MiB PSS · 41 % of a core</span></div><div class="bar"><i style="width:3.7%"></i></div></div>
+        <div class="meter rdk"><div class="row"><b>onewifi_em_agent</b><span>32 MiB PSS · 1 % of a core</span></div><div class="bar"><i style="width:3.1%"></i></div></div>
+        <div class="meter emosa"><div class="row"><b>emosa-agent-c, each</b><span>5.0 MiB PSS · 0.6 % of a core</span></div><div class="bar"><i style="width:0.49%"></i></div></div>
+        <div class="meter optimizer"><div class="row"><b>mosquitto, the pods' broker</b><span>1.4 MiB PSS</span></div><div class="bar"><i style="width:0.14%"></i></div></div>
+        <div class="meter emosa"><div class="row"><b>emosa-forward-c</b><span>1.0 MiB PSS · under 0.01 % of a core</span></div><div class="bar"><i style="width:0.1%"></i></div></div>
         <div class="meter emosa"><div class="row"><b>emosa-fleet-c</b><span>0.7 MiB PSS · 0.02 % of a core</span></div><div class="bar"><i style="width:0.07%"></i></div></div>
+        <div class="meter medium"><div class="row"><b>the GTP, emosa-gtp's dnsmasq</b><span>0.4 MiB PSS</span></div><div class="bar"><i style="width:0.04%"></i></div></div>
       </div>
-      <p style="font-size:12.5px;color:var(--muted);margin:12px 0 0">Sampled for 30 minutes on rdk-1004 with both pods operating, on 5 October, before the forwarder and the broker moved in; bars against the container's 1 GiB. EMOSA logs through RDK's logger to <code>/rdklogs/logs</code>; its configuration and state stay on <code>/nvram</code> across image upgrades.</p>
+      <p style="font-size:12.5px;color:var(--muted);margin:12px 0 0">Sampled every 30 s for 30 minutes on rdk-1004 through a room catalog on 6 October, everything of EMOSA's in the gateway; bars against the container's 1 GiB. EMOSA logs through RDK's logger to <code>/rdklogs/logs</code>; its configuration and state stay on <code>/nvram</code> across image upgrades.</p>
     </div>
   </section>
 
@@ -365,12 +357,14 @@
     <div class="panel">
       <h3>This stage · 5 and 6 October 2026</h3>
       <div class="results">
-        <div class="result osl"><b>27 / 27</b><span>rooms of the catalog with the pods, three times</span></div>
-        <div class="result osl"><b>4 / 4</b><span>geometry backhaul rooms, after hours of rooms</span></div>
+        <div class="result osl"><b>54 / 54</b><span>catalog rooms in two rounds with no container but the pods (6 October)</span></div>
+        <div class="result osl"><b>8 / 8</b><span>geometry backhaul rooms in the same two rounds</span></div>
+        <div class="result medium"><b>22 s</b><span>a pod's restart to its agent, through the gateway's own SSID and GTP</span></div>
         <div class="result rdk"><b>8</b><span>agents in RDK's controller, the pods' two included</span></div>
-        <div class="result osl"><b>87 / 87</b><span>controller rounds with no pod left uncertain, pod moves verified</span></div>
       </div>
       <ul class="timeline">
+        <li class="umbrella">No container but the pods (6 October)<small>emosa and em-gtp deleted on rdk-1004: everything of EMOSA's runs in the gateway from its image; a fresh lab never makes them</small></li>
+        <li class="medium">The pods' GRE ends in the gateway (6 October)<small>their onboarding SSID a VAP of the gateway's own (wifi1.4), kept out of EasyMesh (libwebconfig 0014: as a reported BSS its SSID failed every Topology Response); emosa-gtp on its bridge; RDK's dnsmasq binds per interface; a pod's bootstrap through it in 22 s</small></li>
         <li class="emosa">EMOSA's ports on the gateway's LAN (6 October)<small>its own forwarder, emosa-forward-c, in place of the lab's proxies; the pods' redirector answered by an operator's redirect on the WAN side</small></li>
         <li class="optimizer">The pods' broker in the gateway (6 October)<small>the image's mosquitto: mutual TLS on 10.0.0.1 for the pods, loopback for the agents; the lab's CA moved to the VM</small></li>
         <li class="emosa">EMOSA's agents in a network namespace of their own<small>RDK's controller had taken a pod's agent, whose AL MAC sat on a gateway interface, for its co-located agent and rooted its native backhaul there (emosa-lab finding 17)</small></li>
@@ -383,9 +377,8 @@
     <div class="panel">
       <h3>Open</h3>
       <ul class="timeline">
-        <li class="open">GRE in the gateway, under way (step 3)<small>shown on rdk-emosa-1002: the pods' SSID as a OneWifi VAP (lnf_psk_5g in the gateway's unused mesh-station slot, its own bridge brpodbh, channel 36). Next: emosa-gtp configured on it, the firewall opened for the underlay, then the em-gtp and emosa containers removed</small></li>
         <li class="open">No native backhaul steering below the wired extender<small>the controller's model has no parent for a wired agent, so pods on its backhaul BSS are not measured</small></li>
-        <li class="open">em_ctrl's log is partial<small>the image caps it at 1000 journal lines per 30 s and it writes about 1600; the journal is volatile, 16 MB, about 15 minutes: long runs keep their own copy</small></li>
+        <li class="open">em_ctrl's log is partial<small>the image caps it at 1000 journal lines per 30 s and through a room catalog it writes 2,500 to 8,500, mostly traces of per-message work; the journal is volatile, 16 MB, about 15 minutes: long runs keep their own copy</small></li>
       </ul>
     </div>
   </section>
