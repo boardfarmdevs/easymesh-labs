@@ -31,7 +31,11 @@
     EMOSA's forwarder, mosquitto and the pods' onboarding VAP, and its containers are retired.
     em_cli <code>192.168.2.140:29610</code> · Console NG
     <code>:29611</code> · room <code>:29612</code>.</p></div>
-    <div class="host"><h3>rdk-emosa-1002 · rev120</h3><p>The same configuration as of 5 October:
+    <div class="host"><h3>rdk-emosa-1005 · rev120</h3><p>The target configuration built from scratch on
+    6 October with no container but the pods, the gateway image rdk-1004 runs, beside
+    rdk-emosa-1002. em_cli <code>192.168.2.120:22010</code> · Console NG <code>:22011</code> ·
+    room <code>:22012</code>.</p></div>
+    <div class="host"><h3>rdk-emosa-1002 · rev120</h3><p>The configuration as of 5 October:
     EMOSA in the gateway, its ports and the broker still through the containers. em_cli
     <code>192.168.2.120:20110</code> · Console NG <code>:20111</code> · room <code>:20112</code>.</p></div>
     <div class="host"><h3>Built from</h3><p>meta-cmf-bananapi-vcpe (the RDK lab, the gateway image with
@@ -61,7 +65,7 @@
         <text class="b" x="66" y="163">onewifi_em_ctrl</text>
         <text class="t" x="66" y="179">the controller · AL …:68:d4</text>
         <text class="b" x="66" y="201">native backhaul steering</text>
-        <text class="t" x="66" y="217">unified-wifi-mesh 0196…0236</text>
+        <text class="t" x="66" y="217">unified-wifi-mesh 0196…0239</text>
         <text class="b" x="66" y="239">onewifi_em_agent</text>
         <text class="t" x="66" y="255">the gateway's own agent …:68:e4</text>
         <text class="b" x="66" y="277">OneWifi · ieee1905</text>
@@ -318,6 +322,7 @@
             <tr><td><code>127.0.0.1:1883</code> in the gateway</td><td>the agents' MQTT</td><td>the same mosquitto, plain</td></tr>
             <tr><td><code>169.254.2.1/25</code></td><td>the gateway's GTP: DHCP, the GRE remote</td><td><code>brpodbh</code>, with <code>wifi1.4</code></td></tr>
             <tr><td><code>192.168.2.140:29610/1/2</code></td><td>em_cli · Console NG · the room</td><td>rdk-1004</td></tr>
+            <tr><td><code>192.168.2.120:22010/1/2</code></td><td>the same</td><td>rdk-emosa-1005</td></tr>
             <tr><td><code>192.168.2.120:20110/1/2</code></td><td>the same</td><td>rdk-emosa-1002</td></tr>
           </tbody>
         </table>
@@ -363,6 +368,10 @@
         <div class="result rdk"><b>8</b><span>agents in RDK's controller, the pods' two included</span></div>
       </div>
       <ul class="timeline">
+        <li class="umbrella">A second lab in the target configuration (6 October)<small>rdk-emosa-1005 on rev120, built from scratch with no container but the pods: two findings for a fresh gateway fixed on the way (emosa-lab cdfaddc); its suite 26 of 27 and the four geometry rooms</small></li>
+        <li class="rdk">em_ctrl's journal under its cap (6 October)<small>its per-message work and the data model's registration to em's debug channel (unified-wifi-mesh 0237, 0238, 0240): through the catalog 103 lines per 30 s on average, 619 at most, of 1000, where it wrote up to 8,500; the M2 line no longer prints passphrases</small></li>
+        <li class="rdk">The wired extender's radios renew once, not for ever (6 October)<small>a radio renewed alone waited at the Channel Preference Query and the policy request for siblings already configured, refusing candidate queries; now, as at the steps before, it does not (0239)</small></li>
+        <li class="emosa">The pods' stations steering-disallowed on every agent (6 October)<small>EMOSA lists each pod's station; the lab puts them in every agent's local and BTM lists through em_cli's policy API; on RDK the controller does not see them on the onboarding SSID at all</small></li>
         <li class="umbrella">No container but the pods (6 October)<small>emosa and em-gtp deleted on rdk-1004: everything of EMOSA's runs in the gateway from its image; a fresh lab never makes them</small></li>
         <li class="medium">The pods' GRE ends in the gateway (6 October)<small>their onboarding SSID a VAP of the gateway's own (wifi1.4), kept out of EasyMesh (libwebconfig 0014: as a reported BSS its SSID failed every Topology Response); emosa-gtp on its bridge; RDK's dnsmasq binds per interface; a pod's bootstrap through it in 22 s</small></li>
         <li class="emosa">EMOSA's ports on the gateway's LAN (6 October)<small>its own forwarder, emosa-forward-c, in place of the lab's proxies; the pods' redirector answered by an operator's redirect on the WAN side</small></li>
@@ -378,7 +387,8 @@
       <h3>Open</h3>
       <ul class="timeline">
         <li class="open">No native backhaul steering below the wired extender<small>the controller's model has no parent for a wired agent, so pods on its backhaul BSS are not measured</small></li>
-        <li class="open">em_ctrl's log is partial<small>the image caps it at 1000 journal lines per 30 s and through a room catalog it writes 2,500 to 8,500, mostly traces of per-message work; the journal is volatile, 16 MB, about 15 minutes: long runs keep their own copy</small></li>
+        <li class="open">The wired extender's outage room at its 5 s boundary<small>home-a-wired-extender-loss-recovery wants the extender's clients gone 5 s into its outage; on rdk-emosa-1005, on a host running two lab VMs, one sample at 25 s still shows one in most runs (3 of 7 passed); on rdk-1004 it passed every time on 6 October</small></li>
+        <li class="open">Why the wired extender's radio is renewed alone<small>its em_config times out now and then (seen on two labs, 6 October); 0239 ends the loop that followed, the cause is not known. The gateway's journal is volatile, 16 MB, about 15 minutes: long runs keep their own copy</small></li>
       </ul>
     </div>
   </section>
