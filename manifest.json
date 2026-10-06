@@ -14,7 +14,7 @@
       "about": "RDK-B on Banana Pi images in containers: EasyMesh, virtual RF and medium (wmediumd), optimizer, interactive room",
       "url": "git@github.com:boardfarmdevs/meta-cmf-bananapi-vcpe.git",
       "branch": "main",
-      "commit": "ee56ed57f0db363f23e1868ce287a95129e426b9",
+      "commit": "6648e529f20d606258848a7e3ab00da02a4b61cb",
       "site": "https://vcpe.dev/meta-cmf-bananapi-vcpe/"
     },
     {
@@ -54,7 +54,7 @@
       "about": "The EasyMesh-to-OpenSync adapter: existing OpenSync pods as EasyMesh agents",
       "url": "git@github.com:boardfarmdevs/emosa-lab.git",
       "branch": "main",
-      "commit": "9443dd581e480fd23cb00b48f1bc58891dacb3c0",
+      "commit": "012bacb3777e5bca62ac6b19bf23a0a36633d8db",
       "site": "https://vcpe.dev/emosa-lab/"
     },
     {
@@ -101,10 +101,10 @@
       "used_by": "the gateway (bpibroadband) of rdk-emosa-1002, EMOSA running in it"
     },
     {
-      "name": "X86EMLTRBPIBB_rdk-next_20261006153516",
+      "name": "X86EMLTRBPIBB_rdk-next_20261006175821",
       "project": "meta-cmf-bananapi-vcpe",
-      "commit": "dad7504bc459633b6114e86dc9f00ac29c541b4f",
-      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140): with EMOSA's package (emosa-lab cdfaddc, the pin), its broker and its GTP's onboarding VAP; unified-wifi-mesh 0237 to 0240",
+      "commit": "8f1522e2a90bbc80b0a197e0436f41a9e5f0f8e0",
+      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140): with EMOSA's package (emosa-lab cdfaddc, the pin), its broker and its GTP's onboarding VAP; unified-wifi-mesh 0237 to 0241",
       "used_by": "the gateway (bpibroadband) of rdk-1004 and rdk-emosa-1005, everything of EMOSA's running in it"
     }
   ]
