@@ -357,10 +357,12 @@
         <div class="result osl"><b>27 / 27</b><span>rooms of the catalog with the pods, three times</span></div>
         <div class="result osl"><b>4 / 4</b><span>geometry backhaul rooms, after hours of rooms</span></div>
         <div class="result rdk"><b>8</b><span>agents in RDK's controller, the pods' two included</span></div>
+        <div class="result osl"><b>87 / 87</b><span>controller rounds with no pod left uncertain, pod moves verified</span></div>
       </div>
       <ul class="timeline">
         <li class="emosa">EMOSA's agents in a network namespace of their own<small>RDK's controller had taken a pod's agent, whose AL MAC sat on a gateway interface, for its co-located agent and rooted its native backhaul there (emosa-lab finding 17)</small></li>
         <li class="rdk">The controller's native backhaul, explained and repaired<small>state lines that say why a candidate is not measured; uncertain marks that expire (unified-wifi-mesh 0235); a pod's backhaul station learned from its Device Information (0236)</small></li>
+        <li class="osl">A pod whose remembered backhaul BSS is gone falls back<small>a target the controller chose is kept for later starts; out of reach after a restart, it held the pod on GRE. Now the agent waits for the pod to drop the failed switch and switches to the configured upstream (emosa-lab finding 18)</small></li>
         <li class="umbrella">A VM restart brings the whole lab back<small>the redirector address bound to its bridge, EMOSA's containers, the pods, the medium in order</small></li>
         <li class="optimizer">The room harness on the host's GPU<small>software rendering had starved the host; the rooms now render on Vulkan</small></li>
       </ul>
@@ -368,7 +370,6 @@
     <div class="panel">
       <h3>Open</h3>
       <ul class="timeline">
-        <li class="open">A pod held on GRE when its remembered backhaul BSS is gone<small>a target the controller chose is kept for later starts; if it cannot be reached the switch times out and holds. Next: fall back to the configured upstream (spec 8.3)</small></li>
         <li class="open">GRE terminates in em-gtp, not yet in the gateway<small>the gateway image carries EMOSA's GTP package, still inert here</small></li>
         <li class="open">No native backhaul steering below the wired extender<small>the controller's model has no parent for a wired agent, so pods on its backhaul BSS are not measured</small></li>
         <li class="open">em_ctrl's log is partial<small>the image caps it at 1000 journal lines per 30 s and it writes about 1600; the journal is volatile, 16 MB, about 15 minutes: long runs keep their own copy</small></li>
