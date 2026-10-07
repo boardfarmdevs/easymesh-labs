@@ -201,6 +201,21 @@ remain. 9.2, 9.3, 9.5 and 9.7 come later, after phase 11.
 The opt-in EMOSA of the gateway image (plan 8.5, meta-cmf's recipe `emosa`) on a physical
 mv3, its own RDK EasyMesh next to it, and the physical pods onboarded through it.
 
+Its main work starts when all of these hold (agreed 7 Oct; 5 and 6 are for the soak to
+count and do not hold back the porting):
+
+1. Wired pods under EMOSA (9.A1).
+2. Extra pods in the fleet's configuration, the Pis' keeper retired (9.A2).
+3. The room suite passed with both physical pods present, and the pods' qualification run (9.A3).
+4. EMOSA C built and tested 32-bit and with the router's own toolchain: done (10.1).
+5. The router has a safe way back to the operator's image.
+6. The router's open radio-stack crash is traced or bounded, so that it cannot spoil a soak.
+7. A design for EMOSA's agents and the pods' VLAN on the router's LAN bridge, beside the
+   router's own 1905 instances and its start-up bridging: the main risk.
+8. The interface between the router and the pods agreed: the address the pods dial for
+   EMOSA, and where the router keeps EMOSA's configuration and profiles.
+9. The pods' VLAN cabled to a router LAN port.
+
 | Step | Done when | Status |
 | --- | --- | --- |
 | 10.1 EMOSA C on 32-bit ARM | the C built and its tests passed with the mv3's toolchain (32-bit ARM) | done (7 Oct): built with the mv3's Yocto toolchain (OE 4.0, gcc 11.5, Cortex-A9, soft-float ABI) against the image's own cJSON, OpenSSL 3 and SQLite, the strict warning set with no warning; every test passed under `qemu-arm` with those libraries; no code change needed (emosa-lab `c/QUALITY.md`) |
