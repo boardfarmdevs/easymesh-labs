@@ -58,6 +58,11 @@
           name: 'OpenSync',
           about: 'A representative router and OpenSync pods with virtual radios and clients',
         },
+        {
+          repo: 'opensync-rpi',
+          name: 'Pi pods',
+          about: 'The OpenSync pod on Raspberry Pi 4s with real radios: wired and GRE Wi-Fi backhaul onboarding',
+        },
       ],
     },
     {
