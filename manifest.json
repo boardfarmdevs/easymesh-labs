@@ -14,7 +14,7 @@
       "about": "RDK-B on Banana Pi images in containers: EasyMesh, virtual RF and medium (wmediumd), optimizer, interactive room",
       "url": "git@github.com:boardfarmdevs/meta-cmf-bananapi-vcpe.git",
       "branch": "main",
-      "commit": "715c91c8d1f6c40c5fd3b657cbe10c34ad726a27",
+      "commit": "ed33af3726de9f53db001406900006181044f7cc",
       "site": "https://vcpe.dev/meta-cmf-bananapi-vcpe/"
     },
     {
@@ -44,7 +44,7 @@
       "about": "The steering optimizer both virtual labs run and the room service that runs it live: one policy core with an adapter per controller stack (RDK through em_cli, prplMesh through NBAPI), its scenarios, configurations, tests and manuals; pinned by the RDK and prplMesh labs",
       "url": "git@github.com:boardfarmdevs/easymesh-optimizer.git",
       "branch": "main",
-      "commit": "ed7a79ee5c4f51a2ad77ceec320f953e083152b7",
+      "commit": "f3b99cac492629c09b88561661323ac0595c7837",
       "site": "https://vcpe.dev/easymesh-optimizer/"
     },
     {
@@ -54,7 +54,7 @@
       "about": "The EasyMesh-to-OpenSync adapter: existing OpenSync pods as EasyMesh agents",
       "url": "git@github.com:boardfarmdevs/emosa-lab.git",
       "branch": "main",
-      "commit": "d345795db1f597d27d465ebfbdc572fc636834dd",
+      "commit": "a242c79253edd97b2aebb9e0b13b8cb41efea619",
       "site": "https://vcpe.dev/emosa-lab/"
     },
     {
