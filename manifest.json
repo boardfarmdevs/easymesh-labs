@@ -14,7 +14,7 @@
       "about": "RDK-B on Banana Pi images in containers: EasyMesh, virtual RF and medium (wmediumd), optimizer, interactive room",
       "url": "git@github.com:boardfarmdevs/meta-cmf-bananapi-vcpe.git",
       "branch": "main",
-      "commit": "cef71d72f04e2eed218c08ab1d203fe248a33791",
+      "commit": "4543cea2b936861ac5a16aed20cc486a0c010dca",
       "site": "https://vcpe.dev/meta-cmf-bananapi-vcpe/"
     },
     {
@@ -54,7 +54,7 @@
       "about": "The EasyMesh-to-OpenSync adapter: existing OpenSync pods as EasyMesh agents",
       "url": "git@github.com:boardfarmdevs/emosa-lab.git",
       "branch": "main",
-      "commit": "b373ae6c5e7c73cb385fb420e9af7c4334b3d896",
+      "commit": "46a4c15100f37d16e8f33f64a2e3be4c8c3baade",
       "site": "https://vcpe.dev/emosa-lab/"
     },
     {
@@ -84,21 +84,14 @@
       "project": "opensync-lab",
       "commit": "666b0ad71ec6982451b6a3ab411bd1d00b075349",
       "built_by": "build-pod.sh all (rev140, ~/yocto/mvx-pod-work/out)",
-      "used_by": "the OpenSync pods of the RDK lab's EMOSA option (rdk-1004, rdk-emosa-1005, rdk-emosa-1006, rdk-emosa-1002)"
+      "used_by": "the OpenSync pods of the RDK lab's EMOSA option (rdk-1004, rdk-emosa-1005, rdk-emosa-1006)"
     },
     {
       "name": "X86EMLTRBPIAP_rdk-next_20260929014035",
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "f5c1bdb34e10fb9909e4e61cc822b2cd1ec730d1",
       "built_by": "gen/build/build-images.sh both (rev140)",
-      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-emosa-1006 and rdk-emosa-1002"
-    },
-    {
-      "name": "X86EMLTRBPIBB_rdk-next_20261004213513",
-      "project": "meta-cmf-bananapi-vcpe",
-      "commit": "49e111f53815ad80d791113920938dfb5a9af4aa",
-      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140): with EMOSA's package, emosa-lab ee34885",
-      "used_by": "the gateway (bpibroadband) of rdk-emosa-1002, EMOSA running in it"
+      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-emosa-1006"
     },
     {
       "name": "X86EMLTRBPIBB_rdk-next_20261006175821",
