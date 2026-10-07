@@ -68,6 +68,16 @@
       "site": "https://vcpe.dev/opensync-lab/"
     },
     {
+      "name": "opensync-rpi",
+      "title": "Pi pods",
+      "goal": "adapter",
+      "about": "Physical OpenSync pods: the OpenSync lab's pod on Raspberry Pi 4s with real radios, onboarded by local-noc over Ethernet or a GRE Wi-Fi backhaul; for EMOSA on the mv3",
+      "url": "git@github.com:boardfarmdevs/opensync-rpi.git",
+      "branch": "main",
+      "commit": "c567fff260743f5c02925864263ed5929f006dcc",
+      "site": "https://vcpe.dev/opensync-rpi/"
+    },
+    {
       "name": "easymesh-lab",
       "title": "Protocol lab",
       "goal": "physical",

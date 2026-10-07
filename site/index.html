@@ -107,6 +107,8 @@
             <span>The EasyMesh-to-OpenSync adapter</span></li>
           <li><a href="https://vcpe.dev/opensync-lab/"><b>OpenSync</b></a>
             <span>A representative router (mv3) and OpenSync pods with virtual radios and clients</span></li>
+          <li><a href="https://vcpe.dev/opensync-rpi/"><b>Pi pods</b></a>
+            <span>The same OpenSync pod on Raspberry Pi 4s with real radios, onboarded by local-noc over Ethernet or a GRE Wi-Fi backhaul</span></li>
         </ul>
       </article>
       <article class="goal">
@@ -208,6 +210,8 @@
           <td>Unchanged OpenSync 6.6 pods run as EasyMesh agents under both RDK's and prplMesh's controllers. The Python reference and the C implementation of the whole adapter (its agents, fleet and GTP; the C installs without Python) are interchangeable; the C is being taken to production quality, with sanitizers, static analysis, fuzzing and a lab in a box in CI.</td></tr>
         <tr><td><a href="https://vcpe.dev/opensync-lab/#state">OpenSync</a></td>
           <td>The router and three pods with clients, reproduced from a fresh VM; with EMOSA it is the adapter's reference lab, whose 900-second fault workload passes.</td></tr>
+        <tr><td><a href="https://vcpe.dev/opensync-rpi/">Pi pods</a></td>
+          <td>Two Raspberry Pi 4 pods with one MT7921AU adapter each: one onboards wired, the other over a GRE Wi-Fi backhaul through it, without a gateway, and a Wi-Fi client reaches the internet through both (7 October). Next: the pods with mv3-EMOSA.</td></tr>
         <tr><td><a href="https://vcpe.dev/easymesh-lab/#state">Protocol lab</a></td>
           <td>A controller written from scratch drives a TP-Link RE653BE: onboarding on 2.4 and 5 GHz, WPA3-SAE clients on 6 GHz; a second extender joins through it, over Ethernet and then a Wi-Fi backhaul (experimental).</td></tr>
       </tbody>
@@ -265,6 +269,7 @@ cd ~/git/easymesh-labs
         <tr><td><a href="https://github.com/boardfarmdevs/meta-cmf-bananapi-vcpe">meta-cmf-bananapi-vcpe</a></td><td>the RDK EasyMesh lab</td><td><a href="https://vcpe.dev/meta-cmf-bananapi-vcpe/">RDK EasyMesh</a></td></tr>
         <tr><td><a href="https://github.com/boardfarmdevs/prplmesh-lab">prplmesh-lab</a></td><td>the prplMesh lab</td><td><a href="https://vcpe.dev/prplmesh-lab/">prplMesh</a></td></tr>
         <tr><td><a href="https://github.com/boardfarmdevs/opensync-lab">opensync-lab</a></td><td>the OpenSync router and pods</td><td><a href="https://vcpe.dev/opensync-lab/">OpenSync</a></td></tr>
+        <tr><td><a href="https://vcpe.dev/opensync-rpi/">opensync-rpi</a></td><td>physical OpenSync pods on the Raspberry Pi 4</td><td><a href="https://vcpe.dev/opensync-rpi/">Pi pods</a></td></tr>
         <tr><td><a href="https://github.com/boardfarmdevs/easymesh-lab">easymesh-lab</a></td><td>the physical protocol lab</td><td><a href="https://vcpe.dev/easymesh-lab/">Protocol lab</a></td></tr>
         <tr><td><a href="https://github.com/boardfarmdevs/easymesh-room-builder">easymesh-room-builder</a></td><td>the room designer</td><td><a href="https://vcpe.dev/easymesh-room-builder/">open it</a></td></tr>
         <tr><td><a href="https://vcpe.dev/easymesh-resources/">easymesh-resources</a></td><td>shared material: the MV3 EasyMesh footprint and production plan</td><td><a href="https://vcpe.dev/easymesh-resources/">Resources</a></td></tr>

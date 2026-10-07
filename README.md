@@ -38,6 +38,7 @@ labs bar.
 | [meta-cmf-bananapi-vcpe](https://vcpe.dev/meta-cmf-bananapi-vcpe/) | lab | RDK-B on Banana Pi images in containers: the RDK EasyMesh lab; EMOSA as an option |
 | [prplmesh-lab](https://vcpe.dev/prplmesh-lab/) | lab | the same lab on native prplMesh |
 | [opensync-lab](https://vcpe.dev/opensync-lab/) | lab | a representative OpenSync router and the OpenSync pod image; EMOSA's reference lab |
+| [opensync-rpi](https://vcpe.dev/opensync-rpi/) | lab | the OpenSync pod on Raspberry Pi 4s with real radios: wired onboarding, a GRE Wi-Fi backhaul between two pods, a client through them; for EMOSA on the mv3 |
 | [easymesh-lab](https://vcpe.dev/easymesh-lab/) | learning | the protocol on certified hardware: a from-scratch controller and a teaching panel |
 | [easymesh-room-builder](https://vcpe.dev/easymesh-room-builder/) | tool | design the labs' rooms in the browser, compiled to the medium's world plans |
 | [easymesh-resources](https://vcpe.dev/easymesh-resources/) | shared | shared material: the MV3 EasyMesh footprint and the production plan |
