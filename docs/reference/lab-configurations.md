@@ -65,8 +65,8 @@ layout (#1 and #5) today.
 
 ## Not (yet) a configuration
 
-- **The combined end-goal system**: one controller, native agents and OpenSync pods on
-  one medium, with the pods in the room model. #5 is that on the RDK side, as an option
-  of the RDK lab; EMOSA inside the gateway image is the step after
-  [the alignment plan](../project/alignment-plan.md).
+- **The combined end-goal system on a physical router**: one controller, native agents and
+  OpenSync pods, EMOSA in the router's own image. #5 is that in the virtual lab, EMOSA
+  wholly in the gateway image (its target configuration, `EASYMESH_EMOSA_IN=gateway`);
+  on the physical mv3 it is phase 10 of [the alignment plan](../project/alignment-plan.md).
 - **EMOSA in the prplMesh lab** (#2 with EMOSA): never built.
