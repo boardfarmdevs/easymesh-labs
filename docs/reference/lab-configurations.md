@@ -25,9 +25,35 @@ pins gives what the running VMs have.
 
 | Host | Runs |
 | --- | --- |
-| rev140 | the Yocto builds (mv3, OpenSync pod, Banana Pi images); `rdk-1002b` (#1) and `prpl-1002` (#2), one lab running, building or testing at a time (their builds and checks refuse while the other runs); room browser tests run from rev150, and any other long build on this host runs at low priority (`nice -n 19 ionice -c3`) while a lab VM is up |
-| rev150 | `emosa-osl-1002` (#4); the room browser for the labs on rev140 and rev120, container builds and fuzzing |
-| rev120 | `rdk-emosa-1002` (#5) and `easymesh-lab` (#6), whose physical devices are attached to rev120: physical tests run there. No prplMesh VMs or builders |
+| rev140 | the Yocto builds (mv3, OpenSync pod, Banana Pi images); `rdk-1004` (#5 in its target configuration, EMOSA wholly in the gateway) and `prpl-1002` (#2, stopped), one lab running, building or testing at a time (their builds and checks refuse while the other runs); any other long build on this host runs at low priority (`nice -n 19 ionice -c3`) while a lab VM is up |
+| rev150 | `rdk-emosa-1006` (#5, the target configuration) and `emosa-osl-1002` (#4, stopped); the room browser for the labs on rev140 and rev120, container builds and fuzzing |
+| rev120 | `rdk-emosa-1005` (#5, the target configuration; `rdk-emosa-1002` retired) and `easymesh-lab` (#6, stopped), whose physical devices are attached to rev120: physical tests run there. No prplMesh VMs or builders |
+
+## Storage
+
+Every host keeps its lab VMs in one ZFS pool, `labs`: snapshots and copies are
+copy-on-write and take seconds, a lab and its copies share blocks, every block is
+compressed. The labs' builds put a new VM there by default (the RDK lab
+`EASYMESH_LXD_STORAGE`, the prplMesh lab `PRPLMESH_LXD_STORAGE`, the OpenSync lab
+`MVX_VM_STORAGE`; easymesh-lab takes `--pool labs`); a lab built earlier stays in its own
+`dir` pool until it is moved. Why, and what every lab VM keeps on disk:
+[easymesh-resources lab-storage](https://vcpe.dev/easymesh-resources/lab-storage/).
+
+The procedure on a host (done on rev120, rev140 and rev150 on 7 October 2026), between
+room suites:
+
+```sh
+lxc storage create labs zfs size=500GiB    # a sparse loop file; rev140 1TiB. LXD sets compression=on
+printf 'options zfs zfs_arc_max=%s\n' 8589934592 | sudo tee /etc/modprobe.d/zfs.conf    # ZFS's cache: 8 GiB; rev150 3221225472 (3 GiB)
+echo 8589934592 | sudo tee /sys/module/zfs/parameters/zfs_arc_max    # the same, at once
+sudo snap refresh --hold lxd                 # LXD updated on purpose only (6/stable on every host)
+```
+
+Grow the pool with `lxc storage set labs size=`; a lab moves into it stopped, with
+`lxc move VM --storage labs` (its name and ports stay). The ZFS tools are the LXD snap's
+(the hosts have the module, not always the tools): `sudo nsenter
+--mount=/run/snapd/ns/lxd.mnt -- env LD_LIBRARY_PATH=/snap/lxd/current/zfs-2.2/lib:/snap/lxd/current/lib
+/snap/lxd/current/zfs-2.2/bin/zfs get compressratio labs` (rev120 `zfs-2.4`).
 
 ## Reaching a lab
 
