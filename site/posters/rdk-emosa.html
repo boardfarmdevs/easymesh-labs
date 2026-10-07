@@ -34,10 +34,11 @@
     <div class="host"><h3>rdk-emosa-1005 · rev120</h3><p>The target configuration built from scratch on
     6 October with no container but the pods, the gateway image rdk-1004 runs.
     em_cli <code>192.168.2.120:22010</code> · Console NG <code>:22011</code> ·
-    room <code>:22012</code>.</p></div>
-    <div class="host"><h3>rdk-emosa-1002 · rev120</h3><p>Stopped on 6 October, kept: the
-    configuration as of 5 October, EMOSA in the gateway, its ports and the broker still
-    through the containers. em_cli <code>192.168.2.120:20110</code> when started.</p></div>
+    room <code>:22012</code>. Beside it rdk-emosa-1002, the configuration as of 5 October,
+    stopped and kept.</p></div>
+    <div class="host"><h3>rdk-emosa-1006 · rev150</h3><p>The target configuration built from
+    scratch by its owner on 6 October from main and the pinned emosa-lab, in 93 minutes. em_cli
+    <code>192.168.2.150:28100</code> · Console NG <code>:28101</code> · room <code>:28102</code>.</p></div>
     <div class="host"><h3>Built from</h3><p>meta-cmf-bananapi-vcpe (the RDK lab, the gateway image with
     <code>BUILD_EMOSA=1</code>, recipe <code>emosa</code>) and emosa-lab (EMOSA, the lab steps
     <code>deploy/rdk-lab/vm/lab.sh up c gateway</code>).</p></div>
@@ -323,6 +324,7 @@
             <tr><td><code>169.254.2.1/25</code></td><td>the gateway's GTP: DHCP, the GRE remote</td><td><code>brpodbh</code>, with <code>wifi1.4</code></td></tr>
             <tr><td><code>192.168.2.140:29610/1/2</code></td><td>em_cli · Console NG · the room</td><td>rdk-1004</td></tr>
             <tr><td><code>192.168.2.120:22010/1/2</code></td><td>the same</td><td>rdk-emosa-1005</td></tr>
+            <tr><td><code>192.168.2.150:28100/1/2</code></td><td>the same</td><td>rdk-emosa-1006</td></tr>
             <tr><td><code>192.168.2.120:20110/1/2</code></td><td>the same</td><td>rdk-emosa-1002</td></tr>
           </tbody>
         </table>
@@ -368,6 +370,7 @@
         <div class="result rdk"><b>8</b><span>agents in RDK's controller, the pods' two included</span></div>
       </div>
       <ul class="timeline">
+        <li class="rdk">Every em_agent's journal under its cap, the keys out (7 October)<small>the agents printed whole JSON documents one field to a line (OneWifi's Link Reports, the unassociated-station queries and responses, the device configuration and each subdoc) and every network's passphrase; unified-wifi-mesh 0242 sends them to em's debug channel, the configuration documents as name and size, and takes the keys out. Both labs on the new gateway and extender images (the extenders' first since 29 September): no line dropped by em_ctrl or any em_agent through a redeploy and the catalog, 27 of 27</small></li>
         <li class="umbrella">A second lab in the target configuration (6 October)<small>rdk-emosa-1005 on rev120, built from scratch with no container but the pods: two findings for a fresh gateway fixed on the way (emosa-lab cdfaddc); on the final image its suite passed whole: readiness, the catalog 27 of 27, the four geometry rooms</small></li>
         <li class="rdk">em_ctrl's journal under its cap, its starts included (6 October)<small>its per-message work, the data model's registration and every agent's onboarding to em's debug channel (unified-wifi-mesh 0237 to 0241): through the catalog 101 lines per 30 s on average, 459 at most, of 1000, where it wrote up to 8,500; a controller restart with all eight agents 708 in its busiest 30 s; no line dropped through a redeploy, three starts and the catalog; the M2 line no longer prints passphrases</small></li>
         <li class="rdk">The wired extender's radios renew once, not for ever (6 October)<small>a radio renewed alone waited at the Channel Preference Query and the policy request for siblings already configured, refusing candidate queries; now, as at the steps before, it does not (0239)</small></li>
@@ -388,7 +391,6 @@
       <ul class="timeline">
         <li class="open">No native backhaul steering below the wired extender<small>the controller's model has no parent for a wired agent, so pods on its backhaul BSS are not measured</small></li>
         <li class="open">The wired extender's outage room at its 5 s boundary<small>home-a-wired-extender-loss-recovery wants the extender's clients gone 5 s into its outage; its 6 GHz client needs 3.7 to 4.5 s on both labs: beacon loss, a scan of all fifty 6 GHz channels, and a 1 s association comeback, because the AP still holds its earlier PMF association (a roam sends no deauth). The room then sees it at the next sample, so one sample decides; the boundary is the owner's to set</small></li>
-        <li class="open">The gateway's em_agent at a controller restart<small>passes its own journal cap while every agent onboards again (526, 2,030 and 618 lines dropped in one bring-up, 6 October)</small></li>
         <li class="open">Why the wired extender's radio is renewed alone<small>its em_config times out now and then (seen on two labs, 6 October); 0239 ends the loop that followed, the cause is not known. The gateway's journal is volatile, 16 MB, about 15 minutes: long runs keep their own copy</small></li>
       </ul>
     </div>
