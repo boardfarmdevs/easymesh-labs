@@ -31,7 +31,9 @@ host clients in the rooms.
 
 Order: 0, then 1, then 3; 2 and 4 alongside (all done 29 Sep). Then 6 (the
 medium), 7 (documentation) and 8 (EMOSA C to production); 5's remaining
-decisions alongside; 9 after 8. Status is kept here as the work goes.
+decisions alongside; 9 after 8. Agreed 7 Oct: 9's closing work (EMOSA in the virtual
+lab closed), then 10 (EMOSA on the physical mv3), then 11 (hardening before a field
+trial); the rest of 9 later. Status is kept here as the work goes.
 
 ### Phase 0: freeze the current reference (rev120)
 
@@ -173,15 +175,49 @@ What the design still needs to serve unchanged pods without the OpenSync cloud
 (`doc/architecture/target-system.md` in emosa-lab); each item is specified,
 vectored, built in the reference and in C, and gated in the labs.
 
+Its closing work comes first (agreed 7 Oct): EMOSA in the virtual lab closed before the
+physical router (phase 10). Two physical pods (opensync-rpi's Raspberry Pis, over
+Ethernet) are on `rdk-1004`'s controller since 7 Oct.
+
 | Step | Done when | Status |
 | --- | --- | --- |
-| 9.1 Trust without the cloud | TLS on the OVSDB ports and a trust anchor an unchanged pod accepts (with 5.3) | |
+| 9.A1 Ethernet pods (9.4's core) | EMOSA bridges a wired pod's uplink (`eth1`) into its home bridge, and accepts a radio with fewer BSS slots than RDK's set of five, so a pod with fewer serves clients | open: today a script of opensync-rpi bridges `eth1`; RDK's five-BSS set is refused whole, so pi2 serves its backhaul only |
+| 9.A2 Extra pods in the fleet's configuration | an input of emosa-lab's `fleet_config` for pods beyond the lab's own, replacing opensync-rpi's keeper, which puts the Pis' entries back after every EMOSA run | open |
+| 9.A3 The room suite with the physical pods, and their qualification | the RDK room suite passed with the Pis on the controller; the pods qualified | started (7 Oct): devices the room does not own are listed in the VM's `/etc/easymesh-lab/foreign-devices` and left out of the room's health, the optimizer's observer and the acceptance (easymesh-medium cb6b5ad, easymesh-optimizer d126906, 36f1a5a); with both Pis present the wired extender's outage room passed 3 of 3, then the catalog was run whole |
+| 9.1 Trust without the cloud | TLS on the OVSDB ports and a trust anchor an unchanged pod accepts (with 5.3) | moved to phase 11 (7 Oct) |
 | 9.2 Every radio | 5 and 6 GHz fronthaul, several radios per agent, WPA3 | |
 | 9.3 Channel and power | the controller's channel and power decisions applied, not declined | |
 | 9.4 Ethernet pods | a pod with an Ethernet uplink qualified: transparent, no loop with the GTP, reported truthfully | |
 | 9.5 Backhaul | backhaul link metrics and a 1905 neighbor on the backhaul; pods as parents of other pods | |
 | 9.6 The router side | EMOSA next to the gateway's own 1905 stack (5.1), the GTP role (5.2), how pods find EMOSA (5.3) | started (4 Oct): the gateway image runs EMOSA with its configuration and state on `/nvram/emosa`, which an image upgrade keeps, and the agents' status in RAM (the status had been rewritten once a second into the state directory, some 1.3 GB a day per pod); in `rdk-emosa-1002` an upgrade kept it whole and the pods were back within 39 s with the same identities, and readiness and the five quick rooms passed with EMOSA from the image. A restarted controller forgets the agents but keeps querying them: since emosa-lab ee34885 an agent without a Topology Query for `topology_query_window` (RDK lab: 120 s) onboards again, and the pods were back 119 s after a controller restart; the fleet starts its registry's agents itself (after the upgrade, at boot). `EASYMESH_EMOSA_IN=gateway` makes it a lab build option (meta-cmf 49e111f); `rdk-emosa-1002` runs it, five quick rooms passed. Open: the GTP in the gateway, a broker, configuration through RDK's data model; TLS is 9.1 |
 | 9.7 Memory | one adapter process for every pod's agent, if the router's memory needs it | |
+
+9.6's open parts on 7 Oct: in `rdk-1004` EMOSA runs wholly in the gateway (its fleet, agents
+and GTP, no containers, since 6 Oct); a broker and configuration through RDK's data model
+remain. 9.2, 9.3, 9.5 and 9.7 come later, after phase 11.
+
+### Phase 10: EMOSA on the physical mv3
+
+The opt-in EMOSA of the gateway image (plan 8.5, meta-cmf's recipe `emosa`) on a physical
+mv3, its own RDK EasyMesh next to it, and the physical pods onboarded through it.
+
+| Step | Done when | Status |
+| --- | --- | --- |
+| 10.1 EMOSA C on 32-bit ARM | the C built and its tests passed with the mv3's toolchain (32-bit ARM) | done (7 Oct): built with the mv3's Yocto toolchain (OE 4.0, gcc 11.5, Cortex-A9, soft-float ABI) against the image's own cJSON, OpenSSL 3 and SQLite, the strict warning set with no warning; every test passed under `qemu-arm` with those libraries; no code change needed (emosa-lab `c/QUALITY.md`) |
+| 10.2 The recipe in the mv3's image | the `emosa` recipe carried into the mv3's layer, its footprint measured on the board | |
+| 10.3 EMOSA next to the mv3's EasyMesh | its agents beside the router's own 1905 stack on its LAN bridge (5.1), the GTP (5.2) and the redirect (5.3) on the router | |
+| 10.4 The physical pods on the mv3 | the Pis onboarded over Ethernet through the mv3 | waits for the cabling (the pods' VLAN onto an mv3 LAN port) |
+| 10.5 The suite and a soak with the pods | the router's suite and a soak passed with the pods; the router's open fixes done before the soak | |
+
+### Phase 11: hardening before a field trial
+
+After phase 10: the router's remaining fixes, and 9.1 (trust without the cloud: TLS on the
+OVSDB ports and a trust anchor an unchanged pod accepts).
+
+### Later
+
+9.2, 9.3, 9.5 and 9.7; the production plan's other streams (easymesh-resources); a Wi-Fi
+backhaul for the physical pods (a second adapter per Pi).
 
 ## Hosts
 
