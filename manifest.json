@@ -14,7 +14,7 @@
       "about": "RDK-B on Banana Pi images in containers: EasyMesh, virtual RF and medium (wmediumd), optimizer, interactive room",
       "url": "git@github.com:boardfarmdevs/meta-cmf-bananapi-vcpe.git",
       "branch": "main",
-      "commit": "d25066bad3360dff385bcc33921ad75a753e1a24",
+      "commit": "6af4e089b42681bc326bc89490f4bed035978975",
       "site": "https://vcpe.dev/meta-cmf-bananapi-vcpe/"
     },
     {
