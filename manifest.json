@@ -14,7 +14,7 @@
       "about": "RDK-B on Banana Pi images in containers: EasyMesh, virtual RF and medium (wmediumd), optimizer, interactive room",
       "url": "git@github.com:boardfarmdevs/meta-cmf-bananapi-vcpe.git",
       "branch": "main",
-      "commit": "4543cea2b936861ac5a16aed20cc486a0c010dca",
+      "commit": "d25066bad3360dff385bcc33921ad75a753e1a24",
       "site": "https://vcpe.dev/meta-cmf-bananapi-vcpe/"
     },
     {
@@ -24,7 +24,7 @@
       "about": "The same EasyMesh lab on native prplMesh",
       "url": "git@github.com:boardfarmdevs/prplmesh-lab.git",
       "branch": "main",
-      "commit": "f91dd4859ba12949fc210121aeebd3bc331814c2",
+      "commit": "8101c2d9248bf30fa17bd31e021615831570e44b",
       "site": "https://vcpe.dev/prplmesh-lab/"
     },
     {
@@ -54,7 +54,7 @@
       "about": "The EasyMesh-to-OpenSync adapter: existing OpenSync pods as EasyMesh agents",
       "url": "git@github.com:boardfarmdevs/emosa-lab.git",
       "branch": "main",
-      "commit": "46a4c15100f37d16e8f33f64a2e3be4c8c3baade",
+      "commit": "7a651c7021c1ac657daee257a14057a5c2e72f09",
       "site": "https://vcpe.dev/emosa-lab/"
     },
     {
@@ -64,7 +64,7 @@
       "about": "A representative router (mv3) and OpenSync pods with virtual radios and clients",
       "url": "git@github.com:boardfarmdevs/opensync-lab.git",
       "branch": "main",
-      "commit": "f956e1e3beccd41ec2404c89f93d75e854470d4f",
+      "commit": "0cb6a858c56ee0e5236ec0c0350906fc2cdba173",
       "site": "https://vcpe.dev/opensync-lab/"
     },
     {
@@ -84,7 +84,7 @@
       "about": "A from-scratch Python IEEE 1905.1/EasyMesh controller and teaching panel, driving certified extenders (TP-Link RE653BE) with real tri-band clients",
       "url": "git@github.com:boardfarmdevs/easymesh-lab.git",
       "branch": "main",
-      "commit": "d736ba514d2e4652ccdd907f7fb7cae070febe77",
+      "commit": "84f450919c5b883a1dc462415b1098176911e964",
       "site": "https://vcpe.dev/easymesh-lab/"
     }
   ],
