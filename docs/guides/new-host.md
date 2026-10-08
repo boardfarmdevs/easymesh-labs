@@ -88,9 +88,12 @@ installing anything.
    ```
 4. **Git access:** an SSH key on GitHub with access to the boardfarmdevs repositories (some
    are private), and on the hosts you work with (`ssh-copy-id rev@rev140` and so on).
-5. **Time and name:** NTP on (`timedatectl`), and a hostname in the lab's naming (`revNNN`)
+5. **Never asleep:** a desktop install suspends when idle, which stops a running lab or a
+   build (`systemd-inhibit` from an SSH session is refused). Turn sleep off for good:
+   `sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target`.
+6. **Time and name:** NTP on (`timedatectl`), and a hostname in the lab's naming (`revNNN`)
    if it joins the lab hosts.
-6. **Basic tools:**
+7. **Basic tools:**
 
    ```sh
    sudo apt update && sudo apt install -y git curl zstd python3-venv qemu-kvm snapd
