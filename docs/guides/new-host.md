@@ -69,8 +69,23 @@ installing anything.
 2. **Firmware (BIOS):** virtualization on (`AMD-V`/SVM or VT-x). On a mini PC with an
    integrated GPU, set the GPU's reserved memory (UMA frame buffer) to its minimum: it is
    taken from the RAM the labs get.
-3. **The account:** the labs run as your normal user with passwordless `sudo`; the scripts
-   say when they need root.
+3. **The account:** the labs run as your normal user with passwordless `sudo` (the scripts
+   say when they need root), and the room tests reach the host's LXD over `ssh localhost`
+   without a password. The `sudo` rule goes in a file of its own, checked by `visudo` before
+   it is installed (a broken sudoers file locks `sudo` out):
+
+   ```sh
+   echo "$USER ALL=(ALL) NOPASSWD: ALL" > /tmp/nopasswd
+   sudo visudo -cf /tmp/nopasswd && sudo install -m 0440 /tmp/nopasswd "/etc/sudoers.d/90-$USER-nopasswd"
+   sudo -k && sudo -n true && echo sudo-ok     # no password asked
+
+   sudo apt install -y openssh-server
+   test -f ~/.ssh/id_ed25519 || ssh-keygen -t ed25519 -N '' -f ~/.ssh/id_ed25519
+   grep -qxF "$(cat ~/.ssh/id_ed25519.pub)" ~/.ssh/authorized_keys 2>/dev/null ||
+       cat ~/.ssh/id_ed25519.pub >> ~/.ssh/authorized_keys
+   chmod 600 ~/.ssh/authorized_keys
+   ssh -o StrictHostKeyChecking=accept-new localhost true && echo ssh-ok
+   ```
 4. **Git access:** an SSH key on GitHub with access to the boardfarmdevs repositories (some
    are private), and on the hosts you work with (`ssh-copy-id rev@rev140` and so on).
 5. **Time and name:** NTP on (`timedatectl`), and a hostname in the lab's naming (`revNNN`)
