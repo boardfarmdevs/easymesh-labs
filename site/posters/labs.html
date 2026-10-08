@@ -7,7 +7,7 @@
 <link rel="icon" href="../favicon.ico" sizes="48x48">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-<meta name="description" content="The EasyMesh lab VMs as built on 1 October 2026: what runs inside each, where the optimizer runs, and how to open them.">
+<meta name="description" content="The EasyMesh lab VMs as they run on 7 October 2026: what runs inside each, where the optimizer runs, and how to open them.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="posters.css">
@@ -15,72 +15,35 @@
 <body>
 <main class="poster">
   <header class="masthead">
-    <p class="eyebrow">boardfarmdevs · EasyMesh labs · the labs as built · 1 October 2026</p>
+    <p class="eyebrow">boardfarmdevs · EasyMesh labs · the labs as built · 7 October 2026</p>
     <h1>The labs, running</h1>
-    <p>Five lab VMs on three hosts: what runs inside each, where the optimizer runs, and the
-    address to open. The addresses are on the lab network; from anywhere else, a lab is reached
-    through <a href="https://vcpe.dev/easymesh-remote/">remote access</a>.</p>
+    <p>Three RDK labs in the target configuration, one per host, and the physical lab: what
+    runs inside each, where the optimizer runs, and the address to open. The addresses are on
+    the lab network; from anywhere else, a lab is reached through
+    <a href="https://vcpe.dev/easymesh-remote/">remote access</a>.</p>
     <nav><a href="map.html">← Where everything lives</a> <a href="../index.html">Home</a></nav>
   </header>
 
   <section class="hosts" aria-label="Hosts">
-    <div class="host"><h3>rev140</h3><p>Builds the images (Yocto). Runs the two optimizer labs, <b>rdk-1002b</b> and <b>prpl-1002</b>, one at a time. Busy with a lab up: run room browsers from rev150, and other builds at low priority.</p></div>
-    <div class="host"><h3>rev120</h3><p>Runs <b>rdk-emosa-1002</b> (the RDK lab with EMOSA) and the physical lab, whose USB Ethernet adapter and Wi-Fi clients are plugged in here. RDK only: no prplMesh.</p></div>
-    <div class="host"><h3>rev150</h3><p>Runs the OpenSync reference lab, <b>emosa-osl-1002</b>. The room browser for the other two hosts, container builds, fuzzing.</p></div>
+    <div class="host"><h3>rev140</h3><p>Builds the images (Yocto). Runs <b>rdk-1004</b>, with two physical OpenSync pods (Raspberry Pis) on its controller over Ethernet. A prplMesh lab is built here when needed, one lab at a time.</p></div>
+    <div class="host"><h3>rev120</h3><p>Runs <b>rdk-emosa-1005</b>, published through remote access, and the physical lab (stopped), whose USB Ethernet adapter and Wi-Fi clients are plugged in here. RDK only: no prplMesh.</p></div>
+    <div class="host"><h3>rev150</h3><p>Runs <b>rdk-emosa-1006</b>. The room browser for the other two hosts, container builds, fuzzing.</p></div>
   </section>
 
   <section class="labs">
-    <article class="card lab rdk" id="rdk">
-      <p class="where">rev140 · meta-cmf-bananapi-vcpe · <code>gen/vm/lxd/build.sh build</code></p>
-      <h2>rdk-1002b · RDK optimizer lab</h2>
-      <div class="shots"><img src="img/rdk-room.jpg" width="1200" height="750" alt="The RDK lab's live room, converged: twenty clients around the gateway, four Wi-Fi extenders and the wired extender" loading="lazy"><img src="img/rdk-topology.jpg" width="1200" height="750" alt="em_cli, the RDK controller's web UI, drawing the network topology: the controller, Agent-1, five extenders and the clients on their private and IoT networks" loading="lazy"></div>
-      <dl>
-        <dt>Inside</dt><dd>the gateway <code>bpibroadband</code> (RDK's controller, its own agent, em_cli); Wi-Fi extenders <code>bpiap</code>, <code>bpiap-001…003</code>; the wired extender <code>bpiap-004</code>; 100 <code>wlan-client-*</code>; boardfarm's WAN (docker <code>wan-cpe1</code>, <code>dhcp-cpe1</code>)</dd>
-        <dt>In the VM</dt><dd>hwsim radios, wmediumd and Console NG from <code>gen/medium</code>; the room service (easymesh-optimizer's, started by <code>gen/rooms/room-service</code>)</dd>
-        <dt>Optimizer</dt><dd>runs in the room service (<code>easymesh-room-service.service</code>), from <code>gen/optimizer</code> (easymesh-optimizer); it acts through em_cli</dd>
-        <dt>Open</dt><dd>room <code>http://192.168.2.140:29302/</code> · em_cli <code>:29300</code> · Console NG <code>:29301</code></dd>
-      </dl>
-      <span class="pill">Optimizer lab · RDK</span>
-    </article>
-
-    <article class="card lab prpl" id="prpl">
-      <p class="where">rev140 · prplmesh-lab · <code>deploy/lxd-vm/build.sh build</code></p>
-      <h2>prpl-1002 · prplMesh optimizer lab</h2>
-      <div class="shots"><img src="img/prpl-room.jpg" width="1200" height="750" alt="The prplMesh lab's live room, converged: twenty clients around the controller and five agents" loading="lazy"><img src="img/prpl-controller.jpg" width="1200" height="750" alt="The prplMesh controller dashboard drawing the topology, following the room's layout" loading="lazy"></div>
-      <dl>
-        <dt>Inside</dt><dd><code>prpl-controller</code>; agents <code>prpl-agent-01…05</code> (05 wired); 100 <code>prpl-client-*</code></dd>
-        <dt>In the VM</dt><dd>wmediumd and Console NG from <code>medium/</code>; the room service (easymesh-optimizer's, started by <code>rooms/room-service</code>); the controller dashboard <code>controller-ui</code>; the topology adapter</dd>
-        <dt>Optimizer</dt><dd>runs in the room service (<code>prplmesh-room-service.service</code>), from <code>optimizer/</code> (easymesh-optimizer); it acts through prplMesh's NBAPI</dd>
-        <dt>Open</dt><dd>room <code>http://192.168.2.140:48582/</code> · dashboard <code>:48580</code> · Console NG <code>:48581</code></dd>
-      </dl>
-      <span class="pill">Optimizer lab · prplMesh</span>
-    </article>
-
     <article class="card lab emosa">
-      <p class="where">rev120 · meta-cmf <code>EASYMESH_EMOSA=1 gen/vm/lxd/build.sh build</code> + emosa-lab <code>deploy/rdk-lab/lab.sh up</code></p>
-      <h2>rdk-emosa-1002 · RDK lab + EMOSA</h2>
-      <div class="shots"><img src="img/emosa-room.jpg" width="1200" height="750" alt="The RDK lab's live room with Pod-1 and Pod-2 among the native extenders, converged" loading="lazy"><img src="img/emosa-topology.jpg" width="1200" height="750" alt="em_cli's topology with the two OpenSync pods drawn as pods next to the native extenders" loading="lazy"></div>
+      <p class="where">rdk-1004 (rev140) · rdk-emosa-1005 (rev120) · rdk-emosa-1006 (rev150) · meta-cmf <code>EASYMESH_EMOSA=1 EASYMESH_EMOSA_IN=gateway gen/vm/lxd/build.sh build</code></p>
+      <h2>RDK lab + EMOSA in the gateway</h2>
+      <div class="shots"><img src="img/emosa-room.jpg" width="1200" height="750" alt="The RDK lab's live room with Pod-1 and Pod-2 among the native extenders, converged" loading="lazy"><img src="img/rdk-emosa-topology.jpg" width="1600" height="1000" alt="em_cli's topology with the two OpenSync pods drawn as pods next to the native extenders" loading="lazy"></div>
       <dl>
-        <dt>Inside</dt><dd>everything in rdk-1002b, plus <code>emosa</code> (the fleet, one agent per pod in Python or C, the MQTT broker), <code>em-gtp</code> (the pods' onboarding network) and <code>pod-1</code>, <code>pod-2</code>: unchanged OpenSync 6.6.1 pods</dd>
+        <dt>Inside</dt><dd>the gateway <code>bpibroadband</code>: RDK's controller, its own agent, em_cli, and EMOSA from the image (the fleet, one C agent per pod, the GTP that ends the pods' GRE); Wi-Fi extenders <code>bpiap</code>, <code>bpiap-001…003</code>; the wired extender <code>bpiap-004</code>; <code>pod-1</code>, <code>pod-2</code>: unchanged OpenSync 6.6.1 pods; 100 <code>wlan-client-*</code>; boardfarm's WAN (docker)</dd>
         <dt>Pods</dt><dd>onboarded by RDK's controller as EasyMesh agents, on a Wi-Fi backhaul; the controller can move a pod's backhaul</dd>
-        <dt>Optimizer</dt><dd>the RDK lab's, in the room service; it steers clients on the pods too</dd>
-        <dt>Open</dt><dd>room <code>http://192.168.2.120:20112/</code> · em_cli <code>:20110</code> · Console NG <code>:20111</code></dd>
-        <dt>Drawn</dt><dd><a href="rdk-emosa.html">OpenSync pods inside RDK EasyMesh</a>: the target configuration, EMOSA in the gateway</dd>
+        <dt>In the VM</dt><dd>hwsim radios, wmediumd and Console NG from <code>gen/medium</code>; the room service (easymesh-optimizer's, started by <code>gen/rooms/room-service</code>)</dd>
+        <dt>Optimizer</dt><dd>runs in the room service, from <code>gen/optimizer</code> (easymesh-optimizer); it acts through em_cli and steers clients on the pods too</dd>
+        <dt>Open</dt><dd>rdk-1004: room <code>http://192.168.2.140:29612/</code> · em_cli <code>:29610</code><br>rdk-emosa-1005: room <code>http://192.168.2.120:22012/</code> · em_cli <code>:22010</code><br>rdk-emosa-1006: room <code>http://192.168.2.150:28102/</code> · em_cli <code>:28100</code></dd>
+        <dt>Drawn</dt><dd><a href="rdk-emosa.html">OpenSync pods inside RDK EasyMesh</a>: the target configuration, kept up to date with rdk-1004</dd>
       </dl>
       <span class="pill">The end goal, on RDK</span>
-    </article>
-
-    <article class="card lab osl">
-      <p class="where">rev150 · opensync-lab <code>setup-vm.sh · deploy-mvx.sh</code> + emosa-lab <code>deploy/opensync-lab/lab.sh</code></p>
-      <h2>emosa-osl-1002 · OpenSync + EMOSA</h2>
-      <div class="shots"><img src="img/osl-controller.jpg" width="1200" height="750" alt="The prplMesh controller's topology in the reference lab: three OpenSync pods as extenders under the controller, each with two clients" loading="lazy"><img src="img/osl-local-noc.jpg" width="1200" height="750" alt="local-noc, the lab's own OpenSync cloud, showing the mv3 router" loading="lazy"></div>
-      <dl>
-        <dt>Inside</dt><dd>the <code>mv3</code> router; <code>pod-1…3</code> with two clients each; <code>local-noc</code> (their cloud, docker); <code>em-ctl</code> (a prplMesh controller); <code>emosa</code>; <code>em-gtp</code>; clients <code>em-wc1…6</code>; boardfarm's WAN</dd>
-        <dt>Purpose</dt><dd>EMOSA's reference lab: several pods, the 900-second fault workload, the pods' Wi-Fi backhaul</dd>
-        <dt>Optimizer</dt><dd>none: EMOSA and the pods are the subject here</dd>
-        <dt>Open</dt><dd>controller <code>http://192.168.2.150:8660/</code> · local-noc <code>:8640</code></dd>
-      </dl>
-      <span class="pill">EMOSA's reference</span>
     </article>
 
     <article class="card lab phys">
@@ -90,7 +53,7 @@
       <dl>
         <dt>Inside</dt><dd>the Python controller and panel in the VM; a USB Ethernet adapter to a TP-Link RE653BE (the primary agent); a second extender on a Wi-Fi backhaul; managed USB Wi-Fi 7 clients; phones, tablets, laptops</dd>
         <dt>Optimizer</dt><dd>its own, small: <code>optimizer.py</code></dd>
-        <dt>Open</dt><dd>panel <code>http://192.168.2.120:8765/</code> · speed test <code>:8766</code> (from rev120's own address)</dd>
+        <dt>Open</dt><dd>stopped; when started: panel <code>http://192.168.2.120:8765/</code> · speed test <code>:8766</code> (from rev120's own address)</dd>
       </dl>
       <span class="pill">Real hardware</span>
     </article>
@@ -98,10 +61,10 @@
     <article class="card lab medium">
       <p class="where">in every lab VM · easymesh-medium <code>observer/</code></p>
       <h2>Console NG · the medium, live</h2>
-      <div class="shots one"><img src="img/rdk-console.jpg" width="1200" height="750" alt="Console NG: the radios of the RDK lab in 3D and the table of maintained radios and directed paths" loading="lazy"></div>
+      <div class="shots one"><img src="img/rdk-emosa-console.jpg" width="1600" height="1000" alt="Console NG: the radios of the RDK lab in 3D and the table of maintained radios and directed paths" loading="lazy"></div>
       <dl>
         <dt>Shows</dt><dd>every radio and directed path of the medium, frames, drops, SNR and airtime, read-only</dd>
-        <dt>Open</dt><dd>its port in each lab: <code>29881</code> (RDK), <code>46085</code> (prplMesh), <code>21201</code> (RDK + EMOSA)</dd>
+        <dt>Open</dt><dd>its port in each lab: <code>29611</code> (rdk-1004), <code>22011</code> (rdk-emosa-1005), <code>28101</code> (rdk-emosa-1006)</dd>
       </dl>
       <span class="pill">Core 1 at work</span>
     </article>
@@ -111,7 +74,7 @@
     <div class="panel">
       <h3>Inside an optimizer lab</h3>
       <div class="nest">
-        <p class="label">a host (rev140, rev120)</p>
+        <p class="label">a host (rev140, rev120, rev150)</p>
         <div class="vm">
           <p class="label">one LXD VM: its own kernel, radios and medium</p>
           <div class="vm-grid">
@@ -124,10 +87,10 @@
           <div class="containers">
             <p class="label">nested LXD containers, each with its own radios</p>
             <div class="vm-grid">
-              <div class="box rdk"><b>Gateway</b>controller, its agent, the controller's web UI</div>
+              <div class="box rdk"><b>Gateway</b>controller, its agent, the controller's web UI, EMOSA</div>
               <div class="box rdk"><b>Extenders</b>4 on Wi-Fi backhaul, 1 wired</div>
               <div class="box prpl"><b>100 clients</b>wpa_supplicant, one radio each</div>
-              <div class="box emosa"><b>With EMOSA</b><code>emosa</code>, <code>em-gtp</code>, two OpenSync pods</div>
+              <div class="box emosa"><b>OpenSync pods</b>two, onboarded through the gateway's EMOSA</div>
             </div>
           </div>
         </div>
@@ -162,9 +125,9 @@
   </section>
 
   <aside class="banner">
-    <h3>Built from scratch</h3>
-    <p>Every lab above was built from its repository's main on 2 October; the labs they replaced
-    are deleted. The current set and how to rebuild each is in
+    <h3>The other configurations</h3>
+    <p>The RDK optimizer lab without EMOSA, the prplMesh lab and the OpenSync reference lab
+    are built when needed; none runs now. Every configuration and how to build it is in
     <a href="https://github.com/boardfarmdevs/easymesh-labs/blob/main/docs/reference/lab-configurations.md">the lab configurations</a>.</p>
   </aside>
   <p class="foot">Kept in easymesh-labs <code>site/posters/</code>: update it when a lab is rebuilt.</p>
