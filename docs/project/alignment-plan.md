@@ -94,7 +94,7 @@ count and do not hold back the porting):
 3. The room suite passed with both physical pods present, and the pods' qualification run (9.A3).
 4. EMOSA C built and tested 32-bit and with the router's own toolchain: done (10.1).
 5. The router has a safe way back to the operator's image: done (7 Oct, verified on the bench).
-6. The router's open radio-stack crash is traced or bounded, so that it cannot spoil a soak.
+6. The router's open radio-stack crash is traced or bounded, so that it cannot spoil a soak: bounded (8 Oct): no recurrence in about 11.5 hours under the memory-checking build with three extenders.
 7. A design for EMOSA's agents and the pods' VLAN on the router's LAN bridge, beside the
    router's own 1905 instances and its start-up bridging: the main risk. Done (8 Oct):
    EMOSA's agents in a network namespace of their own, joined to the LAN bridge through
