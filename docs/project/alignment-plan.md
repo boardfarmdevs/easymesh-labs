@@ -93,19 +93,24 @@ count and do not hold back the porting):
 2. Extra pods in the fleet's configuration, the Pis' keeper retired (9.A2).
 3. The room suite passed with both physical pods present, and the pods' qualification run (9.A3).
 4. EMOSA C built and tested 32-bit and with the router's own toolchain: done (10.1).
-5. The router has a safe way back to the operator's image.
+5. The router has a safe way back to the operator's image: done (7 Oct, verified on the bench).
 6. The router's open radio-stack crash is traced or bounded, so that it cannot spoil a soak.
 7. A design for EMOSA's agents and the pods' VLAN on the router's LAN bridge, beside the
-   router's own 1905 instances and its start-up bridging: the main risk.
+   router's own 1905 instances and its start-up bridging: the main risk. Done (8 Oct):
+   EMOSA's agents in a network namespace of their own, joined to the LAN bridge through
+   one veth port that the router's start-up leaves alone and a keeper re-adds after the
+   operator's LAN rebuilds the bridge; the pods untagged on their VLAN into a LAN port.
 8. The interface between the router and the pods agreed: the address the pods dial for
-   EMOSA, and where the router keeps EMOSA's configuration and profiles.
+   EMOSA, and where the router keeps EMOSA's configuration and profiles. Done (8 Oct): the
+   fleet's front port on the router's LAN address; configuration and state in
+   `/nvram/emosa`, as in the RDK image; accepted for the pods (opensync-rpi).
 9. The pods' VLAN cabled to a router LAN port.
 
 | Step | Done when | Status |
 | --- | --- | --- |
 | 10.1 EMOSA C on 32-bit ARM | the C built and its tests passed with the mv3's toolchain (32-bit ARM) | done (7 Oct): built with the mv3's Yocto toolchain (OE 4.0, gcc 11.5, Cortex-A9, soft-float ABI) against the image's own cJSON, OpenSSL 3 and SQLite, the strict warning set with no warning; every test passed under `qemu-arm` with those libraries; no code change needed (emosa-lab `c/QUALITY.md`) |
-| 10.2 The recipe in the mv3's image | the `emosa` recipe carried into the mv3's layer, its footprint measured on the board | |
-| 10.3 EMOSA next to the mv3's EasyMesh | its agents beside the router's own 1905 stack on its LAN bridge (5.1), the GTP (5.2) and the redirect (5.3) on the router | |
+| 10.2 The recipe in the mv3's image | the `emosa` recipe carried into the mv3's layer, its footprint measured on the board | started (8 Oct): the recipe carried with emosa-lab pinned at 4b89eab (moved to the commit A1/A2 pass at); an image with EMOSA builds, 128 KiB more root filesystem and 600 kB installed; it differs from the RDK recipe in three ways: no systemd (the router's init; the agents get a stand-in in 10.3), not the RDK logger, no MQTT broker yet. Not flashed: the footprint on the board comes with 10.3 |
+| 10.3 EMOSA next to the mv3's EasyMesh | its agents beside the router's own 1905 stack on its LAN bridge (5.1), the GTP (5.2) and the redirect (5.3) on the router | waits for the tested A1/A2 commit and the end of the router's overnight soak |
 | 10.4 The physical pods on the mv3 | the Pis onboarded over Ethernet through the mv3 | waits for the cabling (the pods' VLAN onto an mv3 LAN port) |
 | 10.5 The suite and a soak with the pods | the router's suite and a soak passed with the pods; the router's open fixes done before the soak | |
 
