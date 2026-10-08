@@ -5,6 +5,7 @@
 | Document | Kind | What it covers |
 | --- | --- | --- |
 | [Lab configurations](reference/lab-configurations.md) | reference | the six VM lab configurations, the VMs that run now and the hosts |
+| [Setting up a new lab host](guides/new-host.md) | guide | from a bare machine to qualified labs: the host's spec against what each use needs, its role and network, the base system, LXD and the `labs` pool, the workspace, artifacts, each lab built and qualified, remote access, physical parts; a NucBox K8 as the worked example |
 | [The artifact store](reference/artifact-store.md) | reference | the labs' slow-to-build artifacts kept by their inputs, and rev140's Yocto caches, over HTTP: server, entries, components, variables |
 | [Alignment plan](project/alignment-plan.md) | project | the plan that aligns the labs, up to EMOSA in C in the RDK gateway image, and its status |
 | [Open work](project/open-work.md) | project | the priorities both optimizer labs carry forward, with owners and completion evidence |
