@@ -75,11 +75,11 @@ Ethernet) are on `rdk-1004`'s controller since 7 Oct.
 | 9.2 Every radio | 5 and 6 GHz fronthaul, several radios per agent, WPA3 | |
 | 9.3 Channel and power | the controller's channel and power decisions applied, not declined | |
 | 9.4 Ethernet pods | a pod with an Ethernet uplink qualified: transparent, no loop with the GTP, reported truthfully | |
-| 9.5 Backhaul | backhaul link metrics and a 1905 neighbor on the backhaul; pods as parents of other pods | |
+| 9.5 Backhaul | backhaul link metrics and a 1905 neighbor on the backhaul; pods as parents of other pods | started (8 Oct, layer A on the owner's word; the GRE parent role and prplMesh not approved). Steps 1 and 2 done (emosa-lab c73c105, both agents, spec 8.5): a pod's backhaul station on another pod's backhaul BSS as a 4-address Multi-AP station, no new pod-side writes; each agent reads the fleet's other agents from their statuses; the child names the parent's agent as its 1905 neighbor on the backhaul, the parent names the child on its BSS, and a Link Metric Query for the pair is answered from the parent's measurement of the child's station; a move that would loop the home bridge is refused; a conformance vector, and the box's two-pod scenarios with both agents. RDK's controller takes a BSS for a backhaul candidate only from its own vendor TLV: unified-wifi-mesh 0246 (gateway image 17) takes the role from the BSS Configuration Report, which covers Profile-3 agents but not the RDK lab's pods (EMOSA `r1`, Profile 1, where the controller refuses that report); a fix from the controller's own backhaul SSID is proposed. Open: step 3, the multi-hop worlds and rooms on `rdk-1004` |
 | 9.6 The router side | EMOSA next to the gateway's own 1905 stack (5.1), the GTP role (5.2), how pods find EMOSA (5.3) | started (4 Oct): the gateway image runs EMOSA (lab build option `EASYMESH_EMOSA_IN=gateway`) with its configuration and state on `/nvram/emosa`, which an image upgrade keeps, and the agents' status in RAM; after an upgrade the pods were back within 39 s with the same identities. An agent without a Topology Query for `topology_query_window` (RDK lab: 120 s) onboards again, so the pods come back after a controller restart; the fleet starts its registry's agents itself at boot. Since 6 Oct the fleet, agents and GTP run wholly in the gateway of `rdk-1004`, no containers. Open: a broker and configuration through RDK's data model; TLS is 9.1 |
 | 9.7 Memory | one adapter process for every pod's agent, if the router's memory needs it | |
 
-9.2, 9.3, 9.5 and 9.7 come later, after phase 11.
+9.2, 9.3 and 9.7 come later, after phase 11. 9.5's layer A started on 8 Oct on the owner's word.
 
 ### Phase 10: EMOSA on the physical mv3
 
@@ -121,7 +121,7 @@ OVSDB ports and a trust anchor an unchanged pod accepts).
 
 ### Later
 
-9.2, 9.3, 9.5 and 9.7; the production plan's other streams (easymesh-resources); a Wi-Fi
+9.2, 9.3, the rest of 9.5 and 9.7; the production plan's other streams (easymesh-resources); a Wi-Fi
 backhaul for the physical pods (a second adapter per Pi).
 
 ## Hosts
