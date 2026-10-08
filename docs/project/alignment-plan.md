@@ -104,7 +104,7 @@ count and do not hold back the porting):
    EMOSA, and where the router keeps EMOSA's configuration and profiles. Done (8 Oct): the
    fleet's front port on the router's LAN address; configuration and state in
    `/nvram/emosa`, as in the RDK image; accepted for the pods (opensync-rpi).
-9. The pods' VLAN cabled to a router LAN port.
+9. The pods' VLAN onto the router's LAN: through a lab host already on both LANs (no new cable), after the pods' soak in the RDK lab.
 
 | Step | Done when | Status |
 | --- | --- | --- |
