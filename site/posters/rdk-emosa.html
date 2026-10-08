@@ -26,9 +26,10 @@
   </header>
 
   <section class="stage-hosts" aria-label="Where it runs">
-    <div class="host"><h3>rdk-1004 · rev140</h3><p>The target configuration, built from scratch on 5 October with
-    <code>EASYMESH_EMOSA=1 EASYMESH_EMOSA_IN=gateway</code>; since 6 October its gateway image carries
-    EMOSA's forwarder, mosquitto and the pods' onboarding VAP, and its containers are retired.
+    <div class="host"><h3>rdk-1004 · rev140</h3><p>The target configuration, built from scratch again on 8 October
+    with <code>EASYMESH_EMOSA=1 EASYMESH_EMOSA_IN=gateway</code> and free page reporting; its gateway
+    image (14) carries EMOSA, its forwarder, mosquitto and the pods' onboarding VAP, no container but
+    the pods.
     em_cli <code>192.168.2.140:29610</code> · Console NG
     <code>:29611</code> · room <code>:29612</code>.</p></div>
     <div class="host"><h3>rdk-emosa-1005 · rev120</h3><p>The target configuration built from scratch on
@@ -361,7 +362,7 @@
 
   <section class="stage-panels" aria-label="This stage">
     <div class="panel">
-      <h3>This stage · 5 to 7 October 2026</h3>
+      <h3>This stage · 5 to 8 October 2026</h3>
       <div class="results">
         <div class="result osl"><b>54 / 54</b><span>catalog rooms in two rounds with no container but the pods (6 October)</span></div>
         <div class="result osl"><b>8 / 8</b><span>geometry backhaul rooms in the same two rounds</span></div>
@@ -369,6 +370,7 @@
         <div class="result rdk"><b>8</b><span>agents in RDK's controller, the pods' two included</span></div>
       </div>
       <ul class="timeline">
+        <li class="rdk">rdk-1004 built again from scratch; image 14 (8 October)<small>108 minutes, its acceptance and health audit passed, 2.9 GB on the host where it had held 23 GB two days before (the storage plan's items in the build); its VM's balloon reports free pages (the host gets memory back in 2 MiB blocks, so the guest has to compact what it frees). The first try stopped silently in the base step: the kernel purge's dpkg-query under pipefail, fixed. Then image 14: EMOSA with the Pis' work (an M2 set larger than the radio's slots applied in part, a wired pod's eth1 bridged into br-home, the Pis' profile) and the gateway keeping its DHCP leases</small></li>
         <li class="rdk">Image 12 in both gateways; a gateway that forgets its leases (7 October)<small>the gateway image with EMOSA's stored-policy fix, redeployed in place on rdk-1004 and rdk-emosa-1005: the health audit and the wired extender's outage room passed on both. On the way one client of rdk-1004 had no traffic: RDK's start-up deletes the gateway's DHCP leases while the lab's clients keep their addresses and never ask again, and pod-2 had been given the address of a client the room had off the air, so the client's replies went to the pod. A new lease repaired it; the next gateway image keeps the leases (meta-cmf)</small></li>
         <li class="rdk">The outage room at 8 s; a stored policy no longer blocks a pod (7 October)<small>the room wanted the wired extender's clients gone 5 s into its outage, where they leave in 1 to 6 s (6 GHz: a scan of every channel and a PMF comeback), so one sample decided it: every band now has 8 s (the owner's choice), 3 of 3 since. EMOSA: a reporting policy kept for a pod's old radio was never replaced and every new policy refused; now the next policy supersedes it (reference, C, specification and vectors), in image 12</small></li>
         <li class="umbrella">rdk-1004 from 23 to 7.2 GB in a day (7 October)<small>the evidence on its own volume, Boardfarm's images only, the cloud image's kernel and extras purged, the journal at 256 MiB, and both pods recreated as clones of their image with their identity kept (they share 194.5 MiB with it). On the way: the lab's bring-up and health audit learnt to leave the physical pods out, a recreated pod that drew other radios left an EMOSA agent refusing every policy (its stored policy keyed by the old radio; fixed in image 12), and the Pis' agents onboarded again every 2.3 minutes, their applies timing out on VIFs the radio cannot start (9.A1); the Pis are stopped until it is fixed. The health audit passed</small></li>
@@ -397,7 +399,7 @@
       <h3>Open</h3>
       <ul class="timeline">
         <li class="open">No native backhaul steering below the wired extender<small>the controller's model has no parent for a wired agent, so pods on its backhaul BSS are not measured</small></li>
-        <li class="open">The gateway forgets its DHCP leases at a start<small>until the next gateway image: after a gateway start a pod or an extender can be given an address an off-air client still holds; a client the health audit then fails needs a new lease</small></li>
+        <li class="open">The gateway forgets its DHCP leases at a start, on rdk-emosa-1005<small>fixed from image 13, which rdk-1004 runs; rdk-emosa-1005 on image 12 until its next redeploy: a client the health audit fails after a gateway start needs a new lease</small></li>
         <li class="open">Why the wired extender's radio is renewed alone<small>its em_config times out now and then (seen on two labs, 6 October); 0239 ends the loop that followed, the cause is not known. The gateway's journal is volatile, 16 MB, about 15 minutes: long runs keep their own copy</small></li>
       </ul>
     </div>
