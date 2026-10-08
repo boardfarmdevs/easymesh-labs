@@ -111,10 +111,13 @@ test -c /dev/kvm && groups | grep -qw lxd && echo ready    # no "ready": log out
 
 Then the host's one ZFS pool for lab VMs, `labs` (the lab configurations reference,
 [Storage](../reference/lab-configurations.md#storage)): the labs' builds create it when it is
-missing, or create it now, sized for the disk:
+missing, or create it now. Its size is a cap on a sparse loop file, not space taken: a lab
+host's pool holds 5 to 6 GiB with a lab running (compressed), and Yocto builds on the same
+disk need about 300 GiB, so keep the cap small and grow it when needed
+(`lxc storage set labs size=300GiB`):
 
 ```sh
-lxc storage create labs zfs size=500GiB      # a sparse loop file; 1TiB on a 2 TB disk
+lxc storage create labs zfs size=200GiB      # room for every virtual lab and its snapshots
 printf 'options zfs zfs_arc_max=%s\n' 3221225472 | sudo tee /etc/modprobe.d/zfs.conf   # ZFS's cache: 3 GiB under 32 GiB of RAM, 8 GiB on 64
 echo 3221225472 | sudo tee /sys/module/zfs/parameters/zfs_arc_max
 ```
