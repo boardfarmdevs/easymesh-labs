@@ -26,7 +26,7 @@ pins gives what the running VMs have.
 | Host | Runs |
 | --- | --- |
 | rev140 | the Yocto builds (mv3, OpenSync pod, Banana Pi images); `rdk-1004` (#5 in its target configuration, EMOSA wholly in the gateway; a prplMesh lab is built here when needed), one lab running, building or testing at a time (their builds and checks refuse while the other runs); any other long build on this host runs at low priority (`nice -n 19 ionice -c3`) while a lab VM is up |
-| rev150 | `rdk-emosa-1006` (#5, the target configuration); the room browser for the labs on rev140 and rev120, container builds and fuzzing |
+| rev150 | no lab VM (`rdk-emosa-1006` removed 8 October); the room browser for the labs on rev140 and rev120, container builds and fuzzing |
 | rev120 | `rdk-emosa-1005` (#5, the target configuration) and `easymesh-lab` (#6, stopped), whose physical devices are attached to rev120: physical tests run there. No prplMesh VMs or builders |
 
 ## Storage
