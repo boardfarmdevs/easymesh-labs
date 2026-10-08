@@ -14,7 +14,7 @@
       "about": "RDK-B on Banana Pi images in containers: EasyMesh, virtual RF and medium (wmediumd), optimizer, interactive room",
       "url": "git@github.com:boardfarmdevs/meta-cmf-bananapi-vcpe.git",
       "branch": "main",
-      "commit": "ed33af3726de9f53db001406900006181044f7cc",
+      "commit": "b8ed5a5f39aeacbd904f5b48af71c28d1f9a908e",
       "site": "https://vcpe.dev/meta-cmf-bananapi-vcpe/"
     },
     {
@@ -24,7 +24,7 @@
       "about": "The same EasyMesh lab on native prplMesh",
       "url": "git@github.com:boardfarmdevs/prplmesh-lab.git",
       "branch": "main",
-      "commit": "8101c2d9248bf30fa17bd31e021615831570e44b",
+      "commit": "5b63697f2d7304e8e1a566d47ee159012e66cb89",
       "site": "https://vcpe.dev/prplmesh-lab/"
     },
     {
@@ -44,7 +44,7 @@
       "about": "The steering optimizer both virtual labs run and the room service that runs it live: one policy core with an adapter per controller stack (RDK through em_cli, prplMesh through NBAPI), its scenarios, configurations, tests and manuals; pinned by the RDK and prplMesh labs",
       "url": "git@github.com:boardfarmdevs/easymesh-optimizer.git",
       "branch": "main",
-      "commit": "f3b99cac492629c09b88561661323ac0595c7837",
+      "commit": "f3127dd0414439daefd834da506959d6ccbf054d",
       "site": "https://vcpe.dev/easymesh-optimizer/"
     },
     {
@@ -54,7 +54,7 @@
       "about": "The EasyMesh-to-OpenSync adapter: existing OpenSync pods as EasyMesh agents",
       "url": "git@github.com:boardfarmdevs/emosa-lab.git",
       "branch": "main",
-      "commit": "a242c79253edd97b2aebb9e0b13b8cb41efea619",
+      "commit": "5517f377b5550ebd242348a051a8864a247001bc",
       "site": "https://vcpe.dev/emosa-lab/"
     },
     {
@@ -111,10 +111,10 @@
       "used_by": "the gateway (bpibroadband) of rdk-emosa-1006, everything of EMOSA's running in it"
     },
     {
-      "name": "X86EMLTRBPIBB_rdk-next_20261006231122",
+      "name": "X86EMLTRBPIBB_rdk-next_20261008001545",
       "project": "meta-cmf-bananapi-vcpe",
-      "commit": "4225e9796752fbf89f394638307550e16d65c0c6",
-      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140): with EMOSA's package (emosa-lab cdfaddc, the pin), its broker and its GTP's onboarding VAP; unified-wifi-mesh 0237 to 0242",
+      "commit": "ed33af3726de9f53db001406900006181044f7cc",
+      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140): with EMOSA's package (emosa-lab a242c79, the pin: a stored reporting policy of another identity superseded), its broker and its GTP's onboarding VAP; unified-wifi-mesh 0237 to 0242",
       "used_by": "the gateway (bpibroadband) of rdk-1004 and rdk-emosa-1005, everything of EMOSA's running in it"
     },
     {
