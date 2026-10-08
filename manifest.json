@@ -14,7 +14,7 @@
       "about": "RDK-B on Banana Pi images in containers: EasyMesh, virtual RF and medium (wmediumd), optimizer, interactive room",
       "url": "git@github.com:boardfarmdevs/meta-cmf-bananapi-vcpe.git",
       "branch": "main",
-      "commit": "b8ed5a5f39aeacbd904f5b48af71c28d1f9a908e",
+      "commit": "63a09c2d1441d0719f2dd0913225bcf749aa13fe",
       "site": "https://vcpe.dev/meta-cmf-bananapi-vcpe/"
     },
     {
@@ -24,7 +24,7 @@
       "about": "The same EasyMesh lab on native prplMesh",
       "url": "git@github.com:boardfarmdevs/prplmesh-lab.git",
       "branch": "main",
-      "commit": "5b63697f2d7304e8e1a566d47ee159012e66cb89",
+      "commit": "606ff129f8b6e9f2addf242c130fd0736ac47ecf",
       "site": "https://vcpe.dev/prplmesh-lab/"
     },
     {
@@ -54,7 +54,7 @@
       "about": "The EasyMesh-to-OpenSync adapter: existing OpenSync pods as EasyMesh agents",
       "url": "git@github.com:boardfarmdevs/emosa-lab.git",
       "branch": "main",
-      "commit": "5517f377b5550ebd242348a051a8864a247001bc",
+      "commit": "d71ea93592b7f493e4199e871be8a8ca9e7a4983",
       "site": "https://vcpe.dev/emosa-lab/"
     },
     {
@@ -115,7 +115,14 @@
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "ed33af3726de9f53db001406900006181044f7cc",
       "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140): with EMOSA's package (emosa-lab a242c79, the pin: a stored reporting policy of another identity superseded), its broker and its GTP's onboarding VAP; unified-wifi-mesh 0237 to 0242",
-      "used_by": "the gateway (bpibroadband) of rdk-1004 and rdk-emosa-1005, everything of EMOSA's running in it"
+      "used_by": "the gateway (bpibroadband) of rdk-emosa-1005, everything of EMOSA's running in it"
+    },
+    {
+      "name": "X86EMLTRBPIBB_rdk-next_20261008040211",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "63a09c2d1441d0719f2dd0913225bcf749aa13fe",
+      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140): with EMOSA's package (emosa-lab 4b89eab, the pin: M2 sets beyond a radio's slots applied in part, a wired pod's Ethernet uplink bridged, the Pis' profile), its broker and its GTP's onboarding VAP; unified-wifi-mesh 0237 to 0242; the DHCP leases kept across a start",
+      "used_by": "the gateway (bpibroadband) of rdk-1004 (built from scratch 8 October), everything of EMOSA's running in it"
     },
     {
       "name": "X86EMLTRBPIAP_rdk-next_20261006232411",
