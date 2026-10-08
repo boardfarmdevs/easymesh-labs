@@ -129,14 +129,28 @@
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "e23877bb142a30f537a2fefd11fd54a70f4fbcaa",
       "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140): image 14 (EMOSA 4b89eab) and unified-wifi-mesh 0243, em_ctrl's crash at a new agent's first onboarding fixed (a model built from the network starts with no radios; every radio append and copy bounded)",
-      "used_by": "the gateway (bpibroadband) of rdk-1004 (redeployed in place 8 October, then the Pis' 8-hour soak), everything of EMOSA's running in it"
+      "used_by": "none since 8 October 16:53Z (rdk-1004 after the Pis' 8-hour soak passed on it; image 16 replaced it)"
+    },
+    {
+      "name": "X86EMLTRBPIBB_rdk-next_20261008163353",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "569d9d1d5c97038d626900325f007e6502cdfa9c",
+      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140, 13 min): image 15 with unified-wifi-mesh 0244 (a DPP chirp's TLV length in network byte order) and 0245 (the AP Operational BSS TLV within its length), and EMOSA 747167b (findings 19, 20 and 21: a recreated pod taken again, a window's leftover rows swept, every BSS written with its M2's Multi-AP role)",
+      "used_by": "the gateway (bpibroadband) of rdk-1004 (redeployed in place 8 October 16:53-17:40Z), everything of EMOSA's running in it"
     },
     {
       "name": "X86EMLTRBPIAP_rdk-next_20261006232411",
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "4225e9796752fbf89f394638307550e16d65c0c6",
       "built_by": "gen/build/build-images.sh extender (rev140): every patch since the 29 September image, unified-wifi-mesh to 0242",
-      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-1004 and rdk-emosa-1005"
+      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-emosa-1005 (its redeploy to the next image under way from 8 October 17:54Z); rdk-1004's until 16:53Z that day"
+    },
+    {
+      "name": "X86EMLTRBPIAP_rdk-next_20261008164642",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "569d9d1d5c97038d626900325f007e6502cdfa9c",
+      "built_by": "gen/build/build-images.sh extender (rev140, 8 min): the series through 0245 (0243 and 0244's agent side new to the extenders)",
+      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-1004 (8 October 16:53Z)"
     }
   ]
 }
