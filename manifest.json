@@ -14,7 +14,7 @@
       "about": "RDK-B on Banana Pi images in containers: EasyMesh, virtual RF and medium (wmediumd), optimizer, interactive room",
       "url": "git@github.com:boardfarmdevs/meta-cmf-bananapi-vcpe.git",
       "branch": "main",
-      "commit": "63a09c2d1441d0719f2dd0913225bcf749aa13fe",
+      "commit": "e23877bb142a30f537a2fefd11fd54a70f4fbcaa",
       "site": "https://vcpe.dev/meta-cmf-bananapi-vcpe/"
     },
     {
@@ -54,7 +54,7 @@
       "about": "The EasyMesh-to-OpenSync adapter: existing OpenSync pods as EasyMesh agents",
       "url": "git@github.com:boardfarmdevs/emosa-lab.git",
       "branch": "main",
-      "commit": "d71ea93592b7f493e4199e871be8a8ca9e7a4983",
+      "commit": "e79b9fe83ba2ca413536514a89235624e1358438",
       "site": "https://vcpe.dev/emosa-lab/"
     },
     {
@@ -122,7 +122,14 @@
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "63a09c2d1441d0719f2dd0913225bcf749aa13fe",
       "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140): with EMOSA's package (emosa-lab 4b89eab, the pin: M2 sets beyond a radio's slots applied in part, a wired pod's Ethernet uplink bridged, the Pis' profile), its broker and its GTP's onboarding VAP; unified-wifi-mesh 0237 to 0242; the DHCP leases kept across a start",
-      "used_by": "the gateway (bpibroadband) of rdk-1004 (built from scratch 8 October), everything of EMOSA's running in it"
+      "used_by": "none since 8 October 07:18Z (rdk-1004 from its rebuild that day; image 15 replaced it)"
+    },
+    {
+      "name": "X86EMLTRBPIBB_rdk-next_20261008065621",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "e23877bb142a30f537a2fefd11fd54a70f4fbcaa",
+      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140): image 14 (EMOSA 4b89eab) and unified-wifi-mesh 0243, em_ctrl's crash at a new agent's first onboarding fixed (a model built from the network starts with no radios; every radio append and copy bounded)",
+      "used_by": "the gateway (bpibroadband) of rdk-1004 (redeployed in place 8 October, then the Pis' 8-hour soak), everything of EMOSA's running in it"
     },
     {
       "name": "X86EMLTRBPIAP_rdk-next_20261006232411",
