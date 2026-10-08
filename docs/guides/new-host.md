@@ -99,12 +99,14 @@ installing anything.
 
 ## 4. LXD and its storage
 
-**On the new host**, from a checkout of the RDK lab (step 5 clones it):
+**On the new host**, in the RDK lab's checkout, which the workspace puts in
+`~/git/easymesh-labs/meta-cmf-bananapi-vcpe` (do step 5 first if it is not there):
 
 ```sh
+cd ~/git/easymesh-labs/meta-cmf-bananapi-vcpe
 sudo gen/vm/lxd/install-host.sh       # Ubuntu, KVM, the LXD snap, your user in the lxd group
-newgrp lxd && test -c /dev/kvm
 sudo snap refresh lxd --channel=6/stable && sudo snap refresh --hold lxd    # as on every lab host
+test -c /dev/kvm && groups | grep -qw lxd && echo ready    # no "ready": log out and in again
 ```
 
 Then the host's one ZFS pool for lab VMs, `labs` (the lab configurations reference,
