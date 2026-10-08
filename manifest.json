@@ -115,7 +115,7 @@
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "ed33af3726de9f53db001406900006181044f7cc",
       "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140): with EMOSA's package (emosa-lab a242c79, the pin: a stored reporting policy of another identity superseded), its broker and its GTP's onboarding VAP; unified-wifi-mesh 0237 to 0242",
-      "used_by": "the gateway (bpibroadband) of rdk-emosa-1005, everything of EMOSA's running in it"
+      "used_by": "none since 8 October 17:54Z (rdk-emosa-1005; image 16 replaced it in its redeploy that day)"
     },
     {
       "name": "X86EMLTRBPIBB_rdk-next_20261008040211",
@@ -136,21 +136,28 @@
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "569d9d1d5c97038d626900325f007e6502cdfa9c",
       "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140, 13 min): image 15 with unified-wifi-mesh 0244 (a DPP chirp's TLV length in network byte order) and 0245 (the AP Operational BSS TLV within its length), and EMOSA 747167b (findings 19, 20 and 21: a recreated pod taken again, a window's leftover rows swept, every BSS written with its M2's Multi-AP role)",
-      "used_by": "the gateway (bpibroadband) of rdk-1004 (redeployed in place 8 October 16:53-17:40Z), everything of EMOSA's running in it"
+      "used_by": "the gateway (bpibroadband) of rdk-emosa-1005 (redeployed in place 8 October 17:54-18:58Z), everything of EMOSA's running in it; rdk-1004's from 16:53Z until 22:08Z that day (image 17 replaced it)"
+    },
+    {
+      "name": "X86EMLTRBPIBB_rdk-next_20261008213014",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "6a2280dce52896e9cedb31d889092285123e4d2d",
+      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140, 8 min): image 16 with unified-wifi-mesh 0246 (a BSS's role from the BSS Configuration Report when RDK's vendor operational BSS TLV gives none; an agent sends that report at Profile 3 only) and EMOSA 9d930bc (findings 22 and 23: a lost write the pod never applies ends at its deadline, a window's record kept until its rows are gone)",
+      "used_by": "the gateway (bpibroadband) of rdk-1004 (redeployed in place 8 October 21:38-22:24Z), everything of EMOSA's running in it"
     },
     {
       "name": "X86EMLTRBPIAP_rdk-next_20261006232411",
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "4225e9796752fbf89f394638307550e16d65c0c6",
       "built_by": "gen/build/build-images.sh extender (rev140): every patch since the 29 September image, unified-wifi-mesh to 0242",
-      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-emosa-1005 (its redeploy to the next image under way from 8 October 17:54Z); rdk-1004's until 16:53Z that day"
+      "used_by": "none since 8 October 17:54Z (rdk-emosa-1005's redeploy to the extender image through 0245; rdk-1004's until 16:53Z that day)"
     },
     {
       "name": "X86EMLTRBPIAP_rdk-next_20261008164642",
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "569d9d1d5c97038d626900325f007e6502cdfa9c",
       "built_by": "gen/build/build-images.sh extender (rev140, 8 min): the series through 0245 (0243 and 0244's agent side new to the extenders)",
-      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-1004 (8 October 16:53Z)"
+      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-1004 (8 October 16:53Z, kept through image 17's redeploy) and rdk-emosa-1005 (8 October 17:54Z)"
     }
   ]
 }

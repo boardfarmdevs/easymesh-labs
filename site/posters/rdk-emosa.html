@@ -28,12 +28,12 @@
   <section class="stage-hosts" aria-label="Where it runs">
     <div class="host"><h3>rdk-1004 · rev140</h3><p>The target configuration, built from scratch again on 8 October
     with <code>EASYMESH_EMOSA=1 EASYMESH_EMOSA_IN=gateway</code> and free page reporting; its gateway
-    image (16) carries EMOSA, its forwarder, mosquitto and the pods' onboarding VAP, no container but
+    image (17) carries EMOSA, its forwarder, mosquitto and the pods' onboarding VAP, no container but
     the pods. The two Raspberry Pi pods left it after their 8-hour soak (8 October).
     em_cli <code>192.168.2.140:29610</code> · Console NG
     <code>:29611</code> · room <code>:29612</code>.</p></div>
     <div class="host"><h3>rdk-emosa-1005 · rev120</h3><p>The target configuration built from scratch on
-    6 October with no container but the pods, the gateway image rdk-1004 runs.
+    6 October with no container but the pods, on gateway image 16 since 8 October.
     em_cli <code>192.168.2.120:22010</code> · Console NG <code>:22011</code> ·
     room <code>:22012</code>. Reached from outside through the hosts' gateway,
     easymesh-remote.</p></div>
@@ -366,6 +366,7 @@
         <div class="result rdk"><b>8</b><span>agents in RDK's controller, the pods' two included</span></div>
       </div>
       <ul class="timeline">
+        <li class="rdk">Image 17: EMOSA's findings 22 and 23; a BSS's role from the standard report (8 October)<small>EMOSA 9d930bc ends a write the pod never applies at its deadline instead of leaving it open, and keeps a steering window's record until its rows on the pod are gone, so a pod is not left holding rows nobody owns. unified-wifi-mesh 0246 takes a BSS's role (backhaul or fronthaul) from the BSS Configuration Report when RDK's vendor TLV gives none. Only a Profile-3 agent sends that report; to RDK the lab's pods are Profile-1 agents, so their backhaul BSSes are not yet candidates for the controller's backhaul steering. Redeployed in place in 46 minutes, extenders unchanged: the health audit (100 clients, no loss) and the private client's walk with the pods passed</small></li>
         <li class="rdk">Image 16: the pods' fronthaul says it is a Multi-AP agent's; two more controller fixes (8 October)<small>EMOSA 747167b writes each BSS's role from its M2 into the pod (fronthaul_bss, backhaul_bss), so the pods' hostapd now runs every fronthaul in the fronthaul role (multi_ap=2: the Multi-AP element in its association response to a Multi-AP station, none in beacons): an ordinary client joined one in the health audit with no loss. It also sweeps a steering window's leftover rows and takes a recreated pod back. unified-wifi-mesh 0244 reads a DPP chirp's 1905 length in network byte order and 0245 accepts a radio with no operational BSS, parsing that TLV within its length. Redeployed in place in 47 minutes, extenders included: the health audit (100 clients, no loss) and two rooms passed, among them the private client's walk with the pods</small></li>
         <li class="osl">The Pis' 8-hour soak on image 15 passed; the Pis leave rdk-1004 (8 October)<small>08:21 to 16:21 UTC, a sample a minute: both Pi pods up and their agents provisioning in all 396 samples, no re-onboarding and no M2 refused; a client on pi2's AP associated throughout, no loss, 8.0 ms on average. RDK's controller ran as one process the whole time, no restart and no dump, 46.6 MB at the start and 46.7 MB at the end, and logged none of 0243's guards; every agent kept its BSSes. Then both Pis were forgotten by the fleet and taken out of the lab with one fleet restart; the two virtual pods are back provisioning with their five BSSes each</small></li>
         <li class="rdk">Image 15: the controller no longer dies at a new agent's first onboarding (8 October)<small>em_ctrl crashed when a Pi pod's agent onboarded for the first time: the model it builds to query a new agent's backhaul station took its radio count from whatever the stack held, and copying it read past the stack. unified-wifi-mesh 0243 starts that model with no radios and bounds every radio append and copy. Redeployed in place: the Pis onboarded again, no crash, the health audit passed; then rdk-1004 went to the Pis' 8-hour soak</small></li>
