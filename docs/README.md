@@ -9,7 +9,7 @@
 | [Alignment plan](project/alignment-plan.md) | project | the plan that aligns the labs, up to EMOSA in C in the RDK gateway image, and its status |
 | [Open work](project/open-work.md) | project | the priorities both optimizer labs carry forward, with owners and completion evidence |
 | [Project assessment](project/assessment.md) | project | the whole project against its goals (2 October 2026): what was fixed, what is recommended for later, what to stop |
-| [Proposals register](project/proposals.md) | project | every proposal of the labs, wherever it is kept, with its decision: chosen, open, parked or retired |
+| [Proposals register](project/proposals.md) | project | every proposal of the labs, wherever it is kept, with its decision: chosen, open or parked |
 | [Labs as a service](proposals/labs-as-a-service.md) | proposal | the labs for remote optimizer developers, through an API; parked |
 | [EMOSA's product apart from its lab](proposals/emosa-product-split.md) | proposal | carving the EMOSA product out of emosa-lab at the handover |
 | [Faster, cheaper labs](proposals/faster-labs.md) | proposal | where build and requalification time goes, what is already precooked, and what to change: updates in place, requalifying what a change affects, precooked images and an artifact store keyed by inputs |

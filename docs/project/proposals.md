@@ -16,7 +16,6 @@ each proposal's path is given in that repository.
 | **chosen** | the route to follow when there is capacity; the next step is named |
 | **open** | written, not yet decided |
 | **parked** | decided not now; kept for later, with the reason |
-| **retired** | superseded; the text is in the repository's history |
 
 ## The register
 
@@ -30,12 +29,8 @@ each proposal's path is given in that repository.
 | More capable clients | [easymesh-clients](https://vcpe.dev/easymesh-clients/) `docs/proposals/more-capable-clients.md` | 2 Oct | open | a contract, actions, models, behaviours; steps 1 and 2 are small |
 | Client models | [easymesh-clients](https://vcpe.dev/easymesh-clients/) `docs/proposals/client-models.md` | 29 Sep, revised 3 Oct | **chosen** (3 Oct); **built on a bench** (3 Oct) | models of devices (iPhone, iPad, Mac, Pixel, Galaxy, Windows with Intel, iwd) from their documented roaming, on one wpa_supplicant 2.12 build with three patches. Built in easymesh-clients with a bench of simulated radios on the labs' medium: 441 runs, every conformance test of every model passed (`docs/records/bench-2026-10-03`). No lab uses it yet. Next: one lab takes the build, first 2.12 as today's client with that lab's suite, then one model by hand in a room. It closes the realism gap the assessment names (item 2, R3) |
 | EMOSA's product apart from its lab | this repository, [emosa-product-split.md](../proposals/emosa-product-split.md) | 1 Oct | open | for the handover (alignment plan 8.6) |
-| Faster, cheaper labs | this repository, [faster-labs.md](../proposals/faster-labs.md) | 3 Oct | **implemented** (4 Oct) | all nine in both optimizer labs, verified on rev140: timed builds, `update` that rebuilds the medium and the guest (33 and 19 min where builds take 73 and 46), a change's suites, base VM images (20 min off an RDK build), the artifact store on rev140:8180 with an sstate mirror, copies in seconds, Alpine prplMesh clients, a 20-client development lab; a cold Yocto workspace builds the controller image from the mirror in 14 min once it has the build guide's tar (the helper now refuses another). Open: lab VMs sharing a host lose packets |
 | A retail EasyMesh extender | [meta-cmf-bananapi-vcpe](https://vcpe.dev/meta-cmf-bananapi-vcpe/) `docs/proposals/retail-easymesh-extender.md` | 25 Sep | open | an experiment with real hardware on the RDK lab's controller |
 | Neighbor-network rooms | [easymesh-medium](https://vcpe.dev/easymesh-medium/) `docs/proposals/neighbor-rooms.md` | 9 Sep | open | rooms with a neighbouring network's interference |
-| Rooms: design and plan | meta-cmf-bananapi-vcpe, `docs/proposals/rooms-convergence.md`, removed | 29 Sep | **retired** (2 Oct) | its phases 0 to 2 were done another way by the splits of 30 September; its phase 3 is remote labs' steps 2 and 3; its phases 6 to 8 are the workbench. Two ideas are parked below |
-| The room builder inside each lab | from the rooms plan, phase 4 | 29 Sep | **parked** (2 Oct) | the builder served by each lab VM at `/builder/`, publishing rooms into a session tree beside the golden rooms, never into the suites. After remote labs step 3 |
-| The Pages sites as an offline playground | from the rooms plan, phase 5 | 29 Sep | **parked** (2 Oct) | each public site says it is offline, and its build refuses a lab address or a live viewer mode (the RDK lab's explorer build already refuses a live viewer) |
 
 ## Overlaps, resolved
 
@@ -54,4 +49,5 @@ each proposal's path is given in that repository.
 - A decision changes the status and the date in this table; the proposal itself says the
   same in its status line.
 - A proposal that is implemented leaves this register; its project's plan or state section
-  carries it from then on.
+  carries it from then on. One that is superseded leaves it and its repository; its text
+  stays in the history.
