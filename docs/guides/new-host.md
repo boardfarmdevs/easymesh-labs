@@ -157,17 +157,25 @@ Off the lab LAN, build them. First the host setup of the RDK lab's
 (`gcc-multilib` among them), `repo`, and GNU tar 1.34 (the build refuses a tar that uses
 `openat2`). Then RDK Central's login, and the images, in a clone of the RDK lab of its own at the
 workspace's pin, inside `tmux` so the build outlives a dropped SSH session (detach with Ctrl-b
-then d, come back with `tmux attach -t bpi`):
+then d, come back with `tmux attach -t bpi`).
+
+The host keeps its own [artifact store](../reference/artifact-store.md), a directory: each
+build publishes its image there under the key of its inputs, and a later build with the same
+inputs takes it from there. The store is what keeps the images: the controller and the EMOSA
+controller image are one machine, so building one removes the other from the build's deploy
+folder. The checkout is on a local branch, `pinned`, because the lab VM's builder names the
+VM's copy of it after the branch.
 
 ```sh
 printf 'machine code.rdkcentral.com login USER password TOKEN\n' > ~/.netrc && chmod 600 ~/.netrc
 git config --global color.ui auto            # or repo init stops to ask
 sudo apt install -y tmux && tmux new -s bpi
 
+export EASYMESH_ARTIFACT_STORE=$HOME/artifacts EASYMESH_ARTIFACT_PUBLISH=$HOME/artifacts
 pin=$(git -C ~/git/easymesh-labs/meta-cmf-bananapi-vcpe rev-parse HEAD)
 mkdir -p ~/yocto/easymesh-bpi && cd ~/yocto/easymesh-bpi
 git clone git@github.com:boardfarmdevs/meta-cmf-bananapi-vcpe.git && cd meta-cmf-bananapi-vcpe
-git checkout "$pin" && git submodule update --init --recursive
+git checkout -B pinned "$pin" && git submodule update --init --recursive
 { bash gen/build/bootstrap-sources.sh && bash gen/build/build-images.sh both; } 2>&1 | tee ~/bpi-build.log
 BUILD_EMOSA=1 bash gen/build/build-images.sh controller 2>&1 | tee ~/bpi-emosa.log    # for the RDK lab + EMOSA
 ```
@@ -179,11 +187,13 @@ minutes. While it runs, and when it is done:
 ```sh
 grep -o 'Running task [0-9]* of [0-9]*' "$(ls -td ~/yocto/easymesh-bpi/build-evidence/*/ | head -1)"build.log | tail -1
 for r in controller extender controller-emosa; do R=$(cat ~/yocto/easymesh-bpi/build-evidence/latest-$r)
-  echo "$r: exit $(cat "$R/exit-code") $(awk '{print $2}' "$R/images.sha256")"; done      # exit 0 and an image each
+  echo "$r: exit $(cat "$R/exit-code")"; ls ~/artifacts/store/rdk-image-$r/"$(cat "$R/image-key")"/*.lxc.tar.bz2; done
 ```
 
-A build that stops partway resumes when run again; one image alone is
-`build-images.sh controller` or `extender`. A fetch that fails once on `server certificate
+Each image should show exit 0 and its file in the store. An image built before the store was
+set up is published by running its build again with the two exports: its inputs are
+unchanged, so it takes minutes. A build that stops partway resumes when run again; one image
+alone is `build-images.sh controller` or `extender`. A fetch that fails once on `server certificate
 verification failed` is the network: run it again. The first build fills `~/oe`; later
 ones reuse it. The prplMesh lab's build guide has its native artifacts
 (`deploy/lxd-vm/build-artifacts.sh`).
@@ -205,17 +215,15 @@ traffic checks. Each lab's site has its build and VM guides.
 Name each VM after its configuration and date (the lab configurations reference), and keep
 the configurations reference's hosts table current.
 
-The RDK lab from the images built in step 6, in `tmux`, about an hour. The image paths come
-from the build records: the deploy folder holds the EMOSA controller image too, so a `find`
-there is ambiguous.
+The RDK lab from the images built in step 6, in `tmux`, about an hour. The images come from
+the host's store, by the key each build recorded; the VM builder keeps its base VM there too.
 
 ```sh
 cd ~/yocto/easymesh-bpi/meta-cmf-bananapi-vcpe
+export EASYMESH_ARTIFACT_STORE=$HOME/artifacts EASYMESH_ARTIFACT_PUBLISH=$HOME/artifacts
 source gen/build/lab-config.sh "rdk-$(date -u +%m%d)"       # the VM's name and its ports
-E=~/yocto/easymesh-bpi/build-evidence
-controller=~/yocto/easymesh-bpi/build-qemux86bpibroadband/$(awk '{print $2}' "$(cat $E/latest-controller)/images.sha256")
-extender=~/yocto/easymesh-bpi/build-qemux86bpiap/$(awk '{print $2}' "$(cat $E/latest-extender)/images.sha256")
-ls -l "$controller" "$extender"
+image() { ls ~/artifacts/store/rdk-image-"$1"/"$(cat "$(cat ~/yocto/easymesh-bpi/build-evidence/latest-"$1")/image-key")"/*.lxc.tar.bz2; }
+controller=$(image controller) && extender=$(image extender) && ls -l "$controller" "$extender"
 CLIENT_CREATE_PARALLELISM=8 EASYMESH_CONTROLLER_IMAGE="$controller" EASYMESH_EXTENDER_IMAGE="$extender" \
   gen/vm/lxd/build.sh build 2>&1 | tee ~/rdk-vm-build.log
 ```
