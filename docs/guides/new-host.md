@@ -247,7 +247,10 @@ CLIENT_CREATE_PARALLELISM=8 EASYMESH_CONTROLLER_IMAGE="$controller" EASYMESH_EXT
   gen/vm/lxd/build.sh build 2>&1 | tee ~/rdk-vm-build.log
 ```
 
-It ends by printing the lab's web addresses (topology, room, wmediumd console).
+It ends by printing the lab's web addresses (topology, room, wmediumd console). On the K8 (9
+October, `rdk-1009`) it took 56 minutes, most of it the mesh (9 min), the 100 clients
+(12.5 min) and the cold boot (14 min); the acceptance's health audit passed, and the VM used
+3.4 GiB of the `labs` pool and 7.3 GiB of memory.
 
 ## 8. Qualify each lab
 
