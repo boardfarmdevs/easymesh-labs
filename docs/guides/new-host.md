@@ -251,7 +251,8 @@ CLIENT_CREATE_PARALLELISM=8 EASYMESH_CONTROLLER_IMAGE="$controller" EASYMESH_EXT
 It ends by printing the lab's web addresses (topology, room, wmediumd console). On the K8 (9
 October, `rdk-1009`) it took 56 minutes, most of it the mesh (9 min), the 100 clients
 (12.5 min) and the cold boot (14 min); the acceptance's health audit passed, and the VM used
-3.4 GiB of the `labs` pool and 7.3 GiB of memory.
+3.4 GiB of the `labs` pool and 7.3 GiB of memory. The rebuild there at meta-cmf's main the
+same evening took 42 minutes (mesh 8.9, clients 11.8, cold boot 12.2).
 
 ## 8. Qualify each lab
 
