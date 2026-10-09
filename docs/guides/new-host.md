@@ -144,8 +144,9 @@ clone them where you need them.
 
 ## 6. Artifacts: fetch or build
 
-On the lab LAN, fetch what other hosts built, by its inputs
-([the artifact store](../reference/artifact-store.md)):
+**Only on the lab LAN** (192.168.2.0/24), fetch what other hosts built, by its inputs
+([the artifact store](../reference/artifact-store.md)). Off it, skip this block: those
+addresses are unreachable, and the exports would replace the host's own store below.
 
 ```sh
 export EASYMESH_ARTIFACT_STORE=http://192.168.2.140:8180
