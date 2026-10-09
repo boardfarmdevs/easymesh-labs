@@ -199,7 +199,14 @@
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "ef56b3c274bc5cce4aa98192d72dc1a4a4a95d18",
       "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140, 20 min at low priority): image 20 with unified-wifi-mesh 0252 (a policy ACK leaves a sibling radio's own request pending), 0253 (a radio its agent no longer reports is retired) and 0254 (a moving backhaul station keeps its row), ieee1905-em's bindgen sysroot and the ARP hardening (arp_ignore 1, arp_announce 2); EMOSA 81a93e6",
-      "used_by": "the gateway (bpibroadband) of rdk-1004 (redeployed in place 9 October from 10:26Z), everything of EMOSA's running in it"
+      "used_by": "none since 9 October 17:05Z (image 22 replaced it); before, the gateway (bpibroadband) of rdk-1004 from 9 October 10:26Z (image 21)"
+    },
+    {
+      "name": "X86EMLTRBPIBB_rdk-next_20261009165248",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "72a1e5cfbf250e132272c21f57538da12210bf00",
+      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140, 14 min at low priority): image 21 with unified-wifi-mesh 0255 (an agent with no radio ready does not hold every policy); EMOSA 1ff4d16",
+      "used_by": "the gateway (bpibroadband) of rdk-1004 (redeployed in place 9 October 17:05 to 18:00Z, image 22), everything of EMOSA's running in it"
     },
     {
       "name": "X86EMLTRBPIAP_rdk-next_20261006232411",
@@ -220,7 +227,7 @@
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "ef56b3c274bc5cce4aa98192d72dc1a4a4a95d18",
       "built_by": "gen/build/build-images.sh extender (rev140, 7 min at low priority): the series through 0254, ieee1905-em's bindgen sysroot and the ARP hardening",
-      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-1004 (9 October 10:26Z, image 21)"
+      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-1004 (9 October 10:26Z; kept through image 22, 0255 being the controller's alone)"
     }
   ]
 }
