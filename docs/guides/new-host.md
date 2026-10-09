@@ -129,6 +129,18 @@ echo 3221225472 | sudo tee /sys/module/zfs/parameters/zfs_arc_max
 
 The ZFS tools come with the LXD snap; the host needs only Ubuntu's ZFS module.
 
+**If Docker is installed on the host**, check that it leaves forwarding alone. Docker sets
+the firewall's FORWARD policy to DROP when it is the one to turn IP forwarding on, and LXD's
+bridge is then cut off: a lab VM resolves names but reaches nothing, and the VM build stops at
+its first `apt-get` ("Unable to locate package docker.io"). Docker 28 or later has an option
+for it; the lab hosts run with the policy at ACCEPT:
+
+```sh
+sudo iptables -S FORWARD | head -1          # "-P FORWARD DROP": fix it
+printf '{\n  "ip-forward-no-drop": true\n}\n' | sudo tee /etc/docker/daemon.json   # merge by hand if the file exists
+sudo systemctl restart docker && sudo iptables -P FORWARD ACCEPT
+```
+
 ## 5. The workspace
 
 **On the new host:**
