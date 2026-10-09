@@ -14,7 +14,7 @@
       "about": "RDK-B on Banana Pi images in containers: EasyMesh, virtual RF and medium (wmediumd), optimizer, interactive room",
       "url": "git@github.com:boardfarmdevs/meta-cmf-bananapi-vcpe.git",
       "branch": "main",
-      "commit": "f4887a9eb244d62a6029f7b94b37480cd1a3824f",
+      "commit": "c5cabacbea25bff1f8b7b8d129354854bbed8563",
       "site": "https://vcpe.dev/meta-cmf-bananapi-vcpe/"
     },
     {
@@ -34,7 +34,7 @@
       "about": "The RF medium every lab runs on: wmediumd and its patch series, the hwsim patches, the room configurator and its rooms, the medium's console; one of the labs' two core components, used by the RDK and prplMesh labs at a pinned commit",
       "url": "git@github.com:boardfarmdevs/easymesh-medium.git",
       "branch": "main",
-      "commit": "26fada9f2ce7436cbab3c43a8df42d0f72e119ad",
+      "commit": "9e1dc9a464bf4a96e1e937b26c29fc63a0d55686",
       "site": "https://vcpe.dev/easymesh-medium/"
     },
     {
@@ -44,7 +44,7 @@
       "about": "The steering optimizer both virtual labs run and the room service that runs it live: one policy core with an adapter per controller stack (RDK through em_cli, prplMesh through NBAPI), its scenarios, configurations, tests and manuals; pinned by the RDK and prplMesh labs",
       "url": "git@github.com:boardfarmdevs/easymesh-optimizer.git",
       "branch": "main",
-      "commit": "07bc29bc879a711716c61e7b024d64c46190463b",
+      "commit": "669647cb9bb32b2d7b61f7b195d757fa2413f8c9",
       "site": "https://vcpe.dev/easymesh-optimizer/"
     },
     {
@@ -64,7 +64,7 @@
       "about": "A representative router (mv3) and OpenSync pods with virtual radios and clients",
       "url": "git@github.com:boardfarmdevs/opensync-lab.git",
       "branch": "main",
-      "commit": "a49199a325b76e79639b2e80bb106a4d637f8428",
+      "commit": "fcc15d1e03aa7c133545aab96225392659c2043b",
       "site": "https://vcpe.dev/opensync-lab/"
     },
     {
@@ -108,7 +108,21 @@
       "project": "opensync-lab",
       "commit": "6ddf49596a5e48892b2b6ad45e7a329efb137989",
       "built_by": "build-pod.sh all (rev140, ~/yocto/mvx-pod-work/out, 4 min): the c872deb image with 6ddf495 (the DHCP lease's DNS servers in OpenSync's resolver)",
-      "used_by": "the OpenSync pods of rdk-1004 (from 9 October 06:07Z, with gateway image 20) and opensync-lab-1009 (rev150, qualified with it)"
+      "used_by": "opensync-lab-1009 (rev150, qualified with it); rdk-1004's pods from 9 October 06:07Z to 11:05Z (gateway image 20; the 07aa61e image replaced it)"
+    },
+    {
+      "name": "mvx-pod-20261009031021",
+      "project": "opensync-lab",
+      "commit": "07aa61e699336b98e68cb3adf97b800027f05ecd",
+      "built_by": "build-pod.sh all (rev140, ~/yocto/mvx-pod-work/out, 2 min): the 6ddf495 image with OpenSync core 0005 to 0009 (66aae59: the Plan B child's exit, the channel override's AP width, cm2's router-check pacing, an AP's channel move restarting its BSS when CSA is refused; 07aa61e: 0009, an AP that is not running to start on its station's channel, which never applied)",
+      "used_by": "none since 9 October 11:54Z (rdk-1004's pods from 11:05Z that day, with gateway image 21; the fcc15d1 image replaced it)"
+    },
+    {
+      "name": "mvx-pod-20261009043930",
+      "project": "opensync-lab",
+      "commit": "fcc15d1e03aa7c133545aab96225392659c2043b",
+      "built_by": "build-pod.sh all (rev140, ~/yocto/mvx-pod-work/out, 2 min): the 07aa61e image with core 0009 corrected (the channel override keeps its AP object while the AP is not running, so the AP starts on its station's channel)",
+      "used_by": "the OpenSync pods of rdk-1004 (from 9 October 11:54Z, with gateway image 21)"
     },
     {
       "name": "X86EMLTRBPIAP_rdk-next_20260929014035",
@@ -178,7 +192,14 @@
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "a6b0c1bbb2b43ebd52388d76a24af0b4dc36f4eb",
       "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140, 30 min at low priority beside another build): image 19 with unified-wifi-mesh 0251 (a BSS row the model removes leaves the database, also its radio's last); EMOSA 81a93e6",
-      "used_by": "the gateway (bpibroadband) of rdk-1004 (redeployed in place 9 October from 05:11Z), everything of EMOSA's running in it"
+      "used_by": "none since 9 October 10:26Z (rdk-1004 from 05:11Z that day; image 21 replaced it)"
+    },
+    {
+      "name": "X86EMLTRBPIBB_rdk-next_20261009084746",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "ef56b3c274bc5cce4aa98192d72dc1a4a4a95d18",
+      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140, 20 min at low priority): image 20 with unified-wifi-mesh 0252 (a policy ACK leaves a sibling radio's own request pending), 0253 (a radio its agent no longer reports is retired) and 0254 (a moving backhaul station keeps its row), ieee1905-em's bindgen sysroot and the ARP hardening (arp_ignore 1, arp_announce 2); EMOSA 81a93e6",
+      "used_by": "the gateway (bpibroadband) of rdk-1004 (redeployed in place 9 October from 10:26Z), everything of EMOSA's running in it"
     },
     {
       "name": "X86EMLTRBPIAP_rdk-next_20261006232411",
@@ -192,7 +213,14 @@
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "569d9d1d5c97038d626900325f007e6502cdfa9c",
       "built_by": "gen/build/build-images.sh extender (rev140, 8 min): the series through 0245 (0243 and 0244's agent side new to the extenders)",
-      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-1004 (8 October 16:53Z, kept through the redeploys of images 17 to 20) and rdk-emosa-1005 (8 October 17:54Z)"
+      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-emosa-1005 (8 October 17:54Z); rdk-1004's from 8 October 16:53Z to 9 October 10:26Z (kept through images 17 to 20; image 21's extenders replaced them)"
+    },
+    {
+      "name": "X86EMLTRBPIAP_rdk-next_20261009090750",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "ef56b3c274bc5cce4aa98192d72dc1a4a4a95d18",
+      "built_by": "gen/build/build-images.sh extender (rev140, 7 min at low priority): the series through 0254, ieee1905-em's bindgen sysroot and the ARP hardening",
+      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-1004 (9 October 10:26Z, image 21)"
     }
   ]
 }
