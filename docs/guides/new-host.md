@@ -96,7 +96,7 @@ installing anything.
 7. **Basic tools:**
 
    ```sh
-   sudo apt update && sudo apt install -y git curl zstd python3-venv qemu-kvm snapd
+   sudo apt update && sudo apt install -y git curl zstd python3-venv qemu-kvm snapd jq   # jq: the RDK lab's suite reads JSON with it on the host
    sudo snap install astral-uv --classic     # uv, which several projects' Python tools and tests use
    sudo apt install -y libnl-3-dev libnl-genl-3-dev libconfig-dev pkg-config   # the RDK lab's VM builder compiles wmediumd here
    sudo snap install go --classic            # and the medium's console, which needs Go 1.22 or later (22.04's own is 1.18)
