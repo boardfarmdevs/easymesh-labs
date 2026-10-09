@@ -28,7 +28,7 @@ pins gives what the running VMs have.
 | rev140 | the Yocto builds (mv3, OpenSync pod, Banana Pi images); `rdk-1004` (#5 in its target configuration, EMOSA wholly in the gateway; a prplMesh lab is built here when needed), one lab running, building or testing at a time (their builds and checks refuse while the other runs); any other long build on this host runs at low priority (`nice -n 19 ionice -c3`) while a lab VM is up |
 | rev150 | `opensync-lab-1009` (#3, built 9 October from opensync-lab c872deb to qualify the pod image of that commit; on `lxdbr0` only, its local-noc page proxied on `10.212.227.1:8640`, off the host's uplink); the room browser for the labs on rev140 and rev120, container builds and fuzzing |
 | rev120 | `rdk-emosa-1005` (#5, the target configuration) and `easymesh-lab` (#6, stopped), whose physical devices are attached to rev120: physical tests run there. No prplMesh VMs or builders |
-| rev-NucBox-K8 | the reference lab, at another site and off the lab LAN, everything built from scratch there ([new host guide](../guides/new-host.md)): `rdk-1009` (#1), built 9 October, its suite not yet run. Virtual labs only |
+| rev-NucBox-K8 | the reference lab, at another site and off the lab LAN, everything built from scratch there ([new host guide](../guides/new-host.md)): `rdk-1009` (#1), built 9 October; its first suite (9 October) 100 passed, 6 failed and 3 blocked behind them, every failure a test that assumes 5 mesh agents where a lab with its wired extender has 6 (the optimizer's `expected_devices: 5`, the steering matrix's five targets), not yet qualified. The OpenSync pod image built there next. Virtual labs only |
 
 ## Storage
 
