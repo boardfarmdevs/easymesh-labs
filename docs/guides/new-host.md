@@ -223,7 +223,7 @@ traffic checks. Each lab's site has its build and VM guides.
 | Lab | Built with (on the new host) | Its guide |
 | --- | --- | --- |
 | **RDK EasyMesh lab** | `bash gen/build/build-images.sh both` (or fetched), then `EASYMESH_CONTROLLER_IMAGE=... EASYMESH_EXTENDER_IMAGE=... gen/vm/lxd/build.sh build`; about an hour | [meta-cmf-bananapi-vcpe](https://vcpe.dev/meta-cmf-bananapi-vcpe/): the build and VM guides |
-| **RDK lab + EMOSA**, the target configuration | the same build with `EASYMESH_EMOSA=1 EASYMESH_EMOSA_IN=gateway` and a controller image built with `BUILD_EMOSA=1`; about 90 minutes | the same, "The EMOSA option"; [emosa-lab](https://vcpe.dev/emosa-lab/) |
+| **RDK lab + EMOSA**, the target configuration | the same build with `EASYMESH_EMOSA=1 EASYMESH_EMOSA_IN=gateway`, a controller image built with `BUILD_EMOSA=1`, `EMOSA_LAB` an emosa-lab checkout at the commit `gen/vm/lxd/emosa-lab.env` pins, and `EMOSA_POD_IMAGE` the OpenSync pod image the umbrella's `manifest.json` lists (`opensync-lab`'s `./build-pod.sh all` at that commit, about 5 minutes, in Docker); about 70 minutes (the K8, 9 October) | the same, "The EMOSA option"; [emosa-lab](https://vcpe.dev/emosa-lab/) | the same, "The EMOSA option"; [emosa-lab](https://vcpe.dev/emosa-lab/) |
 | **prplMesh lab** | `deploy/lxd-vm/build-artifacts.sh`, then `deploy/lxd-vm/build.sh build` | [prplmesh-lab](https://vcpe.dev/prplmesh-lab/) |
 | **OpenSync lab** | `./build-mvx.sh pin` and `build` (the operator's MV3 sources: its repo mirror under `~/yocto/repo_reference` and the reference build, today only on rev140, copied over), `./setup-vm.sh all`, `./deploy-mvx.sh all`, `./build-pod.sh all`, `./deploy-mvx.sh mesh` | [opensync-lab](https://vcpe.dev/opensync-lab/) |
 | **OpenSync + EMOSA** | the OpenSync lab, then emosa-lab's `deploy/opensync-lab/lab.sh` | [emosa-lab](https://vcpe.dev/emosa-lab/) |
@@ -282,7 +282,9 @@ gen/tests/run-easymesh-suite.sh all --yes-act --install-browser-deps 2>&1 | tee 
 ```
 
 The results are under `test-results/<time>/` in the checkout (`results.tsv`, `summary.json`);
-a skipped or blocked section is not a pass. A host whose address comes from DHCP (the K8's
+a skipped or blocked section is not a pass, and the suite exits 0 when every section it ran was
+skipped: read `results.tsv`. Every section that drives a browser (the rooms too) needs
+`--install-browser-deps` or Playwright already installed, or it is skipped. A host whose address comes from DHCP (the K8's
 Wi-Fi) keeps the lab reachable only while that address holds.
 
 ## 9. Remote access
