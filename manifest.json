@@ -34,7 +34,7 @@
       "about": "The RF medium every lab runs on: wmediumd and its patch series, the hwsim patches, the room configurator and its rooms, the medium's console; one of the labs' two core components, used by the RDK and prplMesh labs at a pinned commit",
       "url": "git@github.com:boardfarmdevs/easymesh-medium.git",
       "branch": "main",
-      "commit": "4c03d110f4eac003fc9a5622a6e3ec4fa03ba6ba",
+      "commit": "26fada9f2ce7436cbab3c43a8df42d0f72e119ad",
       "site": "https://vcpe.dev/easymesh-medium/"
     },
     {
@@ -44,7 +44,7 @@
       "about": "The steering optimizer both virtual labs run and the room service that runs it live: one policy core with an adapter per controller stack (RDK through em_cli, prplMesh through NBAPI), its scenarios, configurations, tests and manuals; pinned by the RDK and prplMesh labs",
       "url": "git@github.com:boardfarmdevs/easymesh-optimizer.git",
       "branch": "main",
-      "commit": "c0709379b080d05ef249b621c1df3115fe7d4778",
+      "commit": "07bc29bc879a711716c61e7b024d64c46190463b",
       "site": "https://vcpe.dev/easymesh-optimizer/"
     },
     {
@@ -54,7 +54,7 @@
       "about": "The EasyMesh-to-OpenSync adapter: existing OpenSync pods as EasyMesh agents",
       "url": "git@github.com:boardfarmdevs/emosa-lab.git",
       "branch": "main",
-      "commit": "81a93e69624dc8277fb64222ff816055ca1dbad9",
+      "commit": "1ff4d16f98a6074ae3576042baa30a9265b3637c",
       "site": "https://vcpe.dev/emosa-lab/"
     },
     {
