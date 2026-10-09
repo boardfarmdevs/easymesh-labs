@@ -98,6 +98,8 @@ installing anything.
    ```sh
    sudo apt update && sudo apt install -y git curl zstd python3-venv qemu-kvm snapd
    sudo snap install astral-uv --classic     # uv, which several projects' Python tools and tests use
+   sudo apt install -y libnl-3-dev libnl-genl-3-dev libconfig-dev pkg-config   # the RDK lab's VM builder compiles wmediumd here
+   sudo snap install go --classic            # and the medium's console, which needs Go 1.22 or later (22.04's own is 1.18)
    ```
 
 ## 4. LXD and its storage
@@ -183,7 +185,8 @@ BUILD_EMOSA=1 bash gen/build/build-images.sh controller 2>&1 | tee ~/bpi-emosa.l
 
 From scratch on 16 threads the controller image takes about two hours (the sources'
 download included); the extender and the EMOSA controller image then reuse it and take
-minutes. While it runs, and when it is done:
+minutes (on the K8, 9 October: the EMOSA controller image 3 min 19 s, the controller and
+the extender together 3 min 58 s). While it runs, and when it is done:
 
 ```sh
 grep -o 'Running task [0-9]* of [0-9]*' "$(ls -td ~/yocto/easymesh-bpi/build-evidence/*/ | head -1)"build.log | tail -1
@@ -218,6 +221,9 @@ the configurations reference's hosts table current.
 
 The RDK lab from the images built in step 6, in `tmux`, about an hour. The images come from
 the host's store, by the key each build recorded; the VM builder keeps its base VM there too.
+Its first stage compiles the medium's `wmediumd` and console on the host: without step 3's
+libnl, libconfig and Go it stops within seconds ("Cannot find development files for any
+supported version of libnl", "go: command not found").
 
 ```sh
 cd ~/yocto/easymesh-bpi/meta-cmf-bananapi-vcpe
