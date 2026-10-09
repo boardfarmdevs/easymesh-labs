@@ -179,7 +179,8 @@ build publishes its image there under the key of its inputs, and a later build w
 inputs takes it from there. The store is what keeps the images: the controller and the EMOSA
 controller image are one machine, so building one removes the other from the build's deploy
 folder. The checkout is on a local branch, `pinned`, because the lab VM's builder names the
-VM's copy of it after the branch.
+VM's copy of it after the branch (from meta-cmf 3703f40 a detached checkout works too, its copy
+named after the commit; that builder also names any missing host tool before compiling).
 
 ```sh
 printf 'machine code.rdkcentral.com login USER password TOKEN\n' > ~/.netrc && chmod 600 ~/.netrc
