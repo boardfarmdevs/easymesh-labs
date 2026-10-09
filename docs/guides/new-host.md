@@ -169,7 +169,7 @@ export BUILD_SSTATE_MIRROR=http://192.168.2.140:8180/sstate-cache    # Yocto: mi
 
 Off the lab LAN, build them. First the host setup of the RDK lab's
 [build guide](https://vcpe.dev/meta-cmf-bananapi-vcpe/) (`docs/guides/build.md`): its packages
-(`gcc-multilib` among them), `repo`, and GNU tar 1.34 (the build refuses a tar that uses
+(`gcc-multilib` among them, needed only before meta-cmf 2d17a67: from that commit the image builds without the host's 32-bit C headers, shown on the K8 on 9 October), `repo`, and GNU tar 1.34 (the build refuses a tar that uses
 `openat2`). Then RDK Central's login, and the images, in a clone of the RDK lab of its own at the
 workspace's pin, inside `tmux` so the build outlives a dropped SSH session (detach with Ctrl-b
 then d, come back with `tmux attach -t bpi`).
