@@ -123,8 +123,14 @@ OVSDB ports and a trust anchor an unchanged pod accepts).
 
 ### Later
 
-9.2, 9.3, the rest of 9.5 and 9.7; the production plan's other streams (easymesh-resources); a Wi-Fi
-backhaul for the physical pods (a second adapter per Pi).
+9.2, 9.3 and 9.7; the production plan's other streams (easymesh-resources). 9.5's layer B (a pod as
+the GRE parent of other pods, the physical Pis' route to pod-through-pod) was approved on 9
+October. The pods' 5 GHz Wi-Fi backhaul on a second adapter per Pi is 10.6's next stage.
+
+EasyMesh and EMOSA on two more of the operator's routers, the mv2plus and the mv27, at low
+priority after the mv3's items (the owner, 9 October): first the mv27 as a virtual lab, then the
+mv2plus on its board (on the bench since 9 October), then the mv27 board when it arrives, each
+reusing what the mv3 has proven.
 
 ## Hosts
 
