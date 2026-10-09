@@ -143,7 +143,14 @@
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "6a2280dce52896e9cedb31d889092285123e4d2d",
       "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140, 8 min): image 16 with unified-wifi-mesh 0246 (a BSS's role from the BSS Configuration Report when RDK's vendor operational BSS TLV gives none; an agent sends that report at Profile 3 only) and EMOSA 9d930bc (findings 22 and 23: a lost write the pod never applies ends at its deadline, a window's record kept until its rows are gone)",
-      "used_by": "the gateway (bpibroadband) of rdk-1004 (redeployed in place 8 October 21:38-22:24Z), everything of EMOSA's running in it"
+      "used_by": "none since 8 October 23:38Z (rdk-1004 from 21:38Z that day; image 18 replaced it)"
+    },
+    {
+      "name": "X86EMLTRBPIBB_rdk-next_20261008233022",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "5a782079d50ffd5b3071fe49b0be868d04324319",
+      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140, 9 min): image 17 with unified-wifi-mesh 0247 (a BSS's role from the controller's own network SSID for an agent that says none: the pods' backhaul BSSes are backhaul candidates), 0248 (a learned backhaul station row known by its mode and MAC), 0249 (SteerWiFiBackhaul()'s operating class on every band) and 0250 (a Backhaul Steering Response naming another of the agent's stations); EMOSA 9d930bc",
+      "used_by": "the gateway (bpibroadband) of rdk-1004 (redeployed in place 8 October 23:38Z to 9 October 00:24Z), everything of EMOSA's running in it"
     },
     {
       "name": "X86EMLTRBPIAP_rdk-next_20261006232411",
