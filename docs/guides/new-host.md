@@ -257,7 +257,32 @@ October, `rdk-1009`) it took 56 minutes, most of it the mesh (9 min), the 100 cl
 A build's acceptance is not the qualification. Run each lab's suite before calling it a
 lab: the RDK lab's `gen/tests/run-easymesh-suite.sh all --yes-act`, the prplMesh lab's
 `tests/run-prplmesh-suite.sh all`, with the room browser on another host where the guides
-say so. The suites take hours; nothing else runs on the host meanwhile.
+say so. The suites take hours; nothing else runs on the host meanwhile. The RDK lab's `all`
+includes its 12-hour soak.
+
+The RDK lab's suite needs, on the host (its [test guide](https://vcpe.dev/meta-cmf-bananapi-vcpe/),
+`docs/guides/test-suite.md`): step 3's passwordless `ssh localhost`, a Python environment
+with its requirements, and Node 22 or later. On Ubuntu 22.04 the Node snap fails (built for a
+newer glibc), and nodejs.org's own build works. The lab's web proxies listen on the host's
+address, not loopback, so the suite is told that address. In `tmux`:
+
+```sh
+f=$(curl -fsS https://nodejs.org/dist/latest-v24.x/SHASUMS256.txt | grep -o 'node-v24[0-9.]*-linux-x64.tar.xz' | head -1)
+curl -fsSL "https://nodejs.org/dist/latest-v24.x/$f" | tar -xJ -C ~/.local/opt     # mkdir -p ~/.local/opt first
+for b in node npm npx; do ln -sf ~/.local/opt/"${f%.tar.xz}"/bin/$b ~/bin/$b; done
+
+cd ~/yocto/easymesh-bpi/meta-cmf-bananapi-vcpe
+python3 -m venv ~/.venvs/easymesh-tests && source ~/.venvs/easymesh-tests/bin/activate
+python3 -m pip install -r gen/tests/requirements.txt
+source gen/build/lab-config.sh rdk-MMDD                  # the lab's name
+export EASYMESH_HOST_ADDRESS=$(lxc config device show "$EASYMESH_LXD_NAME" | awk '/listen: tcp:/ {split($2, a, ":"); print a[2]; exit}')
+python3 gen/medium/observer/check-ready.py --url "http://$EASYMESH_HOST_ADDRESS:$WMEDIUMD_CONSOLE_PORT" --require-room --require-survey
+gen/tests/run-easymesh-suite.sh all --yes-act --install-browser-deps 2>&1 | tee ~/suite.log
+```
+
+The results are under `test-results/<time>/` in the checkout (`results.tsv`, `summary.json`);
+a skipped or blocked section is not a pass. A host whose address comes from DHCP (the K8's
+Wi-Fi) keeps the lab reachable only while that address holds.
 
 ## 9. Remote access
 
