@@ -94,21 +94,35 @@
       "project": "opensync-lab",
       "commit": "666b0ad71ec6982451b6a3ab411bd1d00b075349",
       "built_by": "build-pod.sh all (rev140, ~/yocto/mvx-pod-work/out)",
-      "used_by": "the OpenSync pods of the RDK lab's EMOSA option (rdk-1004, rdk-emosa-1005, rdk-emosa-1006)"
+      "used_by": "the OpenSync pods of rdk-emosa-1005 (rdk-1004's until 9 October 03:02Z)"
+    },
+    {
+      "name": "mvx-pod-20261008164039",
+      "project": "opensync-lab",
+      "commit": "c872debc58a43d7facb8dc2b27732a9e3109dec6",
+      "built_by": "build-pod.sh all (rev140, ~/yocto/mvx-pod-work/out, 2 min): since 666b0ad, 2c64597 (the journal bounded), 76bcd0a (dnsmasq's lease line), a49199a (odhcp6c) and c872deb (a station per band)",
+      "used_by": "none since 9 October 06:07Z (rdk-1004's pods from 03:02Z that day; the 6ddf495 image replaced it); opensync-lab-1009's odhcp6c A/B runs on 8 and 9 October"
+    },
+    {
+      "name": "mvx-pod-20261008213920",
+      "project": "opensync-lab",
+      "commit": "6ddf49596a5e48892b2b6ad45e7a329efb137989",
+      "built_by": "build-pod.sh all (rev140, ~/yocto/mvx-pod-work/out, 4 min): the c872deb image with 6ddf495 (the DHCP lease's DNS servers in OpenSync's resolver)",
+      "used_by": "the OpenSync pods of rdk-1004 (from 9 October 06:07Z, with gateway image 20) and opensync-lab-1009 (rev150, qualified with it)"
     },
     {
       "name": "X86EMLTRBPIAP_rdk-next_20260929014035",
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "f5c1bdb34e10fb9909e4e61cc822b2cd1ec730d1",
       "built_by": "gen/build/build-images.sh both (rev140)",
-      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-emosa-1006"
+      "used_by": "none since 8 October (rdk-emosa-1006's extenders; that VM was removed that day)"
     },
     {
       "name": "X86EMLTRBPIBB_rdk-next_20261006175821",
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "8f1522e2a90bbc80b0a197e0436f41a9e5f0f8e0",
       "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140): with EMOSA's package (emosa-lab cdfaddc, the pin), its broker and its GTP's onboarding VAP; unified-wifi-mesh 0237 to 0241",
-      "used_by": "the gateway (bpibroadband) of rdk-emosa-1006, everything of EMOSA's running in it"
+      "used_by": "none since 8 October (rdk-emosa-1006's gateway; that VM was removed that day)"
     },
     {
       "name": "X86EMLTRBPIBB_rdk-next_20261008001545",
@@ -150,7 +164,21 @@
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "5a782079d50ffd5b3071fe49b0be868d04324319",
       "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140, 9 min): image 17 with unified-wifi-mesh 0247 (a BSS's role from the controller's own network SSID for an agent that says none: the pods' backhaul BSSes are backhaul candidates), 0248 (a learned backhaul station row known by its mode and MAC), 0249 (SteerWiFiBackhaul()'s operating class on every band) and 0250 (a Backhaul Steering Response naming another of the agent's stations); EMOSA 9d930bc",
-      "used_by": "the gateway (bpibroadband) of rdk-1004 (redeployed in place 8 October 23:38Z to 9 October 00:24Z), everything of EMOSA's running in it"
+      "used_by": "none since 9 October 02:26Z (rdk-1004 from 8 October 23:38Z; image 19 replaced it)"
+    },
+    {
+      "name": "X86EMLTRBPIBB_rdk-next_20261009021448",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "f4887a9eb244d62a6029f7b94b37480cd1a3824f",
+      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140, 9 min): image 18 with EMOSA 81a93e6 (alignment plan 9.5 step 3: a pod's uplink across bands, a station per band)",
+      "used_by": "none since 9 October 05:11Z (rdk-1004 from 02:26Z that day; image 20 replaced it)"
+    },
+    {
+      "name": "X86EMLTRBPIBB_rdk-next_20261009045009",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "a6b0c1bbb2b43ebd52388d76a24af0b4dc36f4eb",
+      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140, 30 min at low priority beside another build): image 19 with unified-wifi-mesh 0251 (a BSS row the model removes leaves the database, also its radio's last); EMOSA 81a93e6",
+      "used_by": "the gateway (bpibroadband) of rdk-1004 (redeployed in place 9 October from 05:11Z), everything of EMOSA's running in it"
     },
     {
       "name": "X86EMLTRBPIAP_rdk-next_20261006232411",
@@ -164,7 +192,7 @@
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "569d9d1d5c97038d626900325f007e6502cdfa9c",
       "built_by": "gen/build/build-images.sh extender (rev140, 8 min): the series through 0245 (0243 and 0244's agent side new to the extenders)",
-      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-1004 (8 October 16:53Z, kept through image 17's redeploy) and rdk-emosa-1005 (8 October 17:54Z)"
+      "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-1004 (8 October 16:53Z, kept through the redeploys of images 17 to 20) and rdk-emosa-1005 (8 October 17:54Z)"
     }
   ]
 }
