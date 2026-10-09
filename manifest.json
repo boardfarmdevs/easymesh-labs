@@ -14,7 +14,7 @@
       "about": "RDK-B on Banana Pi images in containers: EasyMesh, virtual RF and medium (wmediumd), optimizer, interactive room",
       "url": "git@github.com:boardfarmdevs/meta-cmf-bananapi-vcpe.git",
       "branch": "main",
-      "commit": "72a1e5cfbf250e132272c21f57538da12210bf00",
+      "commit": "6cd6d1301b5303149c3dca29db12903fc01b4eec",
       "site": "https://vcpe.dev/meta-cmf-bananapi-vcpe/"
     },
     {
@@ -34,7 +34,7 @@
       "about": "The RF medium every lab runs on: wmediumd and its patch series, the hwsim patches, the room configurator and its rooms, the medium's console; one of the labs' two core components, used by the RDK and prplMesh labs at a pinned commit",
       "url": "git@github.com:boardfarmdevs/easymesh-medium.git",
       "branch": "main",
-      "commit": "9e1dc9a464bf4a96e1e937b26c29fc63a0d55686",
+      "commit": "e9b2e53bdc6517743fb5fd4bdfb4e51375be6e25",
       "site": "https://vcpe.dev/easymesh-medium/"
     },
     {
@@ -64,7 +64,7 @@
       "about": "A representative router (mv3) and OpenSync pods with virtual radios and clients",
       "url": "git@github.com:boardfarmdevs/opensync-lab.git",
       "branch": "main",
-      "commit": "fcc15d1e03aa7c133545aab96225392659c2043b",
+      "commit": "9b3d12c83f4b98eeb71eba1325810f882c0cb0cd",
       "site": "https://vcpe.dev/opensync-lab/"
     },
     {
