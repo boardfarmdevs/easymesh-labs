@@ -125,7 +125,16 @@ OVSDB ports and a trust anchor an unchanged pod accepts).
 
 9.2, 9.3 and 9.7; the production plan's other streams (easymesh-resources). 9.5's layer B (a pod as
 the GRE parent of other pods, the physical Pis' route to pod-through-pod) was approved on 9
-October. The pods' 5 GHz Wi-Fi backhaul on a second adapter per Pi is 10.6's next stage.
+October and started on 10 October on emosa-lab's branch `layer-b`. Done there:
+- spec 8.6, a draft: the controller decides where backhaul BSSes go, and child moves stay
+  operator-directed;
+- one owner per column: the pod's release of its parent AP acts below EMOSA's row (at most 30 s,
+  retries 5 minutes apart), and a wired parent's station is the pod's;
+- the fleet registry's underlay per pod (Python, C, vectors);
+- the Python agent's parent AP and its tunnels to its children.
+
+Still to do: the C agent, vectors, box scenarios, then the virtual proof on `rdk-1010`. The pods'
+5 GHz Wi-Fi backhaul on a second adapter per Pi is 10.6's next stage.
 
 EasyMesh and EMOSA on two more of the operator's routers, the mv2plus and the mv27, at low
 priority, each reusing what the mv3 has proven. The owner's order (9 October, evening): first the
