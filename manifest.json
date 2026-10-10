@@ -237,6 +237,13 @@
       "used_by": "none (compile check)"
     },
     {
+      "name": "X86EMLTRBPIBB_rdk-next_20261010145430",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "a0a2f22 (tx-power-reread, on candidate-query-resend and renew-request)",
+      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140, 11 min at low priority, 10 October): image 27, unified-wifi-mesh 0256/0257 (candidate queries), 0258/0259 (renew requests), OneWifi 0045 (the transmit power read again)",
+      "used_by": "rdk-1010's gateway (bpibroadband), redeployed in place 10 October 15:10 to 15:43Z; its proofs 15:43 to 16:38Z (the candidate queries' resend and Not_Ready retry proven and merged; the transmit power read until each radio has one, every radio's report 20, 30, 33 dBm; a targeted renew exposes the controller's reply routing to an agent's first radio)"
+    },
+    {
       "name": "X86EMLTRBPIAP_rdk-next_20261006232411",
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "4225e9796752fbf89f394638307550e16d65c0c6",
@@ -270,6 +277,13 @@
       "commit": "c34dee4 (onewifi-tx-power-dbm)",
       "built_by": "gen/build/build-images.sh extender (rev140, 10 October): image 25, as its gateway",
       "used_by": "rdk-1010's extenders (bpiap, bpiap-001 to bpiap-004), redeployed in place 10 October 02:53 to 03:29Z"
+    },
+    {
+      "name": "X86EMLTRBPIAP_rdk-next_20261010150516",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "a0a2f22 (tx-power-reread)",
+      "built_by": "gen/build/build-images.sh extender (rev140, 6 min, 10 October): image 27, as its gateway",
+      "used_by": "rdk-1010's extenders (bpiap, bpiap-001 to bpiap-004), redeployed in place 10 October 15:10 to 15:43Z; its proofs 15:43 to 16:38Z (the candidate queries' resend and Not_Ready retry proven and merged; the transmit power read until each radio has one, every radio's report 20, 30, 33 dBm; a targeted renew exposes the controller's reply routing to an agent's first radio)"
     }
   ]
 }
