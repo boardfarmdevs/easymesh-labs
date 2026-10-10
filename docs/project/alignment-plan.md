@@ -137,8 +137,9 @@ and EMOSA last (its board on the bench since 9 October).
 
 | Host | In this plan |
 | --- | --- |
-| rev140 | Yocto builds; the target configuration's RDK lab (EMOSA in the gateway) and the physical pods |
-| rev120 | the RDK lab with EMOSA reached through the hosts' gateway; RDK only |
-| rev150 | container builds, fuzzing and the room tests' browser runs |
+| rev140 | Yocto builds only (the owner, 9 October); its last lab, `rdk-1004`, goes once `rdk-1010` on rev120 is qualified |
+| rev120 | the RDK labs (the target configuration, EMOSA in the gateway); the Pi pods' virtual twin |
+| rev150 | the physical pods' bench (consoles, the router's LAN link); opensync-lab; a private lab VM for the other routers; container builds, fuzzing and the room tests' browser runs |
+| rev-NucBox-K8 | the reference lab at another site, built from scratch by the [new host guide](../guides/new-host.md) |
 
 The VMs that run on each host now are in [the lab configurations](../reference/lab-configurations.md).
