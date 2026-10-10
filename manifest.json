@@ -244,6 +244,13 @@
       "used_by": "rdk-1010's gateway (bpibroadband), redeployed in place 10 October 15:10 to 15:43Z; its proofs 15:43 to 16:38Z (the candidate queries' resend and Not_Ready retry proven and merged; the transmit power read until each radio has one, every radio's report 20, 30, 33 dBm; a targeted renew exposes the controller's reply routing to an agent's first radio)"
     },
     {
+      "name": "X86EMLTRBPIBB_rdk-next_20261010201744",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "317e0e0 (image-28; main from dc1d3d0)",
+      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140, 16 min at low priority, 10 October): image 28, unified-wifi-mesh 0258/0259 (renew requests), 0260/0261 (the AP Radio Basic Capabilities TLV without holes, the controller's walk bounded), 0262 (a Topology Response to the radio waiting for it), 0263/0264 (an SSID change answered with the controller's status, refused while a configuration is in flight)",
+      "used_by": "rdk-1010's gateway (bpibroadband), redeployed in place 10 October 20:43 to 21:17Z; its proofs 21:19 to 22:09Z passed 10 of 11 sections: a renew of each extender radio alone stays that radio's (0262), an SSID change during a radio's renew or another change answered 409 and the restore reaching the air (0263/0264), the renew requests and their refusals (0258/0259); the 6 GHz section failed by its own design, as on image 27 (redesigned)"
+    },
+    {
       "name": "X86EMLTRBPIAP_rdk-next_20261006232411",
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "4225e9796752fbf89f394638307550e16d65c0c6",
@@ -284,6 +291,13 @@
       "commit": "a0a2f22 (tx-power-reread)",
       "built_by": "gen/build/build-images.sh extender (rev140, 6 min, 10 October): image 27, as its gateway",
       "used_by": "rdk-1010's extenders (bpiap, bpiap-001 to bpiap-004), redeployed in place 10 October 15:10 to 15:43Z; its proofs 15:43 to 16:38Z (the candidate queries' resend and Not_Ready retry proven and merged; the transmit power read until each radio has one, every radio's report 20, 30, 33 dBm; a targeted renew exposes the controller's reply routing to an agent's first radio)"
+    },
+    {
+      "name": "X86EMLTRBPIAP_rdk-next_20261010203243",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "317e0e0 (image-28)",
+      "built_by": "gen/build/build-images.sh extender (rev140, 8 min, 10 October): image 28, as its gateway",
+      "used_by": "rdk-1010's extenders (bpiap, bpiap-001 to bpiap-004), redeployed in place 10 October 20:43 to 21:17Z; its proofs 21:19 to 22:09Z passed 10 of 11 sections: a renew of each extender radio alone stays that radio's (0262), an SSID change during a radio's renew or another change answered 409 and the restore reaching the air (0263/0264), the renew requests and their refusals (0258/0259); the 6 GHz section failed by its own design, as on image 27 (redesigned)"
     }
   ]
 }
