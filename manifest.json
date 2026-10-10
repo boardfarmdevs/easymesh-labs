@@ -213,7 +213,28 @@
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "db2a0462b8093ee3993cafbb43dc22a520110104",
       "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140, 18 min at low priority, 10 October) from branch lnf-band-subdoc: main 5408d8f (rdk-wifi-hal 0046/0047, the layer's OneWifi and platform patches applied the same on every do_patch run) with libwebconfig 0015 and OneWifi 0042 (the co-located agent's band subdoc leaves out the VAPs it does not manage); EMOSA d28ec86",
-      "used_by": "rdk-1010's gateway (bpibroadband), building on rev120 since 10 October 00:33Z (image 23)"
+      "used_by": "rdk-1010's build (10 October 00:33 to 02:21Z), which stopped at the bring-up's topology gate: libwebconfig 0015 blanked a VAP's name, which encode_multivap_subdoc rejects; image 25 replaced it"
+    },
+    {
+      "name": "X86EMLTRBPIBB_rdk-next_20261010005220",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "1f13df8 (onewifi-tx-power-dbm, before its rebase)",
+      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140, 10 October): image 24, the compile check of OneWifi 0043/0044 on image 23's lnf-band-subdoc",
+      "used_by": "none (compile check; its 0015 is image 23's, rejected by the encoder)"
+    },
+    {
+      "name": "X86EMLTRBPIBB_rdk-next_20261010022515",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "c34dee4 (onewifi-tx-power-dbm)",
+      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140, 18 min at low priority, 10 October): image 25, the reworked libwebconfig 0015 (an explicit exclusion set) with OneWifi 0042, 0043 and 0044",
+      "used_by": "rdk-1010's gateway (bpibroadband), redeployed in place 10 October 02:53 to 03:29Z"
+    },
+    {
+      "name": "X86EMLTRBPIBB_rdk-next_20261010031514",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "bd1a83a (candidate-query-resend)",
+      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140, 10 October): image 26, the compile check of unified-wifi-mesh 0256/0257 and the rebuilt em_cli helper",
+      "used_by": "none (compile check)"
     },
     {
       "name": "X86EMLTRBPIAP_rdk-next_20261006232411",
@@ -241,7 +262,14 @@
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "db2a0462b8093ee3993cafbb43dc22a520110104",
       "built_by": "gen/build/build-images.sh extender (rev140, 27 min at low priority, 10 October) from branch lnf-band-subdoc, as the controller of image 23",
-      "used_by": "rdk-1010's extenders (bpiap, bpiap-001 to bpiap-004), building on rev120 since 10 October 00:33Z (image 23)"
+      "used_by": "rdk-1010's build (10 October 00:33 to 02:21Z), which stopped at the bring-up's topology gate: libwebconfig 0015 blanked a VAP's name, which encode_multivap_subdoc rejects; image 25 replaced it"
+    },
+    {
+      "name": "X86EMLTRBPIAP_rdk-next_20261010024407",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "c34dee4 (onewifi-tx-power-dbm)",
+      "built_by": "gen/build/build-images.sh extender (rev140, 10 October): image 25, as its gateway",
+      "used_by": "rdk-1010's extenders (bpiap, bpiap-001 to bpiap-004), redeployed in place 10 October 02:53 to 03:29Z"
     }
   ]
 }
