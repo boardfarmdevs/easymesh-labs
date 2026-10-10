@@ -14,7 +14,7 @@
       "about": "RDK-B on Banana Pi images in containers: EasyMesh, virtual RF and medium (wmediumd), optimizer, interactive room",
       "url": "git@github.com:boardfarmdevs/meta-cmf-bananapi-vcpe.git",
       "branch": "main",
-      "commit": "a8f1eb8752e145e2aec3e8d76b315f1611a0e6ee",
+      "commit": "5408d8fd48fa04de7ac98d89e74fb31c7f147e6a",
       "site": "https://vcpe.dev/meta-cmf-bananapi-vcpe/"
     },
     {
@@ -34,7 +34,7 @@
       "about": "The RF medium every lab runs on: wmediumd and its patch series, the hwsim patches, the room configurator and its rooms, the medium's console; one of the labs' two core components, used by the RDK and prplMesh labs at a pinned commit",
       "url": "git@github.com:boardfarmdevs/easymesh-medium.git",
       "branch": "main",
-      "commit": "e9b2e53bdc6517743fb5fd4bdfb4e51375be6e25",
+      "commit": "cd3f0fadd8a5779c98a6122ac07bffe0c2d35737",
       "site": "https://vcpe.dev/easymesh-medium/"
     },
     {
@@ -209,6 +209,13 @@
       "used_by": "the gateway (bpibroadband) of rdk-1004 (redeployed in place 9 October 17:05 to 18:00Z, image 22), everything of EMOSA's running in it"
     },
     {
+      "name": "X86EMLTRBPIBB_rdk-next_20261009234903",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "db2a0462b8093ee3993cafbb43dc22a520110104",
+      "built_by": "BUILD_EMOSA=1 gen/build/build-images.sh controller (rev140, 18 min at low priority, 10 October) from branch lnf-band-subdoc: main 5408d8f (rdk-wifi-hal 0046/0047, the layer's OneWifi and platform patches applied the same on every do_patch run) with libwebconfig 0015 and OneWifi 0042 (the co-located agent's band subdoc leaves out the VAPs it does not manage); EMOSA d28ec86",
+      "used_by": "rdk-1010's gateway (bpibroadband), building on rev120 since 10 October 00:33Z (image 23)"
+    },
+    {
       "name": "X86EMLTRBPIAP_rdk-next_20261006232411",
       "project": "meta-cmf-bananapi-vcpe",
       "commit": "4225e9796752fbf89f394638307550e16d65c0c6",
@@ -228,6 +235,13 @@
       "commit": "ef56b3c274bc5cce4aa98192d72dc1a4a4a95d18",
       "built_by": "gen/build/build-images.sh extender (rev140, 7 min at low priority): the series through 0254, ieee1905-em's bindgen sysroot and the ARP hardening",
       "used_by": "the extenders (bpiap, bpiap-001 to bpiap-004) of rdk-1004 (9 October 10:26Z; kept through image 22, 0255 being the controller's alone)"
+    },
+    {
+      "name": "X86EMLTRBPIAP_rdk-next_20261010000659",
+      "project": "meta-cmf-bananapi-vcpe",
+      "commit": "db2a0462b8093ee3993cafbb43dc22a520110104",
+      "built_by": "gen/build/build-images.sh extender (rev140, 27 min at low priority, 10 October) from branch lnf-band-subdoc, as the controller of image 23",
+      "used_by": "rdk-1010's extenders (bpiap, bpiap-001 to bpiap-004), building on rev120 since 10 October 00:33Z (image 23)"
     }
   ]
 }
