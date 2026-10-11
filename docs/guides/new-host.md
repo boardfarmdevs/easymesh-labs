@@ -252,7 +252,9 @@ It ends by printing the lab's web addresses (topology, room, wmediumd console). 
 October, `rdk-1009`) it took 56 minutes, most of it the mesh (9 min), the 100 clients
 (12.5 min) and the cold boot (14 min); the acceptance's health audit passed, and the VM used
 3.4 GiB of the `labs` pool and 7.3 GiB of memory. The rebuild there at meta-cmf's main the
-same evening took 42 minutes (mesh 8.9, clients 11.8, cold boot 12.2).
+same evening took 42 minutes (mesh 8.9, clients 11.8, cold boot 12.2). The rebuild on 10
+October at main 781ba94 (`rdk-1010`) took 52 minutes (mesh 8.9, clients 12.2, wired extenders
+4.3, cold boot 12.2), after 12 minutes for both images.
 
 ## 8. Qualify each lab
 
