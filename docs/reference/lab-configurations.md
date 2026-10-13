@@ -21,6 +21,12 @@ for #2, opensync-lab's for #3, emosa-lab's for #4 and #5, easymesh-lab's for #6.
 image, the Banana Pi images) with the commit each was built from; a fresh build at the
 pins gives what the running VMs have.
 
+#5 also takes a busybox-init CPE image in the gateway's place
+(`EASYMESH_CONTROLLER_INIT=busybox`, from meta-cmf-bananapi-vcpe's and emosa-lab's
+branches `cpe-busybox-init`, which are #5's pins with that CPE type only); everything
+else is as in #5. One difference follows from the CPE: such a CPE runs no broker for the
+pods, so that lab has no pod telemetry (emosa-lab's `lab.sh up` logs it).
+
 ## Hosts
 
 | Host | Runs |
