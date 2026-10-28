@@ -122,7 +122,14 @@
       "project": "opensync-lab",
       "commit": "fcc15d1e03aa7c133545aab96225392659c2043b",
       "built_by": "build-pod.sh all (rev140, ~/yocto/mvx-pod-work/out, 2 min): the 07aa61e image with core 0009 corrected (the channel override keeps its AP object while the AP is not running, so the AP starts on its station's channel)",
-      "used_by": "the OpenSync pods of rdk-1004 (from 9 October 11:54Z, with gateway image 21)"
+      "used_by": "the OpenSync pods of rdk-1004 (from 9 October 11:54Z, with gateway image 21); rdk-1010's until 28 October 15:59Z (the 794a9ec image replaced it)"
+    },
+    {
+      "name": "the OpenSync pod image of 28 October 2026 (rootfs 4ad133ea4f6b)",
+      "project": "opensync-lab",
+      "commit": "794a9ecbf56361d26cdd492f87b04e9f55743c86",
+      "built_by": "build-pod.sh all (rev140, 1.5 min): the fcc15d1 image's pod tree (9b3d12c changed only local-noc) with OpenSync core 0010 (an address literal resolved in its own family only, never through DNS); on branch wip/cm2-resolve-literal",
+      "used_by": "the OpenSync pods of rdk-1010 (from 28 October 15:59Z, both pods again from it with lab.sh repod)"
     },
     {
       "name": "X86EMLTRBPIAP_rdk-next_20260929014035",
